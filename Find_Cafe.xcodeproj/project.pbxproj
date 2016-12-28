@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0865F75CCB2ADBD83DE79F48 /* Pods_Find_Cafe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08DCE23F71734DD73C892CB1 /* Pods_Find_Cafe.framework */; };
 		C6A57D3F1E14052A00EAFF81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A57D3E1E14052A00EAFF81 /* AppDelegate.swift */; };
 		C6A57D411E14052A00EAFF81 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A57D401E14052A00EAFF81 /* ViewController.swift */; };
 		C6A57D441E14052A00EAFF81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6A57D421E14052A00EAFF81 /* Main.storyboard */; };
@@ -15,6 +16,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		08DCE23F71734DD73C892CB1 /* Pods_Find_Cafe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Find_Cafe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		128B618FF8FF46EF8A7B515F /* Pods-Find_Cafe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Find_Cafe.release.xcconfig"; path = "Pods/Target Support Files/Pods-Find_Cafe/Pods-Find_Cafe.release.xcconfig"; sourceTree = "<group>"; };
+		3883C4F5A312BAA135E8F566 /* Pods-Find_Cafe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Find_Cafe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Find_Cafe/Pods-Find_Cafe.debug.xcconfig"; sourceTree = "<group>"; };
 		C6A57D3B1E14052A00EAFF81 /* Find_Cafe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Find_Cafe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6A57D3E1E14052A00EAFF81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C6A57D401E14052A00EAFF81 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -29,17 +33,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0865F75CCB2ADBD83DE79F48 /* Pods_Find_Cafe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4159B1B42C8420A0ED2B325F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				08DCE23F71734DD73C892CB1 /* Pods_Find_Cafe.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		89A086BBCA066DDA1E0C55A2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3883C4F5A312BAA135E8F566 /* Pods-Find_Cafe.debug.xcconfig */,
+				128B618FF8FF46EF8A7B515F /* Pods-Find_Cafe.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		C6A57D321E14052A00EAFF81 = {
 			isa = PBXGroup;
 			children = (
 				C6A57D3D1E14052A00EAFF81 /* Find_Cafe */,
 				C6A57D3C1E14052A00EAFF81 /* Products */,
+				89A086BBCA066DDA1E0C55A2 /* Pods */,
+				4159B1B42C8420A0ED2B325F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C6A57D4D1E14052A00EAFF81 /* Build configuration list for PBXNativeTarget "Find_Cafe" */;
 			buildPhases = (
+				36409F04251E80A386C6FCEF /* [CP] Check Pods Manifest.lock */,
 				C6A57D371E14052A00EAFF81 /* Sources */,
 				C6A57D381E14052A00EAFF81 /* Frameworks */,
 				C6A57D391E14052A00EAFF81 /* Resources */,
+				CDFDCDB56B11F42114FE5B8C /* [CP] Embed Pods Frameworks */,
+				CACC988432AF74AD1015ACD4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -131,6 +158,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		36409F04251E80A386C6FCEF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CACC988432AF74AD1015ACD4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Find_Cafe/Pods-Find_Cafe-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CDFDCDB56B11F42114FE5B8C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Find_Cafe/Pods-Find_Cafe-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C6A57D371E14052A00EAFF81 /* Sources */ = {
@@ -257,10 +332,12 @@
 		};
 		C6A57D4E1E14052A00EAFF81 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3883C4F5A312BAA135E8F566 /* Pods-Find_Cafe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 2P6AEF5G35;
 				INFOPLIST_FILE = Find_Cafe/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Chien-Hsiang-Yin.Find-Cafe";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -270,10 +347,12 @@
 		};
 		C6A57D4F1E14052A00EAFF81 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 128B618FF8FF46EF8A7B515F /* Pods-Find_Cafe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 2P6AEF5G35;
 				INFOPLIST_FILE = Find_Cafe/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Chien-Hsiang-Yin.Find-Cafe";
 				PRODUCT_NAME = "$(TARGET_NAME)";
