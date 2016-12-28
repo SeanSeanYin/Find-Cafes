@@ -9,10 +9,13 @@
 /* Begin PBXBuildFile section */
 		0865F75CCB2ADBD83DE79F48 /* Pods_Find_Cafe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08DCE23F71734DD73C892CB1 /* Pods_Find_Cafe.framework */; };
 		C6A57D3F1E14052A00EAFF81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A57D3E1E14052A00EAFF81 /* AppDelegate.swift */; };
-		C6A57D411E14052A00EAFF81 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A57D401E14052A00EAFF81 /* ViewController.swift */; };
 		C6A57D441E14052A00EAFF81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6A57D421E14052A00EAFF81 /* Main.storyboard */; };
 		C6A57D461E14052A00EAFF81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6A57D451E14052A00EAFF81 /* Assets.xcassets */; };
 		C6A57D491E14052A00EAFF81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6A57D471E14052A00EAFF81 /* LaunchScreen.storyboard */; };
+		C6A57D511E1423E500EAFF81 /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A57D501E1423E500EAFF81 /* HomePageViewController.swift */; };
+		C6A57D531E1424C000EAFF81 /* SelectCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A57D521E1424C000EAFF81 /* SelectCityViewController.swift */; };
+		C6A57D551E1424F200EAFF81 /* CafesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A57D541E1424F200EAFF81 /* CafesViewController.swift */; };
+		C6A57D571E14286000EAFF81 /* SortTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A57D561E14286000EAFF81 /* SortTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,11 +24,14 @@
 		3883C4F5A312BAA135E8F566 /* Pods-Find_Cafe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Find_Cafe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Find_Cafe/Pods-Find_Cafe.debug.xcconfig"; sourceTree = "<group>"; };
 		C6A57D3B1E14052A00EAFF81 /* Find_Cafe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Find_Cafe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6A57D3E1E14052A00EAFF81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C6A57D401E14052A00EAFF81 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C6A57D431E14052A00EAFF81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C6A57D451E14052A00EAFF81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C6A57D481E14052A00EAFF81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C6A57D4A1E14052A00EAFF81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C6A57D501E1423E500EAFF81 /* HomePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
+		C6A57D521E1424C000EAFF81 /* SelectCityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCityViewController.swift; sourceTree = "<group>"; };
+		C6A57D541E1424F200EAFF81 /* CafesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CafesViewController.swift; sourceTree = "<group>"; };
+		C6A57D561E14286000EAFF81 /* SortTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,11 +85,14 @@
 			isa = PBXGroup;
 			children = (
 				C6A57D3E1E14052A00EAFF81 /* AppDelegate.swift */,
-				C6A57D401E14052A00EAFF81 /* ViewController.swift */,
+				C6A57D501E1423E500EAFF81 /* HomePageViewController.swift */,
 				C6A57D421E14052A00EAFF81 /* Main.storyboard */,
 				C6A57D451E14052A00EAFF81 /* Assets.xcassets */,
 				C6A57D471E14052A00EAFF81 /* LaunchScreen.storyboard */,
 				C6A57D4A1E14052A00EAFF81 /* Info.plist */,
+				C6A57D521E1424C000EAFF81 /* SelectCityViewController.swift */,
+				C6A57D541E1424F200EAFF81 /* CafesViewController.swift */,
+				C6A57D561E14286000EAFF81 /* SortTableViewController.swift */,
 			);
 			path = Find_Cafe;
 			sourceTree = "<group>";
@@ -212,8 +221,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C6A57D411E14052A00EAFF81 /* ViewController.swift in Sources */,
 				C6A57D3F1E14052A00EAFF81 /* AppDelegate.swift in Sources */,
+				C6A57D571E14286000EAFF81 /* SortTableViewController.swift in Sources */,
+				C6A57D551E1424F200EAFF81 /* CafesViewController.swift in Sources */,
+				C6A57D511E1423E500EAFF81 /* HomePageViewController.swift in Sources */,
+				C6A57D531E1424C000EAFF81 /* SelectCityViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +391,7 @@
 				C6A57D4F1E14052A00EAFF81 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
