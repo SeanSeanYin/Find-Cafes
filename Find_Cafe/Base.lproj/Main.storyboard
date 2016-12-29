@@ -35,6 +35,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Change city?"/>
                                 <connections>
+                                    <action selector="changeCityWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3JO-Tq-fQW"/>
                                     <segue destination="Did-v6-onS" kind="show" identifier="changeCity" id="Ydb-Zt-7pQ"/>
                                 </connections>
                             </button>
@@ -43,7 +44,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Start to use"/>
                                 <connections>
-                                    <segue destination="qUJ-tk-zwG" kind="show" identifier="startToUse" id="ul0-OU-TJA"/>
+                                    <action selector="startToUseWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="My9-NF-dOV"/>
+                                    <segue destination="cQN-Mc-5lt" kind="show" identifier="startToUse" id="26c-c0-9gr"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="765-cM-nf0">
@@ -88,6 +90,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Ajo-ni-iCm"/>
+                    <connections>
+                        <outlet property="cityLabel" destination="pqj-7C-d8x" id="MiY-DG-Gdm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -144,10 +149,11 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7uC-6k-qgf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3247" y="73"/>
+            <point key="canvasLocation" x="2567" y="73"/>
         </scene>
         <!--Sort Table View Controller-->
         <scene sceneID="Rt1-g4-0X8">
@@ -265,7 +271,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mSl-Yf-Xxd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3984" y="-93"/>
+            <point key="canvasLocation" x="3333" y="73"/>
         </scene>
         <!--Select City View Controller-->
         <scene sceneID="StJ-Nf-oyo">
@@ -286,7 +292,7 @@
                                 <state key="normal" title="Taipei"/>
                                 <connections>
                                     <action selector="chooseCityToSearchWithSender:" destination="aud-Xl-GJg" eventType="touchUpInside" id="WM9-8E-Dk6"/>
-                                    <segue destination="qUJ-tk-zwG" kind="show" identifier="chooseCityToSearch" id="In0-1f-8K7"/>
+                                    <segue destination="cQN-Mc-5lt" kind="show" identifier="chooseCityToSearch" id="ABs-6t-rO3"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="01e-7n-zeY">
@@ -349,7 +355,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="otP-3S-RX8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1716" y="761.46926536731644"/>
+            <point key="canvasLocation" x="1798" y="1078"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="RHL-rO-xc5">
@@ -385,31 +391,31 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TNz-aO-nio" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="998" y="762"/>
+            <point key="canvasLocation" x="999" y="1079"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="TWS-hE-zZn">
+        <scene sceneID="Keh-ts-1dV">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qUJ-tk-zwG" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cQN-Mc-5lt" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="HnJ-T3-SW9">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="D21-cw-Q5t">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="W6j-rY-1Lb" kind="relationship" relationship="rootViewController" id="5oS-0M-vIt"/>
+                        <segue destination="W6j-rY-1Lb" kind="relationship" relationship="rootViewController" id="ZVx-s6-ypU"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="P6q-08-Wxx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cv3-57-Vij" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2408.8000000000002" y="71.514242878560722"/>
+            <point key="canvasLocation" x="1798" y="72"/>
         </scene>
     </scenes>
     <resources>
         <image name="Placeholder" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="In0-1f-8K7"/>
+        <segue reference="ABs-6t-rO3"/>
     </inferredMetricsTieBreakers>
 </document>

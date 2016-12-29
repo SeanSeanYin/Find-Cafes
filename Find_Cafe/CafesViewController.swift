@@ -12,12 +12,13 @@ class CafesViewController: UIViewController, UIPopoverPresentationControllerDele
 
     @IBOutlet var searchBar:UISearchBar!
     var searchController:UISearchController!
+    var selectedCity = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print("selectedCity:\(selectedCity)")
         
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,5 +63,4 @@ class CafesViewController: UIViewController, UIPopoverPresentationControllerDele
         // Pass the selected object to the new view controller.
     }
     */
-
 }

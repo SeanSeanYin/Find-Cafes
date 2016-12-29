@@ -21,13 +21,32 @@ class SelectCityViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func chooseCityToSearch(sender: AnyObject) {
+    @IBAction func chooseCityToSearch(sender: UIButton!) {
         
-        performSegue(withIdentifier: "chooseCityToSearch", sender: sender)
+        guard let city = sender.currentTitle else {
+            print("Failed to get city")
+            return
+        }
+        
+        let alert = UIAlertController(title: "You select \(city) city", message: "Are you sure?", preferredStyle: .alert)
+        let doAction = UIAlertAction(title: "Yes", style: .default) { action in
+            self.performSegue(withIdentifier: "chooseCityToSearch", sender: sender)
+        }
+        let cancelAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+        
+        alert.addAction(doAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        if (segue.identifier == "chooseCityToSearch") {
+            
+            let navigationController = segue.destination as! UINavigationController
+            let viewController = navigationController.topViewController as! CafesViewController
+            viewController.selectedCity = (sender as! UIButton).currentTitle!
+        }
     }
     
     /*
