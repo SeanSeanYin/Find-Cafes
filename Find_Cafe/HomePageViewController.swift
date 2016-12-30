@@ -52,7 +52,25 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBAction func startToUse(sender: AnyObject) {
         
-        performSegue(withIdentifier: "startToUse", sender: sender)
+        switch self.currentCity {
+            
+            case "台北", "新竹", "台中", "台南", "高雄" :
+                
+                self.performSegue(withIdentifier: "startToUse", sender: sender)
+            
+            default:
+                
+                let alert = UIAlertController(title: "\(self.currentCity) 尚未有資料", message: "將會查詢台北的資料", preferredStyle: .alert)
+                
+                let doAction = UIAlertAction(title: "確定", style: .default) { action in
+                    
+                    self.currentCity = "台北"
+                    self.performSegue(withIdentifier: "startToUse", sender: sender)
+                }
+                
+                alert.addAction(doAction)
+                self.present(alert, animated: true, completion: nil)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -63,6 +81,7 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate {
             
             let navigationController = segue.destination as! UINavigationController
             let viewController = navigationController.topViewController as! CafesViewController
+            
             viewController.selectedCity = self.currentCity
         }
     }

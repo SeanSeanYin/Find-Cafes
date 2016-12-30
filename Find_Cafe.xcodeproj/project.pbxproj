@@ -17,6 +17,7 @@
 		C6A57D551E1424F200EAFF81 /* CafesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A57D541E1424F200EAFF81 /* CafesViewController.swift */; };
 		C6A57D571E14286000EAFF81 /* SortTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A57D561E14286000EAFF81 /* SortTableViewController.swift */; };
 		C6A57D591E154C5900EAFF81 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6A57D581E154C5900EAFF81 /* CoreLocation.framework */; };
+		C6A57D5B1E15D74E00EAFF81 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A57D5A1E15D74E00EAFF81 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		C6A57D541E1424F200EAFF81 /* CafesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CafesViewController.swift; sourceTree = "<group>"; };
 		C6A57D561E14286000EAFF81 /* SortTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortTableViewController.swift; sourceTree = "<group>"; };
 		C6A57D581E154C5900EAFF81 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		C6A57D5A1E15D74E00EAFF81 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 				C6A57D521E1424C000EAFF81 /* SelectCityViewController.swift */,
 				C6A57D541E1424F200EAFF81 /* CafesViewController.swift */,
 				C6A57D561E14286000EAFF81 /* SortTableViewController.swift */,
+				C6A57D5A1E15D74E00EAFF81 /* NetworkManager.swift */,
 			);
 			path = Find_Cafe;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6A57D5B1E15D74E00EAFF81 /* NetworkManager.swift in Sources */,
 				C6A57D3F1E14052A00EAFF81 /* AppDelegate.swift in Sources */,
 				C6A57D571E14286000EAFF81 /* SortTableViewController.swift in Sources */,
 				C6A57D551E1424F200EAFF81 /* CafesViewController.swift in Sources */,
