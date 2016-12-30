@@ -25,13 +25,11 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var selectedCity = ""
     var url = ""
     var cafes:[CafeInfo]!
+    var sortedCafes:[CafeInfo]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("selectedCity:\(selectedCity)")
-        
-        cafeDetailTable.delegate = self
-        cafeDetailTable.dataSource = self
         
         switch selectedCity {
         case "台北":
@@ -49,57 +47,24 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         
         self.spinner.hidesWhenStopped = true
-        spinner.center = self.view.center
-        self.view.addSubview(spinner)
-        spinner.startAnimating()
+        self.spinner.center = self.view.center
+        self.view.addSubview(self.spinner)
+        self.spinner.startAnimating()
         
-        do {
-            _ = try getData(city: selectedCity) { response in
-                
-                switch (response.result){
-                    case .success(let value) :
-                        
-                        let objArray = JSON(value)
-                        
-                        for (_, obj) in objArray {
-                            
-                            let id = obj["id"].stringValue
-                            let name = obj["name"].stringValue
-                            let url = obj["url"].stringValue
-                            let city = obj["city"].stringValue
-                            let address = obj["address"].stringValue
-                            let wifi = obj["wifi"].doubleValue
-                            let seat = obj["seat"].doubleValue
-                            let quiet = obj["quiet"].doubleValue
-                            let music = obj["music"].doubleValue
-                            let tasty = obj["tasty"].doubleValue
-                            let longitude = obj["longitude"].doubleValue
-                            let latitude = obj["latitude"].doubleValue
-                            
-                            let cafe = CafeInfo(id: id, name: name, url: url, city: city, address: address, wifi: wifi, seat: seat, quiet: quiet, music: music, tasty: tasty, longitude:longitude, latitude: latitude)
-                            
-                            if self.cafes == nil {
-                                self.cafes = [CafeInfo]()
-                            }
-                            
-                            self.cafes.append(cafe)
-                        }
-                    default:
-                        print("Just default")
-                }
-                OperationQueue.main.addOperation {
-                    self.spinner.stopAnimating()
-                    self.cafeDetailTable.reloadData()
-                }
-                print("Cafes:\(self.cafes.count)")
+        getData(city: self.selectedCity) { response in
+            
+            self.cafes = response as! [CafeInfo]
+            self.sortedCafes = self.cafes.sorted(by: { $0.wifi! > $1.wifi! })
+            //images.sort({ $0.fileID > $1.fileID })
+            
+            OperationQueue.main.addOperation {
+                self.spinner.stopAnimating()
+                self.cafeDetailTable.reloadData()
             }
-        } catch ApiError.makeSignatureFail {
-            
-            print("Failed to make signature.")
-        } catch {
-            
-            print("Something worng")
-        }
+        }        
+        
+        cafeDetailTable.delegate = self
+        cafeDetailTable.dataSource = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -108,14 +73,17 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        
+        print("numberOfSections")
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 10
-        //return cafes.count
+        if self.cafes != nil {
+            return self.cafes.count
+        } else {
+            return 0
+        }
     }
     
 //    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -134,18 +102,15 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
 //    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "CafeDetailCell", for: indexPath) as! CafeDetailTableViewCell
 
+        let currentCafes = self.sortedCafes[indexPath.row]
+        if let name = currentCafes.name, let wifi = currentCafes.wifi {
 
-        cell.cafeName.text = "name"
-        cell.cafeSort.text = "wifi"
-//        let currentCafes = cafes[indexPath.row]
-//        if let name = currentCafes.name, let wifi = currentCafes.wifi {
-//            print("name: \(name),  sort:\(wifi)")
-//            cell.cafeName.text = name
-//            cell.cafeSort.text = String(wifi)
-//        }
+            cell.cafeName.text = name
+            cell.cafeSort.text = String(wifi)
+        }
         
         return cell
     }

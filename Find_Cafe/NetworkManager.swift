@@ -39,28 +39,53 @@ struct ApiURL {
     }
 }
 
-public func getData(city:String?, completion: @escaping (_ response:DataResponse<Any>) -> Void) throws -> () {
+public func getData(city:String?, completion: @escaping (_ response:[Any]?) -> Void) -> () {
+    
+    var cafes:[CafeInfo]!
     
     // 確定url不是空白
     guard let cityName = city else {
-        throw ApiError.wrongParameters
+        return
     }
     
     let url = "https://cafenomad.tw/api/v1.0/cafes/" + cityName
-    
-    print("url : \(url)")
+
     Alamofire.request(url, method: .get, parameters: nil, encoding: URLEncoding.httpBody).validate().responseJSON { responseObject in
 
         switch responseObject.result {
-        case .success:
+        case .success(let value):
+
+            let objArray = JSON(value)
             
-            print("Get data successfully.")
-            completion(responseObject)
+            for (_, obj) in objArray {
+                
+                let id = obj["id"].stringValue
+                let name = obj["name"].stringValue
+                let url = obj["url"].stringValue
+                let city = obj["city"].stringValue
+                let address = obj["address"].stringValue
+                let wifi = obj["wifi"].doubleValue
+                let seat = obj["seat"].doubleValue
+                let quiet = obj["quiet"].doubleValue
+                let music = obj["music"].doubleValue
+                let tasty = obj["tasty"].doubleValue
+                let longitude = obj["longitude"].doubleValue
+                let latitude = obj["latitude"].doubleValue
+                
+                let cafe = CafeInfo(id: id, name: name, url: url, city: city, address: address, wifi: wifi, seat: seat, quiet: quiet, music: music, tasty: tasty, longitude:longitude, latitude: latitude)
+                
+                if cafes == nil {
+                    cafes = [CafeInfo]()
+                }                    
+                cafes.append(cafe)
+            }
+            completion(cafes)
             
         case .failure(let error):
             
             print("error :\(error.localizedDescription)")
-            print(responseObject)
+            print(responseObject.result)
+            print(responseObject.timeline)
         }
     }
 }
