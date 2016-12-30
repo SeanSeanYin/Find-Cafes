@@ -18,6 +18,7 @@
 		C6A57D571E14286000EAFF81 /* SortTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A57D561E14286000EAFF81 /* SortTableViewController.swift */; };
 		C6A57D591E154C5900EAFF81 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6A57D581E154C5900EAFF81 /* CoreLocation.framework */; };
 		C6A57D5B1E15D74E00EAFF81 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A57D5A1E15D74E00EAFF81 /* NetworkManager.swift */; };
+		ED6642381E1634820030B088 /* CafesInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6642371E1634820030B088 /* CafesInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		C6A57D561E14286000EAFF81 /* SortTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortTableViewController.swift; sourceTree = "<group>"; };
 		C6A57D581E154C5900EAFF81 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C6A57D5A1E15D74E00EAFF81 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		ED6642371E1634820030B088 /* CafesInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CafesInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 				C6A57D4A1E14052A00EAFF81 /* Info.plist */,
 				C6A57D521E1424C000EAFF81 /* SelectCityViewController.swift */,
 				C6A57D541E1424F200EAFF81 /* CafesViewController.swift */,
+				ED6642371E1634820030B088 /* CafesInfo.swift */,
 				C6A57D561E14286000EAFF81 /* SortTableViewController.swift */,
 				C6A57D5A1E15D74E00EAFF81 /* NetworkManager.swift */,
 			);
@@ -230,6 +233,7 @@
 			files = (
 				C6A57D5B1E15D74E00EAFF81 /* NetworkManager.swift in Sources */,
 				C6A57D3F1E14052A00EAFF81 /* AppDelegate.swift in Sources */,
+				ED6642381E1634820030B088 /* CafesInfo.swift in Sources */,
 				C6A57D571E14286000EAFF81 /* SortTableViewController.swift in Sources */,
 				C6A57D551E1424F200EAFF81 /* CafesViewController.swift in Sources */,
 				C6A57D511E1423E500EAFF81 /* HomePageViewController.swift in Sources */,

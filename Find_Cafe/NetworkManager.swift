@@ -46,8 +46,11 @@ public func getData(city:String?, completion: @escaping (_ response:DataResponse
         throw ApiError.wrongParameters
     }
     
-    Alamofire.request(cityName, method: .get, parameters: nil, encoding: URLEncoding.httpBody).validate().responseJSON { responseObject in
-        print("URL: \(cityName)")
+    let url = "https://cafenomad.tw/api/v1.0/cafes/" + cityName
+    
+    print("url : \(url)")
+    Alamofire.request(url, method: .get, parameters: nil, encoding: URLEncoding.httpBody).validate().responseJSON { responseObject in
+
         switch responseObject.result {
         case .success:
             
