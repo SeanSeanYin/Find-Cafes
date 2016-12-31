@@ -82,7 +82,7 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate {
             let navigationController = segue.destination as! UINavigationController
             let viewController = navigationController.topViewController as! CafesViewController
             
-            viewController.selectedCity = self.currentCity
+            viewController.newCity = self.currentCity
         }
     }
 

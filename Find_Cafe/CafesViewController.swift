@@ -9,10 +9,39 @@
 import UIKit
 import SwiftyJSON
 
+class CafeDetailHeader: UITableViewHeaderFooterView {
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var sortLabel: UILabel!
+}
+
 class CafeDetailTableViewCell: UITableViewCell {
     
     @IBOutlet var cafeName:UILabel!
     @IBOutlet var cafeSort:UILabel!
+}
+
+func sort ( with array:[CafeInfo], and sortBy:String) -> [CafeInfo] {
+    
+    var sortedArray = [CafeInfo]()
+    
+    switch sortBy{
+    
+        case "wifi":
+            sortedArray = array.sorted(by: { $0.wifi! > $1.wifi! })
+        case "music":
+            sortedArray = array.sorted(by: { $0.music! > $1.music! })
+        case "seat":
+            sortedArray = array.sorted(by: { $0.seat! > $1.seat! })
+        case "tasty":
+            sortedArray = array.sorted(by: { $0.tasty! > $1.tasty! })
+        case "quiet":
+            sortedArray = array.sorted(by: { $0.quiet! > $1.quiet! })
+        default :
+            break
+    }
+    
+    return sortedArray
 }
 
 class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UIPopoverPresentationControllerDelegate, UIAdaptivePresentationControllerDelegate {
@@ -22,28 +51,29 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet var spinner:UIActivityIndicatorView!
     
     var searchController:UISearchController!
-    var selectedCity = ""
+    var newCity = ""
+    var currentCity = ""
     var url = ""
+    var sortItem = ""
     var cafes:[CafeInfo]!
     var sortedCafes:[CafeInfo]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("selectedCity:\(selectedCity)")
         
-        switch selectedCity {
-        case "台北":
-            selectedCity = "taipei"
-        case "新竹":
-            selectedCity = "hsinchu"
-        case "台中":
-            selectedCity = "taichung"
-        case "台南":
-            selectedCity = "tainan"
-        case "高雄":
-            selectedCity = "kaohsiung"
-        default:
-            selectedCity = "taipei"
+        switch newCity {
+            case "台北":
+                newCity = "taipei"
+            case "新竹":
+                newCity = "hsinchu"
+            case "台中":
+                newCity = "taichung"
+            case "台南":
+                newCity = "tainan"
+            case "高雄":
+                newCity = "kaohsiung"
+            default:
+                newCity = "taipei"
         }
         
         self.spinner.hidesWhenStopped = true
@@ -51,17 +81,38 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.view.addSubview(self.spinner)
         self.spinner.startAnimating()
         
-        getData(city: self.selectedCity) { response in
+        print("newCity:\(newCity) & currentCity:\(currentCity)")
+        
+        if self.sortItem == ""{
+            self.sortItem = "wifi"
+        }
+        
+        if (currentCity != newCity) {
             
-            self.cafes = response as! [CafeInfo]
-            self.sortedCafes = self.cafes.sorted(by: { $0.wifi! > $1.wifi! })
-            //images.sort({ $0.fileID > $1.fileID })
-            
-            OperationQueue.main.addOperation {
-                self.spinner.stopAnimating()
-                self.cafeDetailTable.reloadData()
+            getData(city: self.newCity) { response in
+                
+                self.cafes = response as! [CafeInfo]
+                
+                self.sortedCafes = sort(with: self.cafes, and: self.sortItem)
+                
+                OperationQueue.main.addOperation {
+                    self.spinner.stopAnimating()
+                    self.cafeDetailTable.reloadData()
+                }
             }
-        }        
+        } else {
+            
+            if (self.cafes != nil) {
+                self.sortedCafes = sort(with: self.cafes, and: self.sortItem)
+                
+                OperationQueue.main.addOperation {
+                    self.spinner.stopAnimating()
+                    self.cafeDetailTable.reloadData()
+                }
+            }
+        }
+        
+        self.cafeDetailTable.register(UINib(nibName: "CafeDetailHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "CafeDetailHeader")
         
         cafeDetailTable.delegate = self
         cafeDetailTable.dataSource = self
@@ -69,47 +120,74 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        print("numberOfSections")
+
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if self.cafes != nil {
+            print("return \(self.cafes.count)")
             return self.cafes.count
         } else {
+            print("return 0")
             return 0
         }
     }
     
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        
-//        return 44.0
-//    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        return 44.0
+    }
     
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        
-//        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomHeader") as! CustomHeader
-//        
-//        headerView.nameLabel.text = "Cafe's Name"
-//        headerView.sortLabel.text = sortBy.rawValue
-//        
-//        return headerView
-//    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CafeDetailHeader") as! CafeDetailHeader
+        
+        headerView.nameLabel.text = "Cafe's Name"
+        headerView.sortLabel.text = sortItem
+        
+        return headerView
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "CafeDetailCell", for: indexPath) as! CafeDetailTableViewCell
 
         let currentCafes = self.sortedCafes[indexPath.row]
-        if let name = currentCafes.name, let wifi = currentCafes.wifi {
+        
+        switch sortItem {
+            case "wifi":
+                if let str = currentCafes.wifi {
+                    cell.cafeSort.text = String(str)
+                }
+            case "music":
+                if let str = currentCafes.music {
+                    cell.cafeSort.text = String(str)
+                }
+            case "quiet":
+                if let str = currentCafes.quiet {
+                    cell.cafeSort.text = String(str)
+                }
+            case "tasty":
+                if let str = currentCafes.tasty {
+                    cell.cafeSort.text = String(str)
+                }
+            case "seat":
+                if let str = currentCafes.seat {
+                    cell.cafeSort.text = String(str)
+                }
+            default :
+                break
+        }
+        
+        if let name = currentCafes.name {
 
             cell.cafeName.text = name
-            cell.cafeSort.text = String(wifi)
+            print("name : \(name)")
         }
         
         return cell
@@ -143,15 +221,14 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.dismiss(animated: true, completion: nil)
     }
     
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func unwindToMainPage (_ segue: UIStoryboardSegue) {
+        
+        let sourceController = segue.source as! SortTableViewController
+        self.sortItem = sourceController.sortItem
+        if (self.cafes != nil) {
+            self.sortedCafes = sort(with: self.cafes, and: self.sortItem)
+        }
+        
+        self.cafeDetailTable.reloadData()
     }
-    */
 }

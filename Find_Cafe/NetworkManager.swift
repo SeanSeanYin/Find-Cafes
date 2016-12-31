@@ -79,6 +79,7 @@ public func getData(city:String?, completion: @escaping (_ response:[Any]?) -> V
                 }                    
                 cafes.append(cafe)
             }
+            
             completion(cafes)
             
         case .failure(let error):

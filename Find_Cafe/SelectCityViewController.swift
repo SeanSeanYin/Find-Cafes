@@ -45,7 +45,7 @@ class SelectCityViewController: UIViewController {
             
             let navigationController = segue.destination as! UINavigationController
             let viewController = navigationController.topViewController as! CafesViewController
-            viewController.selectedCity = (sender as! UIButton).currentTitle!
+            viewController.newCity = (sender as! UIButton).currentTitle!
         }
     }
     
