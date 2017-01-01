@@ -241,5 +241,10 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let sourceController = segue.source as! SortTableViewController
         self.sortItem = sourceController.sortItem
         print("self.sortItem: \(self.sortItem)")
+        
+        if (self.cafes != nil){
+            self.sortedCafes = sort(with: self.cafes, and: self.sortItem)
+        }
+        self.cafeDetailTable.reloadData()
     }
 }
