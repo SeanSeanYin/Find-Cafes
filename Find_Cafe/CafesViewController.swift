@@ -205,13 +205,28 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
-        if segue.identifier == "showSortMenu" {
-            
-            let tableViewController = segue.destination as! SortTableViewController
-            
-            if let popoverController = tableViewController.popoverPresentationController {
+        if let id = segue.identifier {
+        
+            if id == "showSortMenu" {
                 
-                popoverController.delegate = self
+                let tableViewController = segue.destination as! SortTableViewController
+                
+                if let popoverController = tableViewController.popoverPresentationController {
+                    
+                    popoverController.delegate = self
+                }
+            } else if (id == "backToCafeDetail") {
+                
+                let source = segue.source as! SortTableViewController
+                self.sortItem = source.sortItem
+                
+                print("self.sortItem:\(self.sortItem)")
+                print("self.cafes != nil :\(self.cafes != nil) ")
+                if (self.cafes != nil) {
+                    self.sortedCafes = sort(with: self.cafes, and: self.sortItem)
+                }
+                
+                self.cafeDetailTable.reloadData()
             }
         }
     }
@@ -221,14 +236,10 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func unwindToMainPage (_ segue: UIStoryboardSegue) {
+    @IBAction func backToCafeDetail (_ segue:UIStoryboardSegue) {
         
         let sourceController = segue.source as! SortTableViewController
         self.sortItem = sourceController.sortItem
-        if (self.cafes != nil) {
-            self.sortedCafes = sort(with: self.cafes, and: self.sortItem)
-        }
-        
-        self.cafeDetailTable.reloadData()
+        print("self.sortItem: \(self.sortItem)")
     }
 }

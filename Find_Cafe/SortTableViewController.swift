@@ -39,12 +39,24 @@ class SortTableViewController: UITableViewController {
         self.preferredContentSize = CGSize(width: 80, height: 220)
     }
     
-    @IBAction func sortBy (sender: UIButton) {
+    @IBAction func selectSortItem(_ sender:UIButton) {
+    
+        switch sender.tag {
+            
+            case 0:
+                self.sortItem = "wifi"
+            case 1:
+                self.sortItem = "music"
+            case 2:
+                self.sortItem = "seat"
+            case 3:
+                self.sortItem = "tasty"
+            case 4:
+                self.sortItem = "quiet"
+            default :
+                self.sortItem = "wifi"
+        }
         
-        sortItem = String(sender.tag)
-        print("sortItem:\(sortItem)")
-                
-        self.performSegue(withIdentifier: "sortSegue", sender: sortItem)
+        self.performSegue(withIdentifier: "backToCafeDetail", sender: self)
     }
-
 }

@@ -240,7 +240,7 @@
                                                     <rect key="frame" x="134.5" y="7" width="31" height="30"/>
                                                     <state key="normal" title="WIFI"/>
                                                     <connections>
-                                                        <action selector="sortBySender:" destination="Egz-Bf-vGf" eventType="touchUpInside" id="1NN-d2-kgb"/>
+                                                        <action selector="selectSortItem:" destination="Egz-Bf-vGf" eventType="touchUpInside" id="9J7-uM-g9B"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -257,11 +257,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Au-0B-Bvd">
+                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Au-0B-Bvd">
                                                     <rect key="frame" x="134.5" y="7" width="31" height="30"/>
                                                     <state key="normal" title="音樂"/>
                                                     <connections>
-                                                        <action selector="sortBySender:" destination="Egz-Bf-vGf" eventType="touchUpInside" id="88P-lZ-6t3"/>
+                                                        <action selector="selectSortItem:" destination="Egz-Bf-vGf" eventType="touchUpInside" id="q0F-Ev-8nF"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -278,11 +278,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uus-06-eZC">
+                                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uus-06-eZC">
                                                     <rect key="frame" x="134.5" y="7" width="31" height="30"/>
                                                     <state key="normal" title="座位"/>
                                                     <connections>
-                                                        <action selector="sortBySender:" destination="Egz-Bf-vGf" eventType="touchUpInside" id="ped-a0-wkE"/>
+                                                        <action selector="selectSortItem:" destination="Egz-Bf-vGf" eventType="touchUpInside" id="vL5-xf-cpe"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -299,11 +299,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5f2-zI-NEb">
+                                                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5f2-zI-NEb">
                                                     <rect key="frame" x="134.5" y="7" width="31" height="30"/>
                                                     <state key="normal" title="食物"/>
                                                     <connections>
-                                                        <action selector="sortBySender:" destination="Egz-Bf-vGf" eventType="touchUpInside" id="K8r-tV-PQK"/>
+                                                        <action selector="selectSortItem:" destination="Egz-Bf-vGf" eventType="touchUpInside" id="Axt-6h-LeH"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -320,11 +320,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QfQ-of-izh">
+                                                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QfQ-of-izh">
                                                     <rect key="frame" x="134.5" y="7" width="31" height="30"/>
                                                     <state key="normal" title="安靜"/>
                                                     <connections>
-                                                        <action selector="sortBySender:" destination="Egz-Bf-vGf" eventType="touchUpInside" id="ZG1-E3-Rgi"/>
+                                                        <action selector="selectSortItem:" destination="Egz-Bf-vGf" eventType="touchUpInside" id="qbI-PA-JoV"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -347,7 +347,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="300" height="300"/>
                     <connections>
-                        <segue destination="6EU-1v-LPU" kind="unwind" identifier="sortSegue" unwindAction="unwindToMainPage:" id="QLv-Pm-k5K"/>
+                        <segue destination="6EU-1v-LPU" kind="unwind" identifier="backToCafeDetail" unwindAction="backToCafeDetail:" id="VUt-2L-jPv"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mSl-Yf-Xxd" userLabel="First Responder" sceneMemberID="firstResponder"/>
