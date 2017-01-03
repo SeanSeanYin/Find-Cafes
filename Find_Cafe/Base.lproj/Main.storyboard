@@ -121,11 +121,17 @@
                                         <rect key="frame" x="0.0" y="0.0" width="187.5" height="30"/>
                                         <color key="backgroundColor" red="0.60000002379999995" green="0.40000000600000002" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="List"/>
+                                        <connections>
+                                            <action selector="showList" destination="W6j-rY-1Lb" eventType="touchUpInside" id="4CE-Ok-SYc"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VOJ-8D-Ii4">
                                         <rect key="frame" x="187.5" y="0.0" width="187.5" height="30"/>
                                         <color key="backgroundColor" red="0.60000002379999995" green="0.40000000600000002" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Map"/>
+                                        <connections>
+                                            <action selector="showMap" destination="W6j-rY-1Lb" eventType="touchUpInside" id="aoa-JI-uSD"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -180,6 +186,9 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Y6A-bc-Kca">
+                                <rect key="frame" x="0.0" y="215" width="375" height="452"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -188,13 +197,17 @@
                             <constraint firstItem="9F2-hr-b0f" firstAttribute="top" secondItem="ZuU-Fq-VE1" secondAttribute="bottom" id="GFz-Cl-OCg"/>
                             <constraint firstItem="Vda-zh-vKL" firstAttribute="bottom" secondItem="CIT-Tb-syd" secondAttribute="top" id="Hq7-xL-8Hm"/>
                             <constraint firstItem="9F2-hr-b0f" firstAttribute="trailing" secondItem="scH-QN-iTB" secondAttribute="trailingMargin" constant="16" id="O82-Rs-tld"/>
+                            <constraint firstItem="CIT-Tb-syd" firstAttribute="top" secondItem="Y6A-bc-Kca" secondAttribute="bottom" id="Su1-IU-1hf"/>
+                            <constraint firstItem="Y6A-bc-Kca" firstAttribute="width" secondItem="scH-QN-iTB" secondAttribute="width" id="irN-Ql-xrf"/>
                             <constraint firstItem="9F2-hr-b0f" firstAttribute="leading" secondItem="scH-QN-iTB" secondAttribute="leadingMargin" constant="-16" id="j03-GR-brR"/>
                             <constraint firstItem="Q5u-VF-txu" firstAttribute="leading" secondItem="scH-QN-iTB" secondAttribute="leadingMargin" constant="-16" id="ltB-5U-cyO"/>
                             <constraint firstItem="Q5u-VF-txu" firstAttribute="trailing" secondItem="scH-QN-iTB" secondAttribute="trailingMargin" constant="16" id="opG-Od-6jn"/>
                             <constraint firstItem="Q5u-VF-txu" firstAttribute="top" secondItem="9F2-hr-b0f" secondAttribute="bottom" id="w3b-r6-nfS"/>
+                            <constraint firstItem="Y6A-bc-Kca" firstAttribute="top" secondItem="Q5u-VF-txu" secondAttribute="bottom" id="w6m-ip-r5A"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="d5Z-0h-c7W">
+                        <barButtonItem key="backBarButtonItem" title="this" id="qUq-Qr-46v"/>
                         <barButtonItem key="rightBarButtonItem" title="Sort" id="UB9-im-IaS">
                             <connections>
                                 <action selector="showSortMenuWithSender:" destination="W6j-rY-1Lb" id="hmH-GG-KMs"/>
@@ -207,16 +220,19 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="cafeDetailTable" destination="Vda-zh-vKL" id="nrL-ak-agN"/>
+                        <outlet property="map" destination="Y6A-bc-Kca" id="ODf-YA-fnT"/>
                         <outlet property="spinner" destination="2Il-at-zpU" id="iyb-1q-vce"/>
+                        <segue destination="ohC-Qf-AJ4" kind="unwind" identifier="backToSelectCity" unwindAction="backToSelectCity:" id="FMz-4e-p3N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7uC-6k-qgf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="ohC-Qf-AJ4" userLabel="Exit" sceneMemberID="exit"/>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="2Il-at-zpU">
                     <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </activityIndicatorView>
             </objects>
-            <point key="canvasLocation" x="2898" y="-28"/>
+            <point key="canvasLocation" x="2660" y="71.514242878560722"/>
         </scene>
         <!--Sort Table View Controller-->
         <scene sceneID="Rt1-g4-0X8">
@@ -353,7 +369,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mSl-Yf-Xxd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="6EU-1v-LPU" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3702" y="-193"/>
+            <point key="canvasLocation" x="3464" y="71"/>
         </scene>
         <!--Select City View Controller-->
         <scene sceneID="StJ-Nf-oyo">
@@ -437,7 +453,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="otP-3S-RX8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1798" y="1078"/>
+            <point key="canvasLocation" x="1798" y="772"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="RHL-rO-xc5">
@@ -473,7 +489,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TNz-aO-nio" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="999" y="1079"/>
+            <point key="canvasLocation" x="998" y="773"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Keh-ts-1dV">
@@ -498,6 +514,6 @@
         <image name="Placeholder" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="26c-c0-9gr"/>
+        <segue reference="ABs-6t-rO3"/>
     </inferredMetricsTieBreakers>
 </document>

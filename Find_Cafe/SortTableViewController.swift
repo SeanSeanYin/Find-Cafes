@@ -55,8 +55,7 @@ class SortTableViewController: UITableViewController {
                 self.sortItem = "quiet"
             default :
                 self.sortItem = "wifi"
-        }
-        
+        }        
         self.performSegue(withIdentifier: "backToCafeDetail", sender: self)
     }
 }

@@ -8,6 +8,8 @@
 
 import UIKit
 import SwiftyJSON
+import MapKit
+import CoreLocation
 
 class CafeDetailHeader: UITableViewHeaderFooterView {
     
@@ -44,22 +46,48 @@ func sort ( with array:[CafeInfo], and sortBy:String) -> [CafeInfo] {
     return sortedArray
 }
 
-class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UIPopoverPresentationControllerDelegate, UIAdaptivePresentationControllerDelegate {
+func getAnnotations (from array:[CafeInfo]) -> [MKAnnotation] {
 
-    @IBOutlet var searchBar:UISearchBar!
-    @IBOutlet var cafeDetailTable:UITableView!
-    @IBOutlet var spinner:UIActivityIndicatorView!
+    var annotations = [MKAnnotation]()
+    
+    for cafe in array {
+    
+        //print("cafe:\(cafe.name), \(cafe.longitude), \(cafe.latitude)")
+        if let long = cafe.longitude, let lati = cafe.latitude, let name = cafe.name {
+        
+            let annotation = MKPointAnnotation()
+            annotation.title = name
+            annotation.coordinate = CLLocationCoordinate2D(latitude: lati, longitude: long)
+            annotations.append(annotation)
+            //print("annotation:\(cafe.name), \(cafe.longitude), \(cafe.latitude)")
+        }
+    }
+    
+    return annotations
+}
+
+class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UIPopoverPresentationControllerDelegate, UIAdaptivePresentationControllerDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
+
+    @IBOutlet weak var searchBar:UISearchBar!
+    @IBOutlet weak var cafeDetailTable:UITableView!
+    @IBOutlet weak var spinner:UIActivityIndicatorView!
+    @IBOutlet weak var map:MKMapView!
     
     var searchController:UISearchController!
     var newCity = ""
     var currentCity = ""
     var url = ""
     var sortItem = ""
+    var isHideMap = false
     var cafes:[CafeInfo]!
     var sortedCafes:[CafeInfo]!
+    var annotations:[MKAnnotation]!
+    let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        initLocationManager()
         
         switch newCity {
             case "台北":
@@ -75,6 +103,8 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
             default:
                 newCity = "taipei"
         }
+        
+        self.navigationItem.leftBarButtonItem?.title = newCity
         
         self.spinner.hidesWhenStopped = true
         self.spinner.center = self.view.center
@@ -94,7 +124,11 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 self.cafes = response as! [CafeInfo]
                 
                 self.sortedCafes = sort(with: self.cafes, and: self.sortItem)
-                
+                self.annotations = getAnnotations(from: self.cafes)
+                if (self.annotations != nil){
+                    print(self.annotations)
+                    self.map.addAnnotations(self.annotations)
+                }
                 OperationQueue.main.addOperation {
                     self.spinner.stopAnimating()
                     self.cafeDetailTable.reloadData()
@@ -104,7 +138,11 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             if (self.cafes != nil) {
                 self.sortedCafes = sort(with: self.cafes, and: self.sortItem)
-                
+                self.annotations = getAnnotations(from: self.cafes)
+                if (self.annotations != nil){
+                    print(self.annotations)
+                    self.map.addAnnotations(self.annotations)
+                }
                 OperationQueue.main.addOperation {
                     self.spinner.stopAnimating()
                     self.cafeDetailTable.reloadData()
@@ -114,12 +152,120 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         self.cafeDetailTable.register(UINib(nibName: "CafeDetailHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "CafeDetailHeader")
         
+        if (isHideMap) {
+            
+            self.map.isHidden = true
+            self.cafeDetailTable.isHidden = false
+            
+        } else {
+            
+            self.map.isHidden = false
+            self.cafeDetailTable.isHidden = true
+        }
+        
         cafeDetailTable.delegate = self
         cafeDetailTable.dataSource = self
+        
+        map.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func initLocationManager() {
+        // 設置locationManager的參數
+        self.locationManager.delegate = self
+        self.locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager.requestLocation()
+        
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+        
+            self.locationManager.startUpdatingLocation()
+        
+        } else if CLLocationManager.authorizationStatus() == .denied {
+        
+        let alert = UIAlertController(title: "無法獲取位置", message: "請允許使用GPS，來獲取您的地理位置。", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Done", style: .default, handler: nil)
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
+        
+        } else if CLLocationManager.authorizationStatus() == .notDetermined {
+        
+            self.locationManager.requestWhenInUseAuthorization()
+        }
+    }
+
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        let userLocation = locations[locations.count - 1] as CLLocation
+        
+        manager.stopUpdatingLocation()
+        
+        let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        
+        map.setRegion(region, animated: true)
+        
+        // Drop a pin at user's Current Location
+        let myAnnotation: MKPointAnnotation = MKPointAnnotation()
+        myAnnotation.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude);
+        myAnnotation.title = "Current location"
+        map.addAnnotation(myAnnotation)
+        
+        if (self.annotations != nil){
+            map.addAnnotations(self.annotations)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFinishDeferredUpdatesWithError error: Error?) {
+        
+        print(error ?? "抓取位置時錯誤！")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        
+        print(error)
+    }
+    
+    private func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKPinAnnotationView? {
+        
+        if annotation is MKUserLocation {
+            return nil
+        }
+        
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "pinView") as? MKPinAnnotationView
+        
+        if (annotationView == nil)
+        {
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pinView")
+            annotationView?.pinTintColor = UIColor.blue
+            annotationView?.animatesDrop = true
+            annotationView?.canShowCallout = true
+        } else {
+        
+            annotationView?.annotation = annotation
+        }
+        
+        return annotationView
+        
+//        let identifier = "pin"
+//        var view: MKPinAnnotationView
+//
+//        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView {
+//            dequeuedView.annotation = annotation
+//            view = dequeuedView
+//            
+//        } else {
+//
+//            view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+//            view.canShowCallout = true
+//            view.calloutOffset = CGPoint(x: -5, y: 5)
+//            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure) as UIView
+//        }
+//        return view
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -215,18 +361,6 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     
                     popoverController.delegate = self
                 }
-            } else if (id == "backToCafeDetail") {
-                
-                let source = segue.source as! SortTableViewController
-                self.sortItem = source.sortItem
-                
-                print("self.sortItem:\(self.sortItem)")
-                print("self.cafes != nil :\(self.cafes != nil) ")
-                if (self.cafes != nil) {
-                    self.sortedCafes = sort(with: self.cafes, and: self.sortItem)
-                }
-                
-                self.cafeDetailTable.reloadData()
             }
         }
     }
@@ -246,5 +380,27 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
             self.sortedCafes = sort(with: self.cafes, and: self.sortItem)
         }
         self.cafeDetailTable.reloadData()
+    }
+
+    @IBAction func goToSelectCity (_ button:UIBarButtonItem){
+    
+        self.performSegue(withIdentifier: "backToSelectCity", sender: self)
+    }
+    
+    @IBAction func showMap() {
+    
+        if (self.isHideMap){
+            self.isHideMap = false
+            self.view.bringSubview(toFront: map)
+        }
+    }
+    
+    @IBAction func showList() {
+        
+        if (!self.isHideMap){
+            self.isHideMap = true
+            self.view.bringSubview(toFront:cafeDetailTable)
+            //self.cafeDetailTable.reloadData()
+        }
     }
 }

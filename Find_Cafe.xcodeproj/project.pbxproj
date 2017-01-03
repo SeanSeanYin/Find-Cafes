@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0865F75CCB2ADBD83DE79F48 /* Pods_Find_Cafe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08DCE23F71734DD73C892CB1 /* Pods_Find_Cafe.framework */; };
+		C64815481E18B0860091044F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C64815471E18B0860091044F /* MapKit.framework */; };
 		C689A1D81E17468600506E54 /* CafeDetailHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = C689A1D71E17468600506E54 /* CafeDetailHeader.xib */; };
 		C6A57D3F1E14052A00EAFF81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A57D3E1E14052A00EAFF81 /* AppDelegate.swift */; };
 		C6A57D441E14052A00EAFF81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6A57D421E14052A00EAFF81 /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 		08DCE23F71734DD73C892CB1 /* Pods_Find_Cafe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Find_Cafe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		128B618FF8FF46EF8A7B515F /* Pods-Find_Cafe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Find_Cafe.release.xcconfig"; path = "Pods/Target Support Files/Pods-Find_Cafe/Pods-Find_Cafe.release.xcconfig"; sourceTree = "<group>"; };
 		3883C4F5A312BAA135E8F566 /* Pods-Find_Cafe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Find_Cafe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Find_Cafe/Pods-Find_Cafe.debug.xcconfig"; sourceTree = "<group>"; };
+		C64815471E18B0860091044F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C689A1D71E17468600506E54 /* CafeDetailHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CafeDetailHeader.xib; sourceTree = "<group>"; };
 		C6A57D3B1E14052A00EAFF81 /* Find_Cafe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Find_Cafe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6A57D3E1E14052A00EAFF81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -48,6 +50,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6A57D591E154C5900EAFF81 /* CoreLocation.framework in Frameworks */,
+				C64815481E18B0860091044F /* MapKit.framework in Frameworks */,
 				0865F75CCB2ADBD83DE79F48 /* Pods_Find_Cafe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -58,6 +61,7 @@
 		4159B1B42C8420A0ED2B325F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C64815471E18B0860091044F /* MapKit.framework */,
 				C6A57D581E154C5900EAFF81 /* CoreLocation.framework */,
 				08DCE23F71734DD73C892CB1 /* Pods_Find_Cafe.framework */,
 			);
@@ -147,6 +151,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 2P6AEF5G35;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};

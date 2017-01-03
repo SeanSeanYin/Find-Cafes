@@ -13,6 +13,7 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate {
 
     let locationManager = CLLocationManager()
     var currentCity = ""
+    var currentLocation:CLLocation?
     @IBOutlet var cityLabel:UILabel!
     
     override func viewDidLoad() {
@@ -94,7 +95,7 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate {
                     
                 return
             } else {
-                
+                self.currentLocation = locations[locations.count - 1]
                 let array = placemark! as NSArray
                 let mark = array.firstObject as! CLPlacemark
                 print(mark.addressDictionary!)
