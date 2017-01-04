@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0865F75CCB2ADBD83DE79F48 /* Pods_Find_Cafe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08DCE23F71734DD73C892CB1 /* Pods_Find_Cafe.framework */; };
 		C64815481E18B0860091044F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C64815471E18B0860091044F /* MapKit.framework */; };
+		C648154A1E1BF9200091044F /* CafeAnnotation.xib in Resources */ = {isa = PBXBuildFile; fileRef = C64815491E1BF9200091044F /* CafeAnnotation.xib */; };
+		C648154E1E1BFF6E0091044F /* CafeAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C648154D1E1BFF6E0091044F /* CafeAnnotationView.swift */; };
 		C689A1D81E17468600506E54 /* CafeDetailHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = C689A1D71E17468600506E54 /* CafeDetailHeader.xib */; };
 		C6A57D3F1E14052A00EAFF81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A57D3E1E14052A00EAFF81 /* AppDelegate.swift */; };
 		C6A57D441E14052A00EAFF81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6A57D421E14052A00EAFF81 /* Main.storyboard */; };
@@ -28,6 +30,8 @@
 		128B618FF8FF46EF8A7B515F /* Pods-Find_Cafe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Find_Cafe.release.xcconfig"; path = "Pods/Target Support Files/Pods-Find_Cafe/Pods-Find_Cafe.release.xcconfig"; sourceTree = "<group>"; };
 		3883C4F5A312BAA135E8F566 /* Pods-Find_Cafe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Find_Cafe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Find_Cafe/Pods-Find_Cafe.debug.xcconfig"; sourceTree = "<group>"; };
 		C64815471E18B0860091044F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		C64815491E1BF9200091044F /* CafeAnnotation.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CafeAnnotation.xib; sourceTree = "<group>"; };
+		C648154D1E1BFF6E0091044F /* CafeAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CafeAnnotationView.swift; sourceTree = "<group>"; };
 		C689A1D71E17468600506E54 /* CafeDetailHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CafeDetailHeader.xib; sourceTree = "<group>"; };
 		C6A57D3B1E14052A00EAFF81 /* Find_Cafe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Find_Cafe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6A57D3E1E14052A00EAFF81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -98,11 +102,13 @@
 		C6A57D3D1E14052A00EAFF81 /* Find_Cafe */ = {
 			isa = PBXGroup;
 			children = (
+				C648154D1E1BFF6E0091044F /* CafeAnnotationView.swift */,
 				C6A57D3E1E14052A00EAFF81 /* AppDelegate.swift */,
 				C6A57D501E1423E500EAFF81 /* HomePageViewController.swift */,
 				C6A57D421E14052A00EAFF81 /* Main.storyboard */,
 				C689A1D71E17468600506E54 /* CafeDetailHeader.xib */,
 				C6A57D451E14052A00EAFF81 /* Assets.xcassets */,
+				C64815491E1BF9200091044F /* CafeAnnotation.xib */,
 				C6A57D471E14052A00EAFF81 /* LaunchScreen.storyboard */,
 				C6A57D4A1E14052A00EAFF81 /* Info.plist */,
 				C6A57D521E1424C000EAFF81 /* SelectCityViewController.swift */,
@@ -182,6 +188,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C648154A1E1BF9200091044F /* CafeAnnotation.xib in Resources */,
 				C689A1D81E17468600506E54 /* CafeDetailHeader.xib in Resources */,
 				C6A57D491E14052A00EAFF81 /* LaunchScreen.storyboard in Resources */,
 				C6A57D461E14052A00EAFF81 /* Assets.xcassets in Resources */,
@@ -244,6 +251,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C648154E1E1BFF6E0091044F /* CafeAnnotationView.swift in Sources */,
 				C6A57D5B1E15D74E00EAFF81 /* NetworkManager.swift in Sources */,
 				C6A57D3F1E14052A00EAFF81 /* AppDelegate.swift in Sources */,
 				ED6642381E1634820030B088 /* CafesInfo.swift in Sources */,

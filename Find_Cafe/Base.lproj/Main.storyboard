@@ -186,7 +186,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Y6A-bc-Kca">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Y6A-bc-Kca">
                                 <rect key="frame" x="0.0" y="215" width="375" height="452"/>
                             </mapView>
                         </subviews>
@@ -198,6 +198,7 @@
                             <constraint firstItem="Vda-zh-vKL" firstAttribute="bottom" secondItem="CIT-Tb-syd" secondAttribute="top" id="Hq7-xL-8Hm"/>
                             <constraint firstItem="9F2-hr-b0f" firstAttribute="trailing" secondItem="scH-QN-iTB" secondAttribute="trailingMargin" constant="16" id="O82-Rs-tld"/>
                             <constraint firstItem="CIT-Tb-syd" firstAttribute="top" secondItem="Y6A-bc-Kca" secondAttribute="bottom" id="Su1-IU-1hf"/>
+                            <constraint firstItem="Y6A-bc-Kca" firstAttribute="centerX" secondItem="scH-QN-iTB" secondAttribute="centerX" id="Va9-9z-X7C"/>
                             <constraint firstItem="Y6A-bc-Kca" firstAttribute="width" secondItem="scH-QN-iTB" secondAttribute="width" id="irN-Ql-xrf"/>
                             <constraint firstItem="9F2-hr-b0f" firstAttribute="leading" secondItem="scH-QN-iTB" secondAttribute="leadingMargin" constant="-16" id="j03-GR-brR"/>
                             <constraint firstItem="Q5u-VF-txu" firstAttribute="leading" secondItem="scH-QN-iTB" secondAttribute="leadingMargin" constant="-16" id="ltB-5U-cyO"/>

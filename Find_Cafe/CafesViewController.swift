@@ -151,6 +151,8 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         
         self.cafeDetailTable.register(UINib(nibName: "CafeDetailHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "CafeDetailHeader")
+        self.cafeDetailTable.register(UINib(nibName: "CafeAnnotation", bundle: nil), forHeaderFooterViewReuseIdentifier: "CafeDetailHeader")
+        
         
         if (isHideMap) {
             
@@ -230,19 +232,19 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         print(error)
     }
     
-    private func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKPinAnnotationView? {
+    internal func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         if annotation is MKUserLocation {
             return nil
         }
         
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "pinView") as? MKPinAnnotationView
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "pinView")
         
         if (annotationView == nil)
         {
-            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pinView")
-            annotationView?.pinTintColor = UIColor.blue
-            annotationView?.animatesDrop = true
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "pinView")
+            annotationView?.image = UIImage(named: "coffee_pin")
+            //annotationView?.animatesDrop = true
             annotationView?.canShowCallout = true
         } else {
         
@@ -250,23 +252,9 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         
         return annotationView
-        
-//        let identifier = "pin"
-//        var view: MKPinAnnotationView
-//
-//        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView {
-//            dequeuedView.annotation = annotation
-//            view = dequeuedView
-//            
-//        } else {
-//
-//            view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-//            view.canShowCallout = true
-//            view.calloutOffset = CGPoint(x: -5, y: 5)
-//            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure) as UIView
-//        }
-//        return view
     }
+    
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
 
