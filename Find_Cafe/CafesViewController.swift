@@ -235,8 +235,6 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return annotationView
     }
     
-    
-    
     func numberOfSections(in tableView: UITableView) -> Int {
 
         return 1
@@ -361,8 +359,12 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         if (!self.isHideMap){
             self.isHideMap = true
-            self.view.bringSubview(toFront:cafeDetailTable)
-            //self.cafeDetailTable.reloadData()
+            UIView.animate(withDuration: 0.1, animations: {
+                self.map.alpha = 0.0
+                self.cafeDetailTable.alpha = 1.0
+            }, completion: { success in
+                self.cafeDetailTable.reloadData() })
+
         }
     }
 }
