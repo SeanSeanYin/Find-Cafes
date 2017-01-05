@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 protocol CafeAnnotationViewDelegate:class{
     
@@ -21,33 +22,67 @@ extension Double {
     }
 }
 
-class CafeAnnotationView: UIView {
+class CafeAnnotationView: MKAnnotationView {
     
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var wifiLabel: UILabel!
-    @IBOutlet weak var musicLabel: UILabel!
-    @IBOutlet weak var quietLabel: UILabel!
-    @IBOutlet weak var tastyLabel: UILabel!
-    @IBOutlet weak var seatLabel: UILabel!
-
-    var cafe:CafeInfo!
-    
-    override func awakeFromNib() {
-        
-        super.awakeFromNib()
+    weak var customCalloutView: CafeDetailView?
+    override var annotation: MKAnnotation? {
+        willSet {customCalloutView?.removeFromSuperview() }
     }
     
-    func showCafeInfo (cafe:CafeInfo!) {
+    override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
+        super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
+        self.canShowCallout = false
+        self.image = UIImage(named: "mapPin")
+    }
     
-        self.cafe = cafe
+    required init?(coder aDecoder: NSCoder){
+        super.init(coder: aDecoder)
+        self.canShowCallout = false
+        self.image = UIImage(named: "mapPin")
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
         
-        self.nameLabel.text = self.cafe.name
-        self.addressLabel.text = self.cafe.address
-        self.wifiLabel.text = (self.cafe.wifi)?.toString()
-        self.tastyLabel.text = (self.cafe.tasty)?.toString()
-        self.quietLabel.text = self.cafe.quiet?.toString()
-        self.musicLabel.text = self.cafe.music?.toString()
-        self.seatLabel.text = self.cafe.seat?.toString()
+        if selected {
+        
+            self.customCalloutView?.removeFromSuperview()
+            
+            if let newCustomCalloutView = loadCafeDetailView() {
+                newCustomCalloutView.frame.origin.x -= newCustomCalloutView.frame.width / 2.0 - (self.frame.width / 2.0)
+                newCustomCalloutView.frame.origin.y -= newCustomCalloutView.frame.height
+                
+                self.addSubview(newCustomCalloutView)
+                self.customCalloutView = newCustomCalloutView
+                
+                if animated {
+                    self.customCalloutView!.alpha = 0.0
+                    UIView.animate(withDuration: 0.3, animations: {
+                        self.customCalloutView!.alpha = 1.0
+                    })
+                }
+            }
+        } else {
+            if customCalloutView != nil {
+                if animated {
+                    UIView.animate(withDuration: 0.3,
+                                   animations: {self.customCalloutView!.alpha = 0.0},
+                                   completion: { success in self.customCalloutView!.removeFromSuperview() })
+                } else { self.customCalloutView!.removeFromSuperview() }
+            }
+        }
+    }
+    
+    func loadCafeDetailView() -> CafeDetailView? {
+        if let views = Bundle.main.loadNibNamed("CafeDetailView", owner: self, options: nil) as? [CafeDetailView], views.count > 0 {
+            let cafeDetailView = views.first!
+            if let cafeAnnotation = annotation as? CafeAnnotation {                
+                let cafe = cafeAnnotation.cafe
+                print("cafe:\(cafe)")
+                cafeDetailView.configureWithCafe(cafe: cafe)
+            }
+            return cafeDetailView
+        }
+        return nil
     }
 }

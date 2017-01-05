@@ -9,6 +9,7 @@
 import Foundation
 import SwiftyJSON
 import Alamofire
+import MapKit
 
 enum ApiError:Error{
     
@@ -69,10 +70,9 @@ public func getData(city:String?, completion: @escaping (_ response:[Any]?) -> V
                 let quiet = obj["quiet"].doubleValue
                 let music = obj["music"].doubleValue
                 let tasty = obj["tasty"].doubleValue
-                let longitude = obj["longitude"].doubleValue
-                let latitude = obj["latitude"].doubleValue
+                let location = CLLocationCoordinate2D(latitude: obj["latitude"].doubleValue, longitude: obj["longitude"].doubleValue)
                 
-                let cafe = CafeInfo(id: id, name: name, url: url, city: city, address: address, wifi: wifi, seat: seat, quiet: quiet, music: music, tasty: tasty, longitude:longitude, latitude: latitude)
+                let cafe = CafeInfo(id: id, name: name, url: url, city: city, address: address, wifi: wifi, seat: seat, quiet: quiet, music: music, tasty: tasty, location: location)
                 
                 if cafes == nil {
                     cafes = [CafeInfo]()

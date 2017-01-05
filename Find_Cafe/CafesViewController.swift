@@ -30,15 +30,15 @@ func sort ( with array:[CafeInfo], and sortBy:String) -> [CafeInfo] {
     switch sortBy{
     
         case "wifi":
-            sortedArray = array.sorted(by: { $0.wifi! > $1.wifi! })
+            sortedArray = array.sorted(by: { $0.wifi > $1.wifi })
         case "music":
-            sortedArray = array.sorted(by: { $0.music! > $1.music! })
+            sortedArray = array.sorted(by: { $0.music > $1.music })
         case "seat":
-            sortedArray = array.sorted(by: { $0.seat! > $1.seat! })
+            sortedArray = array.sorted(by: { $0.seat > $1.seat })
         case "tasty":
-            sortedArray = array.sorted(by: { $0.tasty! > $1.tasty! })
+            sortedArray = array.sorted(by: { $0.tasty > $1.tasty })
         case "quiet":
-            sortedArray = array.sorted(by: { $0.quiet! > $1.quiet! })
+            sortedArray = array.sorted(by: { $0.quiet > $1.quiet })
         default :
             break
     }
@@ -46,21 +46,14 @@ func sort ( with array:[CafeInfo], and sortBy:String) -> [CafeInfo] {
     return sortedArray
 }
 
-func getAnnotations (from array:[CafeInfo]) -> [MKAnnotation] {
+func getAnnotations (from array:[CafeInfo]) -> [CafeAnnotation] {
 
-    var annotations = [MKAnnotation]()
+    var annotations = [CafeAnnotation]()
     
     for cafe in array {
-    
-        //print("cafe:\(cafe.name), \(cafe.longitude), \(cafe.latitude)")
-        if let long = cafe.longitude, let lati = cafe.latitude, let name = cafe.name {
         
-            let annotation = MKPointAnnotation()
-            annotation.title = name
-            annotation.coordinate = CLLocationCoordinate2D(latitude: lati, longitude: long)
-            annotations.append(annotation)
-            //print("annotation:\(cafe.name), \(cafe.longitude), \(cafe.latitude)")
-        }
+        let annotation = CafeAnnotation(cafe: cafe)
+        annotations.append(annotation)
     }
     
     return annotations
@@ -81,7 +74,7 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var isHideMap = false
     var cafes:[CafeInfo]!
     var sortedCafes:[CafeInfo]!
-    var annotations:[MKAnnotation]!
+    var annotations:[CafeAnnotation]!
     let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
@@ -126,7 +119,6 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 self.sortedCafes = sort(with: self.cafes, and: self.sortItem)
                 self.annotations = getAnnotations(from: self.cafes)
                 if (self.annotations != nil){
-                    print(self.annotations)
                     self.map.addAnnotations(self.annotations)
                 }
                 OperationQueue.main.addOperation {
@@ -140,7 +132,6 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 self.sortedCafes = sort(with: self.cafes, and: self.sortItem)
                 self.annotations = getAnnotations(from: self.cafes)
                 if (self.annotations != nil){
-                    print(self.annotations)
                     self.map.addAnnotations(self.annotations)
                 }
                 OperationQueue.main.addOperation {
@@ -150,9 +141,7 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
         
-        self.cafeDetailTable.register(UINib(nibName: "CafeDetailHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "CafeDetailHeader")
-        self.cafeDetailTable.register(UINib(nibName: "CafeAnnotation", bundle: nil), forHeaderFooterViewReuseIdentifier: "CafeDetailHeader")
-        
+        self.cafeDetailTable.register(UINib(nibName: "CafeDetailHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "CafeDetailHeader")        
         
         if (isHideMap) {
             
@@ -234,22 +223,14 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     internal func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
-        if annotation is MKUserLocation {
-            return nil
-        }
+        if annotation is MKUserLocation { return nil }
         
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "pinView")
         
-        if (annotationView == nil)
-        {
-            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "pinView")
-            annotationView?.image = UIImage(named: "coffee_pin")
-            //annotationView?.animatesDrop = true
-            annotationView?.canShowCallout = true
-        } else {
-        
-            annotationView?.annotation = annotation
-        }
+        if (annotationView == nil) {
+            annotationView = CafeAnnotationView(annotation: annotation, reuseIdentifier: "pinView")
+
+        } else { annotationView!.annotation = annotation }
         
         return annotationView
     }
@@ -295,34 +276,27 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         switch sortItem {
             case "wifi":
-                if let str = currentCafes.wifi {
-                    cell.cafeSort.text = String(str)
-                }
+                let str = currentCafes.wifi
+                cell.cafeSort.text = String(str)
             case "music":
-                if let str = currentCafes.music {
-                    cell.cafeSort.text = String(str)
-                }
+                let str = currentCafes.music
+                cell.cafeSort.text = String(str)
             case "quiet":
-                if let str = currentCafes.quiet {
-                    cell.cafeSort.text = String(str)
-                }
+                let str = currentCafes.quiet
+                cell.cafeSort.text = String(str)
             case "tasty":
-                if let str = currentCafes.tasty {
-                    cell.cafeSort.text = String(str)
-                }
+                let str = currentCafes.tasty
+                cell.cafeSort.text = String(str)
             case "seat":
-                if let str = currentCafes.seat {
-                    cell.cafeSort.text = String(str)
-                }
+                let str = currentCafes.seat
+                cell.cafeSort.text = String(str)
             default :
                 break
         }
         
-        if let name = currentCafes.name {
-
-            cell.cafeName.text = name
-            print("name : \(name)")
-        }
+        let name = currentCafes.name
+        cell.cafeName.text = name
+        print("name : \(name)")
         
         return cell
     }
