@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 struct CafeInfo {
     
@@ -21,5 +22,6 @@ struct CafeInfo {
     var music: Double?
     var tasty: Double?
     var longitude: Double?
-    var latitude: Double?    
+    var latitude: Double?
+    var location: CLLocationCoordinate2D = kCLLocationCoordinate2DInvalid
 }

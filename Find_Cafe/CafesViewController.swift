@@ -151,7 +151,7 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         
         self.cafeDetailTable.register(UINib(nibName: "CafeDetailHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "CafeDetailHeader")
-        self.cafeDetailTable.register(UINib(nibName: "CafeAnnotation", bundle: nil), forHeaderFooterViewReuseIdentifier: "CafeDetailHeader")
+        self.cafeDetailTable.register(nibName:"CafeAnnotation", bundle: nil), forCellReuseIdentifier: "CafeAnnotation")
         
         
         if (isHideMap) {
@@ -242,10 +242,9 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         if (annotationView == nil)
         {
-            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "pinView")
-            annotationView?.image = UIImage(named: "coffee_pin")
-            //annotationView?.animatesDrop = true
-            annotationView?.canShowCallout = true
+            annotationView = customCafeAnnotationView(annotation: annotation, reuseIdentifier: "pinView")
+            (annotationView as! customCafeAnnotationView).
+
         } else {
         
             annotationView?.annotation = annotation
