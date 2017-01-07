@@ -48,9 +48,4 @@ class SelectCityViewController: UIViewController {
             viewController.newCity = (sender as! UIButton).currentTitle!
         }
     }
-
-    @IBAction func backToSelectCity (_ segue: UIStoryboardSegue){
-    
-        print("backToSelectCity")
-    }
 }

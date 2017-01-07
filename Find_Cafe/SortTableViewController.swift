@@ -14,7 +14,6 @@ class SortTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,8 +34,9 @@ class SortTableViewController: UITableViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        
-        self.preferredContentSize = CGSize(width: 80, height: 220)
+        super.viewWillAppear(animated)
+        self.view.superview?.layer.cornerRadius = 0.0
+        self.preferredContentSize = CGSize(width: 120, height: 220)
     }
     
     @IBAction func selectSortItem(_ sender:UIButton) {

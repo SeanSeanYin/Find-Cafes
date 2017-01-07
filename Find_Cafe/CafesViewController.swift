@@ -11,6 +11,23 @@ import SwiftyJSON
 import MapKit
 import CoreLocation
 
+extension UIApplication {
+    class func topViewController(controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let navigationController = controller as? UINavigationController {
+            return topViewController(controller: navigationController.visibleViewController)
+        }
+        if let tabController = controller as? UITabBarController {
+            if let selected = tabController.selectedViewController {
+                return topViewController(controller: selected)
+            }
+        }
+        if let presented = controller?.presentedViewController {
+            return topViewController(controller: presented)
+        }
+        return controller
+    }
+}
+
 class CafeDetailHeader: UITableViewHeaderFooterView {
     
     @IBOutlet weak var nameLabel: UILabel!
@@ -59,12 +76,13 @@ func getAnnotations (from array:[CafeInfo]) -> [CafeAnnotation] {
     return annotations
 }
 
-class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UIPopoverPresentationControllerDelegate, UIAdaptivePresentationControllerDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
+class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UIPopoverPresentationControllerDelegate, UIAdaptivePresentationControllerDelegate, MKMapViewDelegate, CLLocationManagerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet weak var searchBar:UISearchBar!
     @IBOutlet weak var cafeDetailTable:UITableView!
     @IBOutlet weak var spinner:UIActivityIndicatorView!
     @IBOutlet weak var map:MKMapView!
+    @IBOutlet weak var cityButton:UIButton!
     
     var searchController:UISearchController!
     var newCity = ""
@@ -75,29 +93,39 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var cafes:[CafeInfo]!
     var sortedCafes:[CafeInfo]!
     var annotations:[CafeAnnotation]!
+    var cityCafe = ""
     let locationManager = CLLocationManager()
+    var maskView: UIView!
+    var sortPickerView:SortPickerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         initLocationManager()
+        initSortPickerView()
         
         switch newCity {
             case "台北":
                 newCity = "taipei"
+                cityCafe = "Taipei Cafe"
             case "新竹":
                 newCity = "hsinchu"
+                cityCafe = "Hsinchu Cafe"
             case "台中":
                 newCity = "taichung"
+            cityCafe = "Taichung Cafe"
             case "台南":
                 newCity = "tainan"
+            cityCafe = "Tainan Cafe"
             case "高雄":
                 newCity = "kaohsiung"
+            cityCafe = "Kaohsiung Cafe"
             default:
                 newCity = "taipei"
+            cityCafe = "Taipei Cafe"
         }
         
-        self.navigationItem.leftBarButtonItem?.title = newCity
+        cityButton.setTitle(cityCafe, for: .normal)
         
         self.spinner.hidesWhenStopped = true
         self.spinner.center = self.view.center
@@ -141,7 +169,6 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
         
-
         self.cafeDetailTable.register(UINib(nibName: "CafeDetailHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "CafeDetailHeader")        
         
         if (isHideMap) {
@@ -189,6 +216,81 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
 
+    func initSortPickerView(){
+        
+        let views: NSArray = UINib(nibName: "SortPickerView", bundle: nil).instantiate(withOwner: self, options: nil) as NSArray
+        self.sortPickerView = views.object(at: 0) as! SortPickerView
+        self.sortPickerView.pickerView.delegate = self
+        self.sortPickerView.pickerView.dataSource = self
+        self.maskView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        self.maskView.backgroundColor = UIColor.black
+        self.maskView.alpha = 0.0
+        let select : Selector = #selector(CafesViewController.hidePickerView)
+        //設定一個action事件
+        //self.sortPickerView.okButton.addTarget(self, action: select, for: UIControlEvents.touchUpInside)
+        //替pickerView上面的 一個按鈕  設定一個回應事件
+        let gesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: select)
+        self.maskView.addGestureRecognizer(gesture)
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int { return 1 }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        print("row:\(row)")
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int { return 5 }
+    
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 30.0
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+        var str:String = String()
+        switch row {
+            case 0:
+                str = "Wifi"
+            case 1:
+                str = "Music"
+            case 2:
+                str = "Quiet"
+            case 3:
+                str = "Tasty"
+            case 4:
+                str = "Seat"
+            default:
+                str = "Wifi"
+        }
+        return str
+    }
+    
+    func showPickerView() {
+        
+        self.view.addSubview(self.maskView)
+        self.view.addSubview(self.sortPickerView)
+        //加入view請注意順序 最後加的  在最上層
+
+        self.maskView.alpha = 0.0
+        //設定黑屏的初始透明度
+        self.sortPickerView.frame.origin.y = self.view.frame.height
+        //設定pickerView的初始位置
+        self.sortPickerView.bounds  = CGRect(x: 0, y: self.sortPickerView.bounds.origin.y, width: UIScreen.main.bounds.width, height: self.sortPickerView.bounds.height)
+        self.sortPickerView.frame.origin.x = 0
+        //設定pickerView與螢幕等寬
+        UIView.animate(withDuration: 0.3, animations: {//view移動動畫
+            self.maskView.alpha = 0.3
+            print(self.sortPickerView.frame)
+            self.sortPickerView.frame.origin.y = self.view.frame.height-self.sortPickerView.frame.height
+            print(self.sortPickerView.frame)
+        })
+
+        if let topController = UIApplication.topViewController() {
+            
+            print("topController:\(topController.view)")
+        }
+    }
+    
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
@@ -203,7 +305,7 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         // Drop a pin at user's Current Location
         let myAnnotation: MKPointAnnotation = MKPointAnnotation()
-        myAnnotation.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude);
+        myAnnotation.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude)
         myAnnotation.title = "Current location"
         map.addAnnotation(myAnnotation)
         
@@ -321,6 +423,8 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 if let popoverController = tableViewController.popoverPresentationController {
                     
                     popoverController.delegate = self
+                    popoverController.sourceView = (sender as! UIButton)
+                    popoverController.sourceRect = (sender as! UIButton).bounds
                 }
             }
         }
@@ -328,7 +432,7 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func dismiss() {
         
-        self.dismiss(animated: true, completion: nil)
+     //   self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func backToCafeDetail (_ segue:UIStoryboardSegue) {
@@ -341,11 +445,6 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
             self.sortedCafes = sort(with: self.cafes, and: self.sortItem)
         }
         self.cafeDetailTable.reloadData()
-    }
-
-    @IBAction func goToSelectCity (_ button:UIBarButtonItem){
-    
-        self.performSegue(withIdentifier: "backToSelectCity", sender: self)
     }
     
     @IBAction func showMap() {
@@ -367,5 +466,22 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 self.cafeDetailTable.reloadData() })
 
         }
+    }
+    
+    @IBAction func showSortSheet(_ sender: AnyObject) {
+
+        showPickerView()
+    }
+    
+    func hidePickerView(){
+        
+        UIView.animate(withDuration: 0.3,
+                       animations: {
+                        self.maskView.alpha = 0.0
+                        self.sortPickerView.frame.origin.y = self.view.frame.height },
+                       completion: { (value:Bool) in
+                        self.maskView.removeFromSuperview()
+                        self.sortPickerView.removeFromSuperview()
+        })
     }
 }
