@@ -89,7 +89,7 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var currentCity = ""
     var url = ""
     var sortItem = ""
-    var isHideMap = false
+    var isHideMap = true
     var cafes:[CafeInfo]!
     var sortedCafes:[CafeInfo]!
     var annotations:[CafeAnnotation]!
@@ -418,7 +418,7 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
             if id == "showSortMenu" {
                 
-                let tableViewController = segue.destination as! SortTableViewController
+                let tableViewController = segue.destination as! CityMenuTableViewController
                 
                 if let popoverController = tableViewController.popoverPresentationController {
                     
@@ -432,13 +432,13 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func dismiss() {
         
-     //   self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func backToCafeDetail (_ segue:UIStoryboardSegue) {
         
-        let sourceController = segue.source as! SortTableViewController
-        self.sortItem = sourceController.sortItem
+        let sourceController = segue.source as! CityMenuTableViewController
+        self.newCity = sourceController.city
         print("self.sortItem: \(self.sortItem)")
         
         if (self.cafes != nil){

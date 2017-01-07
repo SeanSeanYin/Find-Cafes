@@ -41,11 +41,28 @@ class SelectCityViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        var city = ""
+        
         if (segue.identifier == "chooseCityToSearch") {
             
             let navigationController = segue.destination as! UINavigationController
             let viewController = navigationController.topViewController as! CafesViewController
-            viewController.newCity = (sender as! UIButton).currentTitle!
+            switch (sender as! UIButton).currentTitle! {
+            case "Taipei":
+                city = "台北"
+            case "Hsunchu":
+                city = "新竹"
+            case "Taichung":
+                city = "台中"
+            case "Tainan":
+                city = "台南"
+            case "Kaohsiung":
+                city = "高雄"
+            default:
+                city = "台北"
+            }
+            viewController.newCity = city
+            print("city:\(city)")
         }
     }
 }
