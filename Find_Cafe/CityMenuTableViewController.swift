@@ -44,9 +44,9 @@ class CityMenuTableViewController: UITableViewController {
         case 3:
             self.city = "tainan"
         case 4:
-            self.city = "quiet"
-        default :
             self.city = "kaohsiung"
+        default :
+            self.city = "taipei"
         }
         self.performSegue(withIdentifier: "backToCafeDetail", sender: self)
     }

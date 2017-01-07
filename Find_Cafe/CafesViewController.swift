@@ -85,10 +85,14 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var cityButton:UIButton!
     
     var searchController:UISearchController!
+    // 使用者選擇的城市
     var newCity = ""
+    // 使用者目前城市
     var currentCity = ""
+    // 排序項目
+    var sortItem = "wifi"
+    
     var url = ""
-    var sortItem = ""
     var isHideMap = true
     var cafes:[CafeInfo]!
     var sortedCafes:[CafeInfo]!
@@ -127,33 +131,13 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         cityButton.setTitle(cityCafe, for: .normal)
         
-        self.spinner.hidesWhenStopped = true
-        self.spinner.center = self.view.center
-        self.view.addSubview(self.spinner)
-        self.spinner.startAnimating()
-        
         print("newCity:\(newCity) & currentCity:\(currentCity)")
         
-        if self.sortItem == ""{
-            self.sortItem = "wifi"
-        }
-        
+        getCityData(targetCity: self.newCity)
+/*
         if (currentCity != newCity) {
             
-            getData(city: self.newCity) { response in
-                
-                self.cafes = response as! [CafeInfo]
-                
-                self.sortedCafes = sort(with: self.cafes, and: self.sortItem)
-                self.annotations = getAnnotations(from: self.cafes)
-                if (self.annotations != nil){
-                    self.map.addAnnotations(self.annotations)
-                }
-                OperationQueue.main.addOperation {
-                    self.spinner.stopAnimating()
-                    self.cafeDetailTable.reloadData()
-                }
-            }
+            
         } else {
             
             if (self.cafes != nil) {
@@ -168,7 +152,7 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 }
             }
         }
-        
+*/
         self.cafeDetailTable.register(UINib(nibName: "CafeDetailHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "CafeDetailHeader")        
         
         if (isHideMap) {
@@ -188,6 +172,37 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         map.delegate = self
     }
 
+    func getCityData(targetCity:String) {
+        
+        self.spinner.hidesWhenStopped = true
+        self.spinner.center = self.view.center
+        self.view.addSubview(self.spinner)
+        self.spinner.startAnimating()
+        print("targetCity:\(targetCity)")
+        getData(city: targetCity) { response in
+            
+            if (self.cafes != nil) {
+                self.cafes.removeAll()
+            }
+            
+            if (self.sortedCafes != nil) {
+                self.sortedCafes.removeAll()
+            }
+            
+            self.cafes = response as! [CafeInfo]
+            
+            self.sortedCafes = sort(with: self.cafes, and: self.sortItem)
+            self.annotations = getAnnotations(from: self.cafes)
+            if (self.annotations != nil){
+                self.map.addAnnotations(self.annotations)
+            }
+            OperationQueue.main.addOperation {
+                self.spinner.stopAnimating()
+                self.cafeDetailTable.reloadData()
+            }
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -440,10 +455,12 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let sourceController = segue.source as! CityMenuTableViewController
         self.newCity = sourceController.city
         print("self.sortItem: \(self.sortItem)")
+
+        getCityData(targetCity: self.newCity)
         
-        if (self.cafes != nil){
-            self.sortedCafes = sort(with: self.cafes, and: self.sortItem)
-        }
+//        if (self.cafes != nil){
+//            self.sortedCafes = sort(with: self.cafes, and: self.sortItem)
+//        }
         self.cafeDetailTable.reloadData()
     }
     
