@@ -48,42 +48,6 @@ class CafeDetailTableViewCell: UITableViewCell {
     @IBOutlet var seatLabel:UILabel!
 }
 
-func sort ( with array:[CafeInfo], and sortBy:String) -> [CafeInfo] {
-    
-    var sortedArray = [CafeInfo]()
-    
-    switch sortBy{
-    
-        case "wifi":
-            sortedArray = array.sorted(by: { $0.wifi > $1.wifi })
-        case "music":
-            sortedArray = array.sorted(by: { $0.music > $1.music })
-        case "seat":
-            sortedArray = array.sorted(by: { $0.seat > $1.seat })
-        case "tasty":
-            sortedArray = array.sorted(by: { $0.tasty > $1.tasty })
-        case "quiet":
-            sortedArray = array.sorted(by: { $0.quiet > $1.quiet })
-        default :
-            break
-    }
-    
-    return sortedArray
-}
-
-func getAnnotations (from array:[CafeInfo]) -> [CafeAnnotation] {
-
-    var annotations = [CafeAnnotation]()
-    
-    for cafe in array {
-        
-        let annotation = CafeAnnotation(cafe: cafe)
-        annotations.append(annotation)
-    }
-    
-    return annotations
-}
-
 class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UIPopoverPresentationControllerDelegate, UIAdaptivePresentationControllerDelegate, MKMapViewDelegate, CLLocationManagerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet weak var searchBar:UISearchBar!
@@ -161,89 +125,47 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         map.delegate = self
     }
-
-    func getCityString (_ city:String ) -> String {
-        
-        var str = ""
-        print("city:\(city)")
-        switch city {
-            case "台北", "taipei":
-                str = "Taipei Cafe"
-            case "新竹", "hsinchu":
-                str = "Hsinchu Cafe"
-            case "台中", "taichung":
-                str = "Taichung Cafe"
-            case "台南", "tainan":
-                str = "Tainan Cafe"
-            case "高雄", "kaohsiung":
-                str = "Kaohsiung Cafe"
-            default:
-                str = "Taipei Cafe"
-        }
-        
-        return str
-    }
-    
-    func getCityData(targetCity:String) {
-        
-        self.spinner.hidesWhenStopped = true
-        self.spinner.center = self.view.center
-        self.view.addSubview(self.spinner)
-        self.spinner.startAnimating()
-        print("targetCity:\(targetCity)")
-        getData(city: targetCity) { response in
-            
-            if (self.cafes != nil) {
-                self.cafes.removeAll()
-            }
-            
-            if (self.sortedCafes != nil) {
-                self.sortedCafes.removeAll()
-            }
-            
-            self.cafes = response as! [CafeInfo]
-            
-            self.sortedCafes = sort(with: self.cafes, and: self.sortItem)
-            self.annotations = getAnnotations(from: self.cafes)
-            if (self.annotations != nil){
-                self.map.addAnnotations(self.annotations)
-            }
-            OperationQueue.main.addOperation {
-                self.spinner.stopAnimating()
-                self.cafeDetailTable.reloadData()
-                self.cityButton.setTitle(self.getCityString(self.newCity), for: .normal)
-            }
-        }
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    func initLocationManager() {
-        // 設置locationManager的參數
-        self.locationManager.delegate = self
-        self.locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        self.locationManager.requestLocation()
-        
-        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-        
-            self.locationManager.startUpdatingLocation()
-        
-        } else if CLLocationManager.authorizationStatus() == .denied {
-        
-        let alert = UIAlertController(title: "無法獲取位置", message: "請允許使用GPS，來獲取您的地理位置。", preferredStyle: .alert)
-        let action = UIAlertAction(title: "Done", style: .default, handler: nil)
-        alert.addAction(action)
-        self.present(alert, animated: true, completion: nil)
-        
-        } else if CLLocationManager.authorizationStatus() == .notDetermined {
-        
-            self.locationManager.requestWhenInUseAuthorization()
-        }
-    }
 
+//================================= MARK: TableView =================================
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if self.cafes != nil { return self.cafes.count } else { return 0 }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CafeDetailCell", for: indexPath) as! CafeDetailTableViewCell
+        
+        let currentCafes = self.sortedCafes[indexPath.row]
+        
+        let wifi = currentCafes.wifi
+        let music = currentCafes.music
+        let quiet = currentCafes.quiet
+        let tasty = currentCafes.tasty
+        let seat = currentCafes.seat
+        let name = currentCafes.name
+        
+        cell.wifiLabel.text = String(wifi)
+        cell.musicLabel.text = String(music)
+        cell.quietLabel.text = String(quiet)
+        cell.tastyLabel.text = String(tasty)
+        cell.seatLabel.text = String(seat)
+        cell.nameLabel.text = name
+        
+        return cell
+    }
+//================================= MARK: PickerView =================================
+    
     func initSortPickerView(){
         
         let views: NSArray = UINib(nibName: "SortPickerView", bundle: nil).instantiate(withOwner: self, options: nil) as NSArray
@@ -325,6 +247,31 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         })
     }
     
+//================================= MARK: MapView =================================
+    
+    func initLocationManager() {
+        // 設置locationManager的參數
+        self.locationManager.delegate = self
+        self.locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager.requestLocation()
+        
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            
+            self.locationManager.startUpdatingLocation()
+            
+        } else if CLLocationManager.authorizationStatus() == .denied {
+            
+            let alert = UIAlertController(title: "無法獲取位置", message: "請允許使用GPS，來獲取您的地理位置。", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Done", style: .default, handler: nil)
+            alert.addAction(action)
+            self.present(alert, animated: true, completion: nil)
+            
+        } else if CLLocationManager.authorizationStatus() == .notDetermined {
+            
+            self.locationManager.requestWhenInUseAuthorization()
+        }
+    }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
@@ -372,16 +319,6 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return annotationView
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        if self.cafes != nil { return self.cafes.count } else { return 0 }
-    }
-    
 //    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat { return 60.0 }
 //    
 //    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -399,43 +336,12 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
 //        return headerView
 //    }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CafeDetailCell", for: indexPath) as! CafeDetailTableViewCell
-
-        let currentCafes = self.sortedCafes[indexPath.row]
-        
-        let wifi = currentCafes.wifi
-        let music = currentCafes.music
-        let quiet = currentCafes.quiet
-        let tasty = currentCafes.tasty
-        let seat = currentCafes.seat
-        let name = currentCafes.name
-    
-        cell.wifiLabel.text = String(wifi)
-        cell.musicLabel.text = String(music)
-        cell.quietLabel.text = String(quiet)
-        cell.tastyLabel.text = String(tasty)
-        cell.seatLabel.text = String(seat)
-        cell.nameLabel.text = name
-        
-        return cell
-    }
-    
-    @IBAction func showSortMenu(sender: AnyObject ) {
-    
-        performSegue(withIdentifier: "showSortMenu", sender: sender )
-    }
-    
-    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
-        
-        return .none
-    }
+//================================= MARK: Popover & Segue =================================
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         
         if let id = segue.identifier {
-        
+            
             if id == "showSortMenu" {
                 
                 let tableViewController = segue.destination as! CityMenuTableViewController
@@ -450,9 +356,16 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    func dismiss() {
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         
-        self.dismiss(animated: true, completion: nil)
+        return .none
+    }
+    
+//================================= MARK: @IBAction =================================
+    
+    @IBAction func showSortMenu(sender: AnyObject ) {
+    
+        performSegue(withIdentifier: "showSortMenu", sender: sender )
     }
     
     @IBAction func backToCafeDetail (_ segue:UIStoryboardSegue) {
@@ -496,8 +409,102 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
                        completion: { success in
                         self.maskView.removeFromSuperview()
                         self.sortPickerView.removeFromSuperview()
-                        self.sortedCafes = sort(with: self.cafes, and: self.sortItem)
+                        self.sortedCafes = self.sort(with: self.cafes, and: self.sortItem)
                         self.cafeDetailTable.reloadData()
         })
+    }
+    
+//================================= MARK: Function =================================
+    
+    func getCityString (_ city:String ) -> String {
+        
+        var str = ""
+        print("city:\(city)")
+        switch city {
+            case "台北", "taipei":
+                str = "Taipei Cafe"
+            case "新竹", "hsinchu":
+                str = "Hsinchu Cafe"
+            case "台中", "taichung":
+                str = "Taichung Cafe"
+            case "台南", "tainan":
+                str = "Tainan Cafe"
+            case "高雄", "kaohsiung":
+                str = "Kaohsiung Cafe"
+            default:
+                str = "Taipei Cafe"
+        }
+        return str
+    }
+    
+    func getCityData(targetCity:String) {
+        
+        self.spinner.hidesWhenStopped = true
+        self.spinner.center = self.view.center
+        self.view.addSubview(self.spinner)
+        self.spinner.startAnimating()
+        print("targetCity:\(targetCity)")
+        getData(city: targetCity) { response in
+            
+            if (self.cafes != nil) {
+                self.cafes.removeAll()
+            }
+            
+            if (self.sortedCafes != nil) {
+                self.sortedCafes.removeAll()
+            }
+            
+            self.cafes = response as! [CafeInfo]
+            
+            self.sortedCafes = self.sort(with: self.cafes, and: self.sortItem)
+            self.annotations = self.getAnnotations(from: self.cafes)
+            if (self.annotations != nil){
+                self.map.addAnnotations(self.annotations)
+            }
+            OperationQueue.main.addOperation {
+                self.spinner.stopAnimating()
+                self.cafeDetailTable.reloadData()
+                self.cityButton.setTitle(self.getCityString(self.newCity), for: .normal)
+            }
+        }
+    }
+    
+    func sort ( with array:[CafeInfo], and sortBy:String) -> [CafeInfo] {
+        
+        var sortedArray = [CafeInfo]()
+        
+        switch sortBy{
+            
+            case "wifi":
+                sortedArray = array.sorted(by: { $0.wifi > $1.wifi })
+            case "music":
+                sortedArray = array.sorted(by: { $0.music > $1.music })
+            case "seat":
+                sortedArray = array.sorted(by: { $0.seat > $1.seat })
+            case "tasty":
+                sortedArray = array.sorted(by: { $0.tasty > $1.tasty })
+            case "quiet":
+                sortedArray = array.sorted(by: { $0.quiet > $1.quiet })
+            default :
+                sortedArray = array.sorted(by: { $0.wifi > $1.wifi })
+        }
+        return sortedArray
+    }
+    
+    func getAnnotations (from array:[CafeInfo]) -> [CafeAnnotation] {
+        
+        var annotations = [CafeAnnotation]()
+        
+        for cafe in array {
+            
+            let annotation = CafeAnnotation(cafe: cafe)
+            annotations.append(annotation)
+        }
+        return annotations
+    }
+    
+    func dismiss() {
+        
+        self.dismiss(animated: true, completion: nil)
     }
 }
