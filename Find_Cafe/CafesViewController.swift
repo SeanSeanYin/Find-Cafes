@@ -31,13 +31,21 @@ extension UIApplication {
 class CafeDetailHeader: UITableViewHeaderFooterView {
     
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var sortLabel: UILabel!
+    @IBOutlet weak var wifiLabel: UILabel!
+    @IBOutlet weak var musicLabel:UILabel!
+    @IBOutlet weak var quietLabel:UILabel!
+    @IBOutlet weak var tastyLabel:UILabel!
+    @IBOutlet weak var seatLabel:UILabel!
 }
 
 class CafeDetailTableViewCell: UITableViewCell {
     
-    @IBOutlet var cafeName:UILabel!
-    @IBOutlet var cafeSort:UILabel!
+    @IBOutlet var nameLabel:UILabel!
+    @IBOutlet var wifiLabel:UILabel!
+    @IBOutlet var musicLabel:UILabel!
+    @IBOutlet var quietLabel:UILabel!
+    @IBOutlet var tastyLabel:UILabel!
+    @IBOutlet var seatLabel:UILabel!
 }
 
 func sort ( with array:[CafeInfo], and sortBy:String) -> [CafeInfo] {
@@ -83,6 +91,9 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var spinner:UIActivityIndicatorView!
     @IBOutlet weak var map:MKMapView!
     @IBOutlet weak var cityButton:UIButton!
+    @IBOutlet weak var sortButton: UIButton!
+    @IBOutlet weak var line1Label: UILabel!
+
     
     var searchController:UISearchController!
     // 使用者選擇的城市
@@ -108,52 +119,31 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         initLocationManager()
         initSortPickerView()
         
+        cityCafe = getCityString (self.newCity)
         switch newCity {
             case "台北":
                 newCity = "taipei"
-                cityCafe = "Taipei Cafe"
             case "新竹":
                 newCity = "hsinchu"
-                cityCafe = "Hsinchu Cafe"
             case "台中":
                 newCity = "taichung"
-            cityCafe = "Taichung Cafe"
             case "台南":
                 newCity = "tainan"
-            cityCafe = "Tainan Cafe"
             case "高雄":
                 newCity = "kaohsiung"
-            cityCafe = "Kaohsiung Cafe"
             default:
                 newCity = "taipei"
-            cityCafe = "Taipei Cafe"
         }
         
-        cityButton.setTitle(cityCafe, for: .normal)
+        print("cityCafe:\(cityCafe)")
         
-        print("newCity:\(newCity) & currentCity:\(currentCity)")
+        self.cityButton.setTitle(self.cityCafe, for: .normal)
+        
+        self.sortButton.frame = CGRect(x: (UIScreen.main.bounds.width) * 0.85, y: self.cityButton.bounds.maxY, width: 40.0, height: 40.0)
         
         getCityData(targetCity: self.newCity)
-/*
-        if (currentCity != newCity) {
-            
-            
-        } else {
-            
-            if (self.cafes != nil) {
-                self.sortedCafes = sort(with: self.cafes, and: self.sortItem)
-                self.annotations = getAnnotations(from: self.cafes)
-                if (self.annotations != nil){
-                    self.map.addAnnotations(self.annotations)
-                }
-                OperationQueue.main.addOperation {
-                    self.spinner.stopAnimating()
-                    self.cafeDetailTable.reloadData()
-                }
-            }
-        }
-*/
-        self.cafeDetailTable.register(UINib(nibName: "CafeDetailHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "CafeDetailHeader")        
+
+        //self.cafeDetailTable.register(UINib(nibName: "CafeDetailHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "CafeDetailHeader")
         
         if (isHideMap) {
             
@@ -172,6 +162,28 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         map.delegate = self
     }
 
+    func getCityString (_ city:String ) -> String {
+        
+        var str = ""
+        print("city:\(city)")
+        switch city {
+            case "台北", "taipei":
+                str = "Taipei Cafe"
+            case "新竹", "hsinchu":
+                str = "Hsinchu Cafe"
+            case "台中", "taichung":
+                str = "Taichung Cafe"
+            case "台南", "tainan":
+                str = "Tainan Cafe"
+            case "高雄", "kaohsiung":
+                str = "Kaohsiung Cafe"
+            default:
+                str = "Taipei Cafe"
+        }
+        
+        return str
+    }
+    
     func getCityData(targetCity:String) {
         
         self.spinner.hidesWhenStopped = true
@@ -199,6 +211,7 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
             OperationQueue.main.addOperation {
                 self.spinner.stopAnimating()
                 self.cafeDetailTable.reloadData()
+                self.cityButton.setTitle(self.getCityString(self.newCity), for: .normal)
             }
         }
     }
@@ -242,7 +255,7 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.maskView.alpha = 0.0
         let select : Selector = #selector(CafesViewController.hidePickerView)
         //設定一個action事件
-        //self.sortPickerView.okButton.addTarget(self, action: select, for: UIControlEvents.touchUpInside)
+        self.sortPickerView.doneButton.addTarget(self, action: select, for: UIControlEvents.touchUpInside)
         //替pickerView上面的 一個按鈕  設定一個回應事件
         let gesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: select)
         self.maskView.addGestureRecognizer(gesture)
@@ -251,14 +264,25 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func numberOfComponents(in pickerView: UIPickerView) -> Int { return 1 }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print("row:\(row)")
+        switch row {
+            case 0:
+                self.sortItem = "wifi"
+            case 1:
+                self.sortItem = "music"
+            case 2:
+                self.sortItem = "quiet"
+            case 3:
+                self.sortItem = "tasty"
+            case 4:
+                self.sortItem = "seat"
+            default:
+                self.sortItem = "wifi"
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int { return 5 }
     
-    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        return 30.0
-    }
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat { return 30.0 }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
@@ -299,11 +323,6 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
             self.sortPickerView.frame.origin.y = self.view.frame.height-self.sortPickerView.frame.height
             print(self.sortPickerView.frame)
         })
-
-        if let topController = UIApplication.topViewController() {
-            
-            print("topController:\(topController.view)")
-        }
     }
     
     
@@ -360,29 +379,25 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if self.cafes != nil {
-            print("return \(self.cafes.count)")
-            return self.cafes.count
-        } else {
-            print("return 0")
-            return 0
-        }
+        if self.cafes != nil { return self.cafes.count } else { return 0 }
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
-        return 44.0
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CafeDetailHeader") as! CafeDetailHeader
-        
-        headerView.nameLabel.text = "Cafe's Name"
-        headerView.sortLabel.text = sortItem
-        
-        return headerView
-    }
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat { return 60.0 }
+//    
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        
+//        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CafeDetailHeader") as! CafeDetailHeader
+//        
+//        headerView.nameLabel.text = "Cafe's Name"
+//        headerView.wifiLabel.text = "Wifi"
+//        headerView.musicLabel.text = "Music"
+//        headerView.quietLabel.text = "Quiet"
+//        headerView.tastyLabel.text = "Tasty"
+//        headerView.seatLabel.text = "Seat"
+//        headerView.frame = CGRect(x: 0, y: self.line1Label.frame.maxY, width: UIScreen.main.bounds.width, height: 60)
+//        
+//        return headerView
+//    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
@@ -390,29 +405,19 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
         let currentCafes = self.sortedCafes[indexPath.row]
         
-        switch sortItem {
-            case "wifi":
-                let str = currentCafes.wifi
-                cell.cafeSort.text = String(str)
-            case "music":
-                let str = currentCafes.music
-                cell.cafeSort.text = String(str)
-            case "quiet":
-                let str = currentCafes.quiet
-                cell.cafeSort.text = String(str)
-            case "tasty":
-                let str = currentCafes.tasty
-                cell.cafeSort.text = String(str)
-            case "seat":
-                let str = currentCafes.seat
-                cell.cafeSort.text = String(str)
-            default :
-                break
-        }
-        
+        let wifi = currentCafes.wifi
+        let music = currentCafes.music
+        let quiet = currentCafes.quiet
+        let tasty = currentCafes.tasty
+        let seat = currentCafes.seat
         let name = currentCafes.name
-        cell.cafeName.text = name
-        print("name : \(name)")
+    
+        cell.wifiLabel.text = String(wifi)
+        cell.musicLabel.text = String(music)
+        cell.quietLabel.text = String(quiet)
+        cell.tastyLabel.text = String(tasty)
+        cell.seatLabel.text = String(seat)
+        cell.nameLabel.text = name
         
         return cell
     }
@@ -454,13 +459,9 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let sourceController = segue.source as! CityMenuTableViewController
         self.newCity = sourceController.city
-        print("self.sortItem: \(self.sortItem)")
 
         getCityData(targetCity: self.newCity)
         
-//        if (self.cafes != nil){
-//            self.sortedCafes = sort(with: self.cafes, and: self.sortItem)
-//        }
         self.cafeDetailTable.reloadData()
     }
     
@@ -481,24 +482,22 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 self.cafeDetailTable.alpha = 1.0
             }, completion: { success in
                 self.cafeDetailTable.reloadData() })
-
         }
     }
     
-    @IBAction func showSortSheet(_ sender: AnyObject) {
-
-        showPickerView()
-    }
+    @IBAction func showSortSheet(_ sender: AnyObject) { showPickerView() }
     
     func hidePickerView(){
         
-        UIView.animate(withDuration: 0.3,
+        UIView.animate(withDuration: 1,
                        animations: {
                         self.maskView.alpha = 0.0
                         self.sortPickerView.frame.origin.y = self.view.frame.height },
-                       completion: { (value:Bool) in
+                       completion: { success in
                         self.maskView.removeFromSuperview()
                         self.sortPickerView.removeFromSuperview()
+                        self.sortedCafes = sort(with: self.cafes, and: self.sortItem)
+                        self.cafeDetailTable.reloadData()
         })
     }
 }

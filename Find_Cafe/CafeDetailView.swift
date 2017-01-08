@@ -20,7 +20,7 @@ class CafeDetailView: UIView {
     
     var cafe:CafeInfo!
     
-    func configureWithCafe(cafe: CafeInfo){
+    func configureWithCafe(cafe: CafeInfo) {
         self.cafe = cafe
         
         nameLabel.text = cafe.name
@@ -32,7 +32,5 @@ class CafeDetailView: UIView {
         quietLabel.text = String(cafe.quiet)
         tastyLabel.text = String(cafe.tasty)
         musicLabel.text = String(cafe.music)
-        
-        print("cafe.name: \(cafe.name)")
     }
 }

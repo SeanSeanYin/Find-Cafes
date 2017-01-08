@@ -10,7 +10,7 @@ import UIKit
 
 class SortPickerView: UIView {
 
-    @IBOutlet var okButton:UIButton!
+    @IBOutlet var doneButton:UIButton!
     @IBOutlet var pickerView:UIPickerView!
 
 }

@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,56 +14,108 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CafesViewController" customModule="Find_Cafe" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CafeDetailHeader" customModule="Find_Cafe" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1CG-FR-sVX">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <rect key="frame" x="8" y="8" width="584" height="84"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BgF-Td-ZZK">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <rect key="frame" x="0.0" y="8" width="584" height="84"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GO8-ck-iyz">
-                                    <rect key="frame" x="0.0" y="0.0" width="328" height="667"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cafe's Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GO8-ck-iyz" userLabel="Name">
+                                    <rect key="frame" x="0.0" y="0.0" width="292" height="84"/>
+                                    <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sort" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H6d-N4-ygr">
-                                    <rect key="frame" x="328" y="0.0" width="47" height="667"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WIFI" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H6d-N4-ygr" userLabel="WFI">
+                                    <rect key="frame" x="292" y="0.0" width="58.5" height="84"/>
+                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="13"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MUSIC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O9W-jE-Rom" userLabel="MUSIC">
+                                    <rect key="frame" x="350.5" y="0.0" width="58.5" height="84"/>
+                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="13"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QUIET" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Avu-3e-4qh" userLabel="QUIET">
+                                    <rect key="frame" x="409" y="0.0" width="58.5" height="84"/>
+                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="13"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TASTY" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ngq-aP-2UI" userLabel="TASTY">
+                                    <rect key="frame" x="467.5" y="0.0" width="58.5" height="84"/>
+                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="13"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SEAT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZHc-kS-dy8" userLabel="SEAT">
+                                    <rect key="frame" x="526" y="0.0" width="58" height="84"/>
+                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="13"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="GO8-ck-iyz" firstAttribute="width" secondItem="H6d-N4-ygr" secondAttribute="width" multiplier="7" id="KH7-5H-poi"/>
-                                <constraint firstItem="GO8-ck-iyz" firstAttribute="leading" secondItem="BgF-Td-ZZK" secondAttribute="leading" id="NMC-MG-NYu"/>
-                                <constraint firstItem="H6d-N4-ygr" firstAttribute="height" secondItem="BgF-Td-ZZK" secondAttribute="height" id="acZ-74-qVU"/>
-                                <constraint firstAttribute="trailing" secondItem="H6d-N4-ygr" secondAttribute="trailing" id="ugE-3Z-yHf"/>
-                                <constraint firstItem="GO8-ck-iyz" firstAttribute="height" secondItem="BgF-Td-ZZK" secondAttribute="height" id="vxV-uE-qZQ"/>
+                                <constraint firstItem="GO8-ck-iyz" firstAttribute="centerY" secondItem="BgF-Td-ZZK" secondAttribute="centerY" id="1EX-UO-vPg"/>
+                                <constraint firstItem="H6d-N4-ygr" firstAttribute="height" secondItem="BgF-Td-ZZK" secondAttribute="height" id="5TU-J1-oHD"/>
+                                <constraint firstItem="Ngq-aP-2UI" firstAttribute="leading" secondItem="Avu-3e-4qh" secondAttribute="trailing" id="6Vv-JI-Rql"/>
+                                <constraint firstItem="H6d-N4-ygr" firstAttribute="leading" secondItem="GO8-ck-iyz" secondAttribute="trailing" id="6jV-6a-ore"/>
+                                <constraint firstItem="O9W-jE-Rom" firstAttribute="height" secondItem="BgF-Td-ZZK" secondAttribute="height" id="9sB-Vz-O1x"/>
+                                <constraint firstItem="Avu-3e-4qh" firstAttribute="width" secondItem="BgF-Td-ZZK" secondAttribute="width" multiplier="0.1" id="BHz-t7-YPX"/>
+                                <constraint firstItem="H6d-N4-ygr" firstAttribute="width" secondItem="BgF-Td-ZZK" secondAttribute="width" multiplier="0.1" id="FXf-R9-TpI"/>
+                                <constraint firstItem="ZHc-kS-dy8" firstAttribute="centerY" secondItem="BgF-Td-ZZK" secondAttribute="centerY" id="Kxy-EN-Lkq"/>
+                                <constraint firstItem="ZHc-kS-dy8" firstAttribute="width" secondItem="BgF-Td-ZZK" secondAttribute="width" multiplier="0.1" id="M9e-3G-5pI"/>
+                                <constraint firstItem="ZHc-kS-dy8" firstAttribute="height" secondItem="BgF-Td-ZZK" secondAttribute="height" id="Ml8-1M-2Dw"/>
+                                <constraint firstItem="Avu-3e-4qh" firstAttribute="height" secondItem="BgF-Td-ZZK" secondAttribute="height" id="NCs-xU-RQa"/>
+                                <constraint firstItem="Ngq-aP-2UI" firstAttribute="centerY" secondItem="BgF-Td-ZZK" secondAttribute="centerY" id="OAg-0Q-m2m"/>
+                                <constraint firstItem="Avu-3e-4qh" firstAttribute="leading" secondItem="O9W-jE-Rom" secondAttribute="trailing" id="PzY-3g-dMd"/>
+                                <constraint firstItem="Ngq-aP-2UI" firstAttribute="width" secondItem="BgF-Td-ZZK" secondAttribute="width" multiplier="0.1" id="SmF-Bu-kU0"/>
+                                <constraint firstItem="GO8-ck-iyz" firstAttribute="leading" secondItem="BgF-Td-ZZK" secondAttribute="leading" id="TKm-5L-HSh"/>
+                                <constraint firstItem="O9W-jE-Rom" firstAttribute="centerY" secondItem="BgF-Td-ZZK" secondAttribute="centerY" id="TxY-kq-pXN"/>
+                                <constraint firstItem="O9W-jE-Rom" firstAttribute="leading" secondItem="H6d-N4-ygr" secondAttribute="trailing" id="X1B-c8-btD"/>
+                                <constraint firstItem="Ngq-aP-2UI" firstAttribute="height" secondItem="BgF-Td-ZZK" secondAttribute="height" id="Yzr-SB-deg"/>
+                                <constraint firstItem="H6d-N4-ygr" firstAttribute="centerY" secondItem="BgF-Td-ZZK" secondAttribute="centerY" id="aAN-Is-9C5"/>
+                                <constraint firstItem="O9W-jE-Rom" firstAttribute="width" secondItem="BgF-Td-ZZK" secondAttribute="width" multiplier="0.1" id="eAs-6D-yvw"/>
+                                <constraint firstItem="GO8-ck-iyz" firstAttribute="width" secondItem="BgF-Td-ZZK" secondAttribute="width" multiplier="0.5" id="eLX-x0-inC"/>
+                                <constraint firstItem="Avu-3e-4qh" firstAttribute="centerY" secondItem="BgF-Td-ZZK" secondAttribute="centerY" id="nrw-5u-w7u"/>
+                                <constraint firstItem="ZHc-kS-dy8" firstAttribute="leading" secondItem="Ngq-aP-2UI" secondAttribute="trailing" id="rAd-tW-6Z8"/>
+                                <constraint firstItem="GO8-ck-iyz" firstAttribute="height" secondItem="BgF-Td-ZZK" secondAttribute="height" id="sVv-0l-60f"/>
                             </constraints>
                         </stackView>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.70980392160000005" green="0.70980392160000005" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="BgF-Td-ZZK" firstAttribute="height" secondItem="1CG-FR-sVX" secondAttribute="height" id="OXZ-Kb-hDe"/>
-                        <constraint firstItem="BgF-Td-ZZK" firstAttribute="centerY" secondItem="1CG-FR-sVX" secondAttribute="centerY" id="czj-SC-9Tv"/>
-                        <constraint firstItem="BgF-Td-ZZK" firstAttribute="centerX" secondItem="1CG-FR-sVX" secondAttribute="centerX" id="m9V-d8-oMm"/>
-                        <constraint firstItem="BgF-Td-ZZK" firstAttribute="width" secondItem="1CG-FR-sVX" secondAttribute="width" id="mpx-2m-RTS"/>
+                        <constraint firstItem="BgF-Td-ZZK" firstAttribute="leading" secondItem="1CG-FR-sVX" secondAttribute="leading" id="0P1-UF-5W1"/>
+                        <constraint firstItem="BgF-Td-ZZK" firstAttribute="height" secondItem="1CG-FR-sVX" secondAttribute="height" id="7Pk-xL-Ys6"/>
+                        <constraint firstAttribute="bottom" secondItem="BgF-Td-ZZK" secondAttribute="bottom" constant="8" id="7i7-eL-Q5W"/>
+                        <constraint firstItem="BgF-Td-ZZK" firstAttribute="width" secondItem="1CG-FR-sVX" secondAttribute="width" id="CnR-A1-Clj"/>
+                        <constraint firstAttribute="bottomMargin" secondItem="BgF-Td-ZZK" secondAttribute="bottom" id="IM6-B9-d1B"/>
+                        <constraint firstItem="BgF-Td-ZZK" firstAttribute="top" secondItem="1CG-FR-sVX" secondAttribute="top" constant="8" id="jPA-RA-o8w"/>
+                        <constraint firstItem="BgF-Td-ZZK" firstAttribute="trailing" secondItem="1CG-FR-sVX" secondAttribute="trailing" id="ko2-kH-zYC"/>
+                        <constraint firstItem="BgF-Td-ZZK" firstAttribute="top" secondItem="1CG-FR-sVX" secondAttribute="topMargin" id="pxJ-xE-hnA"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="1CG-FR-sVX" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="7kf-3T-DYu"/>
-                <constraint firstItem="1CG-FR-sVX" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="WWf-zj-m9z"/>
-                <constraint firstItem="1CG-FR-sVX" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ghc-yD-JDZ"/>
-                <constraint firstItem="1CG-FR-sVX" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="o9N-1i-31I"/>
+                <constraint firstItem="1CG-FR-sVX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="QQR-z6-lGt"/>
+                <constraint firstAttribute="trailingMargin" secondItem="1CG-FR-sVX" secondAttribute="trailing" id="Wwy-gq-8HC"/>
+                <constraint firstItem="1CG-FR-sVX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="topMargin" id="e6T-qf-iLe"/>
+                <constraint firstItem="1CG-FR-sVX" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottomMargin" id="gPM-hE-Fny"/>
             </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="musicLabel" destination="O9W-jE-Rom" id="dxu-oC-uux"/>
                 <outlet property="nameLabel" destination="GO8-ck-iyz" id="2Gl-3n-GT2"/>
-                <outlet property="sortLabel" destination="H6d-N4-ygr" id="gA4-1t-7Pf"/>
+                <outlet property="quietLabel" destination="Avu-3e-4qh" id="bvl-GG-yrQ"/>
+                <outlet property="seatLabel" destination="ZHc-kS-dy8" id="gH5-Ga-R3Q"/>
+                <outlet property="tastyLabel" destination="Ngq-aP-2UI" id="X8e-UF-uVV"/>
+                <outlet property="wifiLabel" destination="H6d-N4-ygr" id="ifz-gP-LrU"/>
             </connections>
             <point key="canvasLocation" x="35.5" y="80.5"/>
         </view>
