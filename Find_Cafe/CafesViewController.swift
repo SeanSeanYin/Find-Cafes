@@ -26,7 +26,7 @@ class CafeDetailTableViewCell: UITableViewCell {
 func sort ( with array:[CafeInfo], and sortBy:String) -> [CafeInfo] {
     
     var sortedArray = [CafeInfo]()
-    
+    var test = ""
     switch sortBy{
     
         case "wifi":
