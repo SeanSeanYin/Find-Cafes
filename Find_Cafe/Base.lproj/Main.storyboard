@@ -209,19 +209,19 @@
                                         <color key="textColor" red="0.96078431369999995" green="0.48627450979999998" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Music" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cSO-ji-jlq" userLabel="Music">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Music" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="cSO-ji-jlq" userLabel="Music">
                                         <rect key="frame" x="227" y="0.0" width="38" height="34"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="13"/>
                                         <color key="textColor" red="0.96078431369999995" green="0.48627450979999998" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quiet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aph-nM-UL6" userLabel="Quiet">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quiet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="Aph-nM-UL6" userLabel="Quiet">
                                         <rect key="frame" x="266" y="0.0" width="37" height="34"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="13"/>
                                         <color key="textColor" red="0.96078431372549022" green="0.48627450980392156" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tasty" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gew-Az-VtW" userLabel="Tasty">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tasty" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="Gew-Az-VtW" userLabel="Tasty">
                                         <rect key="frame" x="304" y="0.0" width="38" height="34"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="13"/>
                                         <color key="textColor" red="0.96078431369999995" green="0.48627450979999998" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -352,7 +352,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y6A-bc-Kca">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsTraffic="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y6A-bc-Kca">
                                 <rect key="frame" x="0.0" y="146" width="375" height="521"/>
                             </mapView>
                         </subviews>
@@ -458,16 +458,16 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1jI-ig-4dJ" userLabel="Result Stack">
-                                            <rect key="frame" x="8" y="8.5" width="359" height="23"/>
+                                            <rect key="frame" x="8" y="8.5" width="359" height="33"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S8e-Xd-Cib" userLabel="Name">
-                                                    <rect key="frame" x="0.0" y="0.0" width="359" height="11.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="359" height="16.5"/>
                                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GKa-n9-QPc" userLabel="Address">
-                                                    <rect key="frame" x="0.0" y="11.5" width="359" height="11.5"/>
+                                                    <rect key="frame" x="0.0" y="16.5" width="359" height="16.5"/>
                                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>

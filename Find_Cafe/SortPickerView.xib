@@ -23,6 +23,7 @@
                 </button>
                 <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mx3-oK-El6">
                     <rect key="frame" x="60" y="30" width="280" height="240"/>
+                    <color key="tintColor" red="0.96078431369999995" green="0.48627450979999998" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
                 </pickerView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

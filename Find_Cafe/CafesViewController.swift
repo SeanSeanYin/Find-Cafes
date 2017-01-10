@@ -10,6 +10,7 @@ import UIKit
 import SwiftyJSON
 import MapKit
 import CoreLocation
+import Koloda
 
 protocol HandleMapSearch: class {
     func dropPinZoomIn(_ cafe:CafeInfo)
@@ -39,14 +40,25 @@ extension CafesViewController: HandleMapSearch {
     
     func dropPinZoomIn(_ cafe: CafeInfo) {
         
-        
         let center = CLLocationCoordinate2D(latitude: cafe.location.latitude, longitude: cafe.location.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         
+        switchTo(map: true)
         self.map.setRegion(region, animated: true)
-        let anno = CafeAnnotation(cafe: cafe)
-        print("anno:\(anno)")
-        self.map.selectAnnotation(anno, animated: true)
+        
+        
+        if let ann = self.map.selectedAnnotations[0] as? CafeAnnotation {
+            print("selected annotation: \(ann.cafe.name)")
+            let c = ann.coordinate
+            print("coordinate: \(c.latitude), \(c.longitude)")
+            //do something else with ann...
+            self.map.addAnnotation(ann)
+            self.map.selectAnnotation(ann, animated: true)
+        }
+
+        //let anno = CafeAnnotation(cafe: cafe)
+        //print("anno:\(anno)")
+        //self.map.selectAnnotation(anno, animated: true)
         searchController.searchBar.text = ""
     }
 }
@@ -98,7 +110,6 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         definesPresentationContext = true
         locationSearchTable.mapView = map
         locationSearchTable.handleMapSearchDelegate = self
-
         
         cityCafe = getCityString (self.newCity)
         switch newCity {
@@ -116,10 +127,7 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 newCity = "taipei"
         }
         
-        print("cityCafe:\(cityCafe)")
-        
         self.cityButton.setTitle(self.cityCafe, for: .normal)
-        
         self.sortButton.frame = CGRect(x: (UIScreen.main.bounds.width) * 0.85, y: self.cityButton.bounds.maxY, width: 40.0, height: 40.0)
         
         getCityData(targetCity: self.newCity)
@@ -193,6 +201,21 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let cafe = self.sortedCafes[indexPath.row]
+        
+        let center = CLLocationCoordinate2D(latitude: cafe.location.latitude, longitude: cafe.location.longitude)
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        
+        switchTo(map: true)
+        self.map.setRegion(region, animated: true)
+        let anno = CafeAnnotation(cafe: cafe)
+        print("anno:\(anno.cafe.name)")
+        self.map.selectAnnotation(anno, animated: true)
+        searchController.searchBar.text = ""
+    }
+    
     //    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat { return 60.0 }
     //
     //    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -251,26 +274,6 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat { return 30.0 }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
-        var str:String = String()
-        switch row {
-            case 0:
-                str = "Wifi"
-            case 1:
-                str = "Music"
-            case 2:
-                str = "Quiet"
-            case 3:
-                str = "Tasty"
-            case 4:
-                str = "Seat"
-            default:
-                str = "Wifi"
-        }
-        return str
-    }
-    
     func showPickerView() {
         
         self.view.addSubview(self.maskView)
@@ -281,7 +284,7 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         //設定黑屏的初始透明度
         self.sortPickerView.frame.origin.y = self.view.frame.height
         //設定pickerView的初始位置
-        self.sortPickerView.bounds  = CGRect(x: 0, y: self.sortPickerView.bounds.origin.y, width: UIScreen.main.bounds.width, height: self.sortPickerView.bounds.height)
+        self.sortPickerView.bounds  = CGRect(x: 0, y: self.sortPickerView.bounds.origin.y, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.3)//self.sortPickerView.bounds.height)
         self.sortPickerView.frame.origin.x = 0
         //設定pickerView與螢幕等寬
         UIView.animate(withDuration: 0.3, animations: {//view移動動畫
@@ -292,9 +295,35 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         })
     }
     
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        
+        var str = ""
+        let pickerLabel = UILabel()
+        pickerLabel.textColor = UIColor(red: 245 / 255, green: 124 / 255, blue: 117 / 255, alpha: 1.0)
+        pickerLabel.font = UIFont(name: "Futura Medium", size: 30)
+        pickerLabel.textAlignment = NSTextAlignment.center
+        switch row {
+        case 0:
+            str = "Wifi"
+        case 1:
+            str = "Music"
+        case 2:
+            str = "Quiet"
+        case 3:
+            str = "Tasty"
+        case 4:
+            str = "Seat"
+        default:
+            str = "Wifi"
+        }
+        pickerLabel.text = str
+        
+        return pickerLabel
+    }
+    
     func hidePickerView(){
         
-        UIView.animate(withDuration: 1,
+        UIView.animate(withDuration: 0.3,
                        animations: {
                         self.maskView.alpha = 0.0
                         self.sortPickerView.frame.origin.y = self.view.frame.height },
@@ -337,9 +366,9 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         manager.stopUpdatingLocation()
         
-        if (self.annotations != nil){
-            map.addAnnotations(self.annotations)
-        }
+//        if (self.annotations != nil){
+//            map.addAnnotations(self.annotations)
+//        }
         
         let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
@@ -403,10 +432,7 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
-        
-        return .none
-    }
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle { return .none }
     
 //================================= MARK: @IBAction =================================
     
@@ -426,23 +452,13 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     @IBAction func showMap() {
-    
-        if (self.isHideMap) {
         
-            self.isHideMap = false
-            self.map.isHidden = false
-            self.cafeDetailTable.isHidden = true
-        }
+        switchTo(map: true)
     }
     
     @IBAction func showList() {
         
-        if (!self.isHideMap){
-            
-            self.isHideMap = true
-            self.cafeDetailTable.isHidden = false
-            self.map.isHidden = true
-        }
+        switchTo(map: false)
     }
     
     @IBAction func showSortSheet(_ sender: AnyObject) { showPickerView() }
@@ -452,7 +468,7 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func getCityString (_ city:String ) -> String {
         
         var str = ""
-        print("city:\(city)")
+
         switch city {
             case "台北", "taipei":
                 str = "Taipei Cafe"
@@ -476,7 +492,7 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.spinner.center = self.view.center
         self.view.addSubview(self.spinner)
         self.spinner.startAnimating()
-        print("targetCity:\(targetCity)")
+
         getData(city: targetCity) { response in
             
             if (self.cafes != nil) {
@@ -535,6 +551,21 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
             annotations.append(annotation)
         }
         return annotations
+    }
+    
+    func switchTo(map:Bool){
+        
+        if (map && self.isHideMap) {
+            
+            self.isHideMap = false
+            self.map.isHidden = false
+            self.cafeDetailTable.isHidden = true
+        } else if (!map && !self.isHideMap) {
+            
+            self.isHideMap = true
+            self.cafeDetailTable.isHidden = false
+            self.map.isHidden = true
+        }
     }
     
     func dismiss() {

@@ -35,7 +35,7 @@ extension LocationSearchTable : UISearchResultsUpdating {
         }
 
         matchingItems = self.cafes.filter { term in
-            return term.name.contains(searchBarText) }
+            return (term.name.contains(searchBarText) || term.address.contains(searchBarText))}
         
         self.tableView.reloadData()
     }
