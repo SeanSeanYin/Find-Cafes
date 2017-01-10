@@ -78,7 +78,6 @@ class CafeAnnotationView: MKAnnotationView {
             let cafeDetailView = views.first!
             if let cafeAnnotation = annotation as? CafeAnnotation {                
                 let cafe = cafeAnnotation.cafe
-                print("cafe:\(cafe)")
                 cafeDetailView.configureWithCafe(cafe: cafe)
             }
             return cafeDetailView

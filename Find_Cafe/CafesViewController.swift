@@ -11,21 +11,8 @@ import SwiftyJSON
 import MapKit
 import CoreLocation
 
-extension UIApplication {
-    class func topViewController(controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
-        if let navigationController = controller as? UINavigationController {
-            return topViewController(controller: navigationController.visibleViewController)
-        }
-        if let tabController = controller as? UITabBarController {
-            if let selected = tabController.selectedViewController {
-                return topViewController(controller: selected)
-            }
-        }
-        if let presented = controller?.presentedViewController {
-            return topViewController(controller: presented)
-        }
-        return controller
-    }
+protocol HandleMapSearch: class {
+    func dropPinZoomIn(_ cafe:CafeInfo)
 }
 
 class CafeDetailHeader: UITableViewHeaderFooterView {
@@ -48,16 +35,31 @@ class CafeDetailTableViewCell: UITableViewCell {
     @IBOutlet var seatLabel:UILabel!
 }
 
+extension CafesViewController: HandleMapSearch {
+    
+    func dropPinZoomIn(_ cafe: CafeInfo) {
+        
+        
+        let center = CLLocationCoordinate2D(latitude: cafe.location.latitude, longitude: cafe.location.longitude)
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        
+        self.map.setRegion(region, animated: true)
+        let anno = CafeAnnotation(cafe: cafe)
+        print("anno:\(anno)")
+        self.map.selectAnnotation(anno, animated: true)
+        searchController.searchBar.text = ""
+    }
+}
+
 class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UIPopoverPresentationControllerDelegate, UIAdaptivePresentationControllerDelegate, MKMapViewDelegate, CLLocationManagerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
-    @IBOutlet weak var searchBar:UISearchBar!
+    @IBOutlet weak var searchBarContainer:UIView!
     @IBOutlet weak var cafeDetailTable:UITableView!
     @IBOutlet weak var spinner:UIActivityIndicatorView!
     @IBOutlet weak var map:MKMapView!
     @IBOutlet weak var cityButton:UIButton!
     @IBOutlet weak var sortButton: UIButton!
     @IBOutlet weak var line1Label: UILabel!
-
     
     var searchController:UISearchController!
     // 使用者選擇的城市
@@ -76,12 +78,27 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     let locationManager = CLLocationManager()
     var maskView: UIView!
     var sortPickerView:SortPickerView!
+    var locationSearchTable:LocationSearchTable!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         initLocationManager()
         initSortPickerView()
+        initSearchController()
+        
+        locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
+        searchController = UISearchController(searchResultsController: locationSearchTable)
+        searchController.searchResultsUpdater = locationSearchTable
+        let searchBar = searchController.searchBar
+        searchBar.placeholder = "Search cafe name..."
+        self.searchBarContainer.addSubview(searchController.searchBar)
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        locationSearchTable.mapView = map
+        locationSearchTable.handleMapSearchDelegate = self
+
         
         cityCafe = getCityString (self.newCity)
         switch newCity {
@@ -107,7 +124,9 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         getCityData(targetCity: self.newCity)
 
-        //self.cafeDetailTable.register(UINib(nibName: "CafeDetailHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "CafeDetailHeader")
+//        self.cafeDetailTable.estimatedRowHeight = 80.0
+//        self.cafeDetailTable.rowHeight = UITableViewAutomaticDimension
+//        self.cafeDetailTable.register(UINib(nibName: "CafeDetailHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "CafeDetailHeader")
         
         if (isHideMap) {
             
@@ -130,6 +149,15 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.didReceiveMemoryWarning()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+    }
+    
 //================================= MARK: TableView =================================
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -164,6 +192,23 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         return cell
     }
+    
+    //    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat { return 60.0 }
+    //
+    //    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    //
+    //        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CafeDetailHeader") as! CafeDetailHeader
+    //
+    //        headerView.nameLabel.text = "Cafe's Name"
+    //        headerView.wifiLabel.text = "Wifi"
+    //        headerView.musicLabel.text = "Music"
+    //        headerView.quietLabel.text = "Quiet"
+    //        headerView.tastyLabel.text = "Tasty"
+    //        headerView.seatLabel.text = "Seat"
+    //        headerView.frame = CGRect(x: 0, y: self.line1Label.frame.maxY, width: UIScreen.main.bounds.width, height: 60)
+    //        
+    //        return headerView
+    //    }
 //================================= MARK: PickerView =================================
     
     func initSortPickerView(){
@@ -247,6 +292,19 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         })
     }
     
+    func hidePickerView(){
+        
+        UIView.animate(withDuration: 1,
+                       animations: {
+                        self.maskView.alpha = 0.0
+                        self.sortPickerView.frame.origin.y = self.view.frame.height },
+                       completion: { success in
+                        self.maskView.removeFromSuperview()
+                        self.sortPickerView.removeFromSuperview()
+                        self.sortedCafes = self.sort(with: self.cafes, and: self.sortItem)
+                        self.cafeDetailTable.reloadData()
+        })
+    }
 //================================= MARK: MapView =================================
     
     func initLocationManager() {
@@ -279,20 +337,20 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         manager.stopUpdatingLocation()
         
+        if (self.annotations != nil){
+            map.addAnnotations(self.annotations)
+        }
+        
         let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
-        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
         
         map.setRegion(region, animated: true)
         
         // Drop a pin at user's Current Location
-        let myAnnotation: MKPointAnnotation = MKPointAnnotation()
-        myAnnotation.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude)
-        myAnnotation.title = "Current location"
-        map.addAnnotation(myAnnotation)
-        
-        if (self.annotations != nil){
-            map.addAnnotations(self.annotations)
-        }
+        //let myAnnotation: MKPointAnnotation = MKPointAnnotation()
+        //myAnnotation.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude)
+        //myAnnotation.title = "Current location"
+        //map.addAnnotation(myAnnotation)
     }
     
     func locationManager(_ manager: CLLocationManager, didFinishDeferredUpdatesWithError error: Error?) {
@@ -318,23 +376,12 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         return annotationView
     }
+//================================= MARK: Search Controller =================================
     
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat { return 60.0 }
-//    
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        
-//        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CafeDetailHeader") as! CafeDetailHeader
-//        
-//        headerView.nameLabel.text = "Cafe's Name"
-//        headerView.wifiLabel.text = "Wifi"
-//        headerView.musicLabel.text = "Music"
-//        headerView.quietLabel.text = "Quiet"
-//        headerView.tastyLabel.text = "Tasty"
-//        headerView.seatLabel.text = "Seat"
-//        headerView.frame = CGRect(x: 0, y: self.line1Label.frame.maxY, width: UIScreen.main.bounds.width, height: 60)
-//        
-//        return headerView
-//    }
+    func initSearchController() {
+        
+        searchController = UISearchController(searchResultsController: nil)
+    }
     
 //================================= MARK: Popover & Segue =================================
     
@@ -380,39 +427,25 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBAction func showMap() {
     
-        if (self.isHideMap){
+        if (self.isHideMap) {
+        
             self.isHideMap = false
-            self.view.bringSubview(toFront: map)
+            self.map.isHidden = false
+            self.cafeDetailTable.isHidden = true
         }
     }
     
     @IBAction func showList() {
         
         if (!self.isHideMap){
+            
             self.isHideMap = true
-            UIView.animate(withDuration: 0.1, animations: {
-                self.map.alpha = 0.0
-                self.cafeDetailTable.alpha = 1.0
-            }, completion: { success in
-                self.cafeDetailTable.reloadData() })
+            self.cafeDetailTable.isHidden = false
+            self.map.isHidden = true
         }
     }
     
     @IBAction func showSortSheet(_ sender: AnyObject) { showPickerView() }
-    
-    func hidePickerView(){
-        
-        UIView.animate(withDuration: 1,
-                       animations: {
-                        self.maskView.alpha = 0.0
-                        self.sortPickerView.frame.origin.y = self.view.frame.height },
-                       completion: { success in
-                        self.maskView.removeFromSuperview()
-                        self.sortPickerView.removeFromSuperview()
-                        self.sortedCafes = self.sort(with: self.cafes, and: self.sortItem)
-                        self.cafeDetailTable.reloadData()
-        })
-    }
     
 //================================= MARK: Function =================================
     
@@ -455,6 +488,7 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
             
             self.cafes = response as! [CafeInfo]
+            self.locationSearchTable.cafes = self.cafes
             
             self.sortedCafes = self.sort(with: self.cafes, and: self.sortItem)
             self.annotations = self.getAnnotations(from: self.cafes)
