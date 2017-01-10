@@ -10,7 +10,6 @@ import UIKit
 import SwiftyJSON
 import MapKit
 import CoreLocation
-import Koloda
 
 protocol HandleMapSearch: class {
     func dropPinZoomIn(_ cafe:CafeInfo)
