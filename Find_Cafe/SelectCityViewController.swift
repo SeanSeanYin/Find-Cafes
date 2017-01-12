@@ -50,7 +50,7 @@ class SelectCityViewController: UIViewController {
             switch (sender as! UIButton).currentTitle! {
             case "Taipei":
                 city = "台北"
-            case "Hsunchu":
+            case "Hsinchu":
                 city = "新竹"
             case "Taichung":
                 city = "台中"
@@ -62,6 +62,7 @@ class SelectCityViewController: UIViewController {
                 city = "台北"
             }
             viewController.newCity = city
+            print("title:\((sender as! UIButton).currentTitle!)")
             print("city:\(city)")
         }
     }

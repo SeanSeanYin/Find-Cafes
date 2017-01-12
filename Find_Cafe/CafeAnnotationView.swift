@@ -9,11 +9,6 @@
 import UIKit
 import MapKit
 
-protocol CafeAnnotationViewDelegate:class{
-    
-    func detailsRequestedForCafe(cafe: CafeInfo)
-}
-
 extension Double {
 
     func toString() -> String {
@@ -85,5 +80,20 @@ class CafeAnnotationView: MKAnnotationView {
             return cafeDetailView
         }
         return nil
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.customCalloutView?.removeFromSuperview()
+    }
+    
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        // if super passed hit test, return the result
+        if let parentHitView = super.hitTest(point, with: event) { return parentHitView }
+        else { // test in our custom callout.
+            if customCalloutView != nil {
+                return customCalloutView!.hitTest(convert(point, to: customCalloutView!), with: event)
+            } else { return nil }
+        }
     }
 }

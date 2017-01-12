@@ -40,13 +40,13 @@ struct ApiURL {
     }
 }
 
-public func getData(city:String?, completion: @escaping (_ response:[Any]?) -> Void) -> () {
+public func getData(city:String?, completion: @escaping (_ response:[Any]?, _ err:Error?) -> Void) throws -> () {
     
     var cafes:[CafeInfo]!
     
     // 確定url不是空白
     guard let cityName = city else {
-        return
+        throw ApiError.wrongURL
     }
     
     let url = "https://cafenomad.tw/api/v1.0/cafes/" + cityName
@@ -80,13 +80,10 @@ public func getData(city:String?, completion: @escaping (_ response:[Any]?) -> V
                 cafes.append(cafe)
             }
             
-            completion(cafes)
-            
+            completion(cafes, nil)
         case .failure(let error):
-            
-            print("error :\(error.localizedDescription)")
-            print(responseObject.result)
-            print(responseObject.timeline)
+            completion( cafes, error)
+            print("Connection error: \(error.localizedDescription)")
         }
     }
 }
