@@ -44,25 +44,22 @@ extension CafesViewController: HandleMapSearch {
         
         switchTo(map: true)
         self.map.setRegion(region, animated: true)
+        self.selectedCafe = cafe
         
+//        if let ann = self.map.selectedAnnotations[0] as? CafeAnnotation {
+//            print("selected annotation: \(ann.cafe.name)")
+//            let c = ann.coordinate
+//            print("coordinate: \(c.latitude), \(c.longitude)")
+//            //do something else with ann...
+//            self.map.addAnnotation(ann)
+//            self.map.selectAnnotation(ann, animated: true)
+//        }
         
-        if let ann = self.map.selectedAnnotations[0] as? CafeAnnotation {
-            print("selected annotation: \(ann.cafe.name)")
-            let c = ann.coordinate
-            print("coordinate: \(c.latitude), \(c.longitude)")
-            //do something else with ann...
-            self.map.addAnnotation(ann)
-            self.map.selectAnnotation(ann, animated: true)
-        }
-
-        //let anno = CafeAnnotation(cafe: cafe)
-        //print("anno:\(anno)")
-        //self.map.selectAnnotation(anno, animated: true)
         searchController.searchBar.text = ""
     }
 }
 
-class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UIPopoverPresentationControllerDelegate, UIAdaptivePresentationControllerDelegate, MKMapViewDelegate, CLLocationManagerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UIPopoverPresentationControllerDelegate, UIAdaptivePresentationControllerDelegate, MKMapViewDelegate, CLLocationManagerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, CafeDetailViewDelegate {
 
     @IBOutlet weak var searchBarContainer:UIView!
     @IBOutlet weak var cafeDetailTable:UITableView!
@@ -90,6 +87,14 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var maskView: UIView!
     var sortPickerView:SortPickerView!
     var locationSearchTable:LocationSearchTable!
+    var oldCity = ""
+    var hasUserLocation = false
+    var selectedCafe:CafeInfo?
+    let taipeiStation = CLLocationCoordinate2D(latitude: 25.047641, longitude: 121.516865)
+    let hsinchuStation = CLLocationCoordinate2D(latitude: 24.801550, longitude: 120.971678)
+    let taichungStation = CLLocationCoordinate2D(latitude: 24.137476, longitude: 120.686889)
+    let tainanStation = CLLocationCoordinate2D(latitude: 22.997106, longitude: 120.212622)
+    let kaohsiungStation = CLLocationCoordinate2D(latitude: 22.639761, longitude: 120.302397)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -125,7 +130,7 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
             default:
                 newCity = "taipei"
         }
-        
+        oldCity = newCity
         self.cityButton.setTitle(self.cityCafe, for: .normal)
         self.sortButton.frame = CGRect(x: (UIScreen.main.bounds.width) * 0.85, y: self.cityButton.bounds.maxY, width: 40.0, height: 40.0)
         
@@ -215,22 +220,6 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         searchController.searchBar.text = ""
     }
     
-    //    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat { return 60.0 }
-    //
-    //    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    //
-    //        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CafeDetailHeader") as! CafeDetailHeader
-    //
-    //        headerView.nameLabel.text = "Cafe's Name"
-    //        headerView.wifiLabel.text = "Wifi"
-    //        headerView.musicLabel.text = "Music"
-    //        headerView.quietLabel.text = "Quiet"
-    //        headerView.tastyLabel.text = "Tasty"
-    //        headerView.seatLabel.text = "Seat"
-    //        headerView.frame = CGRect(x: 0, y: self.line1Label.frame.maxY, width: UIScreen.main.bounds.width, height: 60)
-    //        
-    //        return headerView
-    //    }
 //================================= MARK: PickerView =================================
     
     func initSortPickerView(){
@@ -280,7 +269,6 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         //加入view請注意順序 最後加的  在最上層
 
         self.maskView.alpha = 0.0
-        //設定黑屏的初始透明度
         self.sortPickerView.frame.origin.y = self.view.frame.height
         //設定pickerView的初始位置
         self.sortPickerView.bounds  = CGRect(x: 0, y: self.sortPickerView.bounds.origin.y, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.3)//self.sortPickerView.bounds.height)
@@ -348,10 +336,7 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
         } else if CLLocationManager.authorizationStatus() == .denied {
             
-            let alert = UIAlertController(title: "無法獲取位置", message: "請允許使用GPS，來獲取您的地理位置。", preferredStyle: .alert)
-            let action = UIAlertAction(title: "Done", style: .default, handler: nil)
-            alert.addAction(action)
-            self.present(alert, animated: true, completion: nil)
+            self.hasUserLocation = false
             
         } else if CLLocationManager.authorizationStatus() == .notDetermined {
             
@@ -365,20 +350,15 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         manager.stopUpdatingLocation()
         
-//        if (self.annotations != nil){
-//            map.addAnnotations(self.annotations)
-//        }
+        if (self.annotations != nil){
+            map.addAnnotations(self.annotations)
+        }
         
         let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
         
+        self.hasUserLocation = true
         map.setRegion(region, animated: true)
-        
-        // Drop a pin at user's Current Location
-        //let myAnnotation: MKPointAnnotation = MKPointAnnotation()
-        //myAnnotation.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude)
-        //myAnnotation.title = "Current location"
-        //map.addAnnotation(myAnnotation)
     }
     
     func locationManager(_ manager: CLLocationManager, didFinishDeferredUpdatesWithError error: Error?) {
@@ -444,8 +424,12 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let sourceController = segue.source as! CityMenuTableViewController
         self.newCity = sourceController.city
-
         getCityData(targetCity: self.newCity)
+        
+        if (self.newCity != self.oldCity) {
+            self.oldCity = self.newCity
+            locateAtStation()
+        }
         
         self.cafeDetailTable.reloadData()
     }
@@ -492,29 +476,40 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.view.addSubview(self.spinner)
         self.spinner.startAnimating()
 
-        getData(city: targetCity) { response in
-            
-            if (self.cafes != nil) {
-                self.cafes.removeAll()
+        do {
+            try getData(city: targetCity) { response, error in
+                
+                guard (error == nil) else {
+                    OperationQueue.main.addOperation { self.spinner.stopAnimating() }
+                    let alert = UIAlertController(title: "獲取資料失敗", message: "請確認網路狀態後，重新選擇城市", preferredStyle: .alert)
+                    let doAction = UIAlertAction(title: "確定", style: .default, handler: nil)
+                    alert.addAction(doAction)
+                    self.present(alert, animated: true, completion: nil)
+                    return
+                }
+                
+                if (self.cafes != nil) { self.cafes.removeAll() }
+                if (self.sortedCafes != nil) { self.sortedCafes.removeAll() }
+                
+                self.cafes = response as! [CafeInfo]
+                self.locationSearchTable.cafes = self.cafes
+                
+                self.sortedCafes = self.sort(with: self.cafes, and: self.sortItem)
+                self.annotations = self.getAnnotations(from: self.cafes)
+                if (self.annotations != nil){
+                    self.map.addAnnotations(self.annotations)
+                }
+                OperationQueue.main.addOperation {
+                    self.spinner.stopAnimating()
+                    self.cafeDetailTable.reloadData()
+                    self.cityButton.setTitle(self.getCityString(self.newCity), for: .normal)
+                }
             }
-            
-            if (self.sortedCafes != nil) {
-                self.sortedCafes.removeAll()
-            }
-            
-            self.cafes = response as! [CafeInfo]
-            self.locationSearchTable.cafes = self.cafes
-            
-            self.sortedCafes = self.sort(with: self.cafes, and: self.sortItem)
-            self.annotations = self.getAnnotations(from: self.cafes)
-            if (self.annotations != nil){
-                self.map.addAnnotations(self.annotations)
-            }
-            OperationQueue.main.addOperation {
-                self.spinner.stopAnimating()
-                self.cafeDetailTable.reloadData()
-                self.cityButton.setTitle(self.getCityString(self.newCity), for: .normal)
-            }
+        } catch {
+            OperationQueue.main.addOperation { self.spinner.stopAnimating() }
+            let alert = UIAlertController(title: "獲取資料失敗", message: "請重新選擇城市來再次獲取資料", preferredStyle: .alert)
+            let doAction = UIAlertAction(title: "確定", style: .default, handler: nil)
+            alert.addAction(doAction)
         }
     }
     
@@ -551,6 +546,29 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         return annotations
     }
+
+    func locateAtStation() {
+        
+        var station:CLLocationCoordinate2D!
+
+        switch self.newCity {
+            case "taipei":
+                station = taipeiStation
+            case "hsinchu":
+                station = hsinchuStation
+            case "taichung":
+                station = taichungStation
+            case "tainan":
+                station = tainanStation
+            case "kaohsiung":
+                station = kaohsiungStation
+            default:
+                station = taipeiStation
+        }
+
+        let region = MKCoordinateRegion(center: station, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        self.map.setRegion(region, animated: true)
+    }
     
     func switchTo(map:Bool){
         
@@ -559,6 +577,8 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
             self.isHideMap = false
             self.map.isHidden = false
             self.cafeDetailTable.isHidden = true
+            if (!hasUserLocation) { locateAtStation() }
+
         } else if (!map && !self.isHideMap) {
             
             self.isHideMap = true
@@ -570,5 +590,14 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func dismiss() {
         
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func detailsRequestedForCafe(cafe: CafeInfo) {
+        
+        print("Cafe:\(cafe)")
+        let selectedCafe = MKPlacemark(coordinate: cafe.location, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: selectedCafe)
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        mapItem.openInMaps(launchOptions: launchOptions)
     }
 }

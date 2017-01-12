@@ -19,7 +19,9 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V4q-uC-8Y1" userLabel="Done">
                     <rect key="frame" x="325.5" y="18.5" width="49" height="38"/>
                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
-                    <state key="normal" title="Done"/>
+                    <state key="normal" title="Done">
+                        <color key="titleColor" red="0.96078431369999995" green="0.48627450979999998" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
                 </button>
                 <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mx3-oK-El6">
                     <rect key="frame" x="60" y="30" width="280" height="240"/>

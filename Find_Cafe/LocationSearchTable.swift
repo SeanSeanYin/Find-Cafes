@@ -50,6 +50,7 @@ extension LocationSearchTable {
         let selectedItem = matchingItems[indexPath.row]
         cell.nameLabel.text = selectedItem.name
         cell.addressLabel.text = selectedItem.address
+        
         return cell
     }
     
@@ -58,7 +59,8 @@ extension LocationSearchTable {
 extension LocationSearchTable {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        print("indexPath.row:\(indexPath.row)")
+        print("matchingItems.count:\(matchingItems.count)")
         let selectedItem = matchingItems[indexPath.row]
         handleMapSearchDelegate?.dropPinZoomIn(selectedItem)
         dismiss(animated: true, completion: nil)

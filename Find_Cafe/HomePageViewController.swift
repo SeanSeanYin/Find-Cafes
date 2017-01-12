@@ -31,10 +31,12 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate {
             
         } else if CLLocationManager.authorizationStatus() == .denied {
             
-            let alert = UIAlertController(title: "無法獲取位置", message: "請允許使用GPS，來獲取您的地理位置。", preferredStyle: .alert)
+            let alert = UIAlertController(title: "無法獲取使用者位置", message: "定位失敗，預設城市為台北市。", preferredStyle: .alert)
             let action = UIAlertAction(title: "Done", style: .default, handler: nil)
             alert.addAction(action)
-            self.present(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: {
+                self.cityLabel.text = "台北"
+            })
             
         } else if CLLocationManager.authorizationStatus() == .notDetermined {
             
@@ -98,15 +100,13 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate {
                 self.currentLocation = locations[locations.count - 1]
                 let array = placemark! as NSArray
                 let mark = array.firstObject as! CLPlacemark
-                print(mark.addressDictionary!)
+
                 self.currentCity = (mark.addressDictionary! as NSDictionary).value(forKey: "State") as! String
                 
                 self.currentCity = self.currentCity.replacingOccurrences(of: "市", with: "")
                 self.currentCity = self.currentCity.replacingOccurrences(of: "縣", with: "")
                 self.cityLabel.text = self.currentCity
                 self.locationManager.stopUpdatingLocation()
-                
-                print("currentCity is \(self.currentCity)")
             }
         }
     }
