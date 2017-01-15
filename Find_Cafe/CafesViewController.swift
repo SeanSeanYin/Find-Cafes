@@ -46,6 +46,10 @@ extension CafesViewController: HandleMapSearch {
         self.map.setRegion(region, animated: true)
         self.selectedCafe = cafe
         
+        let anno = CafeAnnotation(cafe: cafe)
+        self.map.addAnnotation(anno)
+        map.selectAnnotation(anno, animated: true)
+        
         searchController.searchBar.text = ""
     }
 }
@@ -98,7 +102,7 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         searchController = UISearchController(searchResultsController: locationSearchTable)
         searchController.searchResultsUpdater = locationSearchTable
         let searchBar = searchController.searchBar
-        searchBar.placeholder = "Search cafe name..."
+        searchBar.placeholder = "Search cafe name or address..."
         self.searchBarContainer.addSubview(searchController.searchBar)
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.dimsBackgroundDuringPresentation = false
@@ -201,9 +205,9 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         switchTo(map: true)
         self.map.setRegion(region, animated: true)
-//        let anno = CafeAnnotation(cafe: cafe)
-//        print("anno:\(anno.cafe.name)")
-//        self.map.selectAnnotation(anno, animated: true)
+        let anno = CafeAnnotation(cafe: cafe)
+        self.map.addAnnotation(anno)
+        map.selectAnnotation(anno, animated: true)
         searchController.searchBar.text = ""
     }
     

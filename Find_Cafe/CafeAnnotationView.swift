@@ -9,14 +9,6 @@
 import UIKit
 import MapKit
 
-extension Double {
-
-    func toString() -> String {
-        
-        return String(format: "%.1f", self)
-    }
-}
-
 class CafeAnnotationView: MKAnnotationView {
     weak var cafeDetailViewDelegate: CafeDetailViewDelegate?
     weak var customCalloutView: CafeDetailView?
