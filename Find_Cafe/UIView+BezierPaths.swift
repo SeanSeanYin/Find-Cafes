@@ -16,6 +16,7 @@ func radiansToDegrees (_ value:CGFloat) -> CGFloat {
     return value * 180.0 / CGFloat(M_PI)
 }
 
+
 func dialogBezierPathWithFrame(_ frame: CGRect, arrowOrientation orientation: UIImageOrientation, arrowLength: CGFloat = 20.0) -> UIBezierPath {
     // Translate frame to neutral coordinate system & transpose it to fit the orientation.
     var transposedFrame = CGRect.zero

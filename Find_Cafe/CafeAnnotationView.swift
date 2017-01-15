@@ -47,7 +47,7 @@ class CafeAnnotationView: MKAnnotationView {
 
                 newCustomCalloutView.frame.origin.x -= (newCustomCalloutView.frame.width / 2.0 - (self.frame.width / 2.0))
                 newCustomCalloutView.frame.origin.y -= newCustomCalloutView.frame.height
-                newCustomCalloutView.frame.size = CGSize(width: (UIScreen.main.bounds.width * 3 / 5.0), height: (UIScreen.main.bounds.height / 3.0))
+                //newCustomCalloutView.frame.size = CGSize(width: (UIScreen.main.bounds.width * 3 / 5.0), height: (UIScreen.main.bounds.height / 3.0))
                 
                 self.addSubview(newCustomCalloutView)
                 self.customCalloutView = newCustomCalloutView
