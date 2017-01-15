@@ -30,12 +30,14 @@ class CafeDetailView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        //backgroundContentButton.applyArrowDialogAppearanceWithOrientation(arrowOrientation: .down)
+        self.isUserInteractionEnabled = true
+        self.routeButton.isUserInteractionEnabled = true
+        backgroundContentButton.applyArrowDialogAppearanceWithOrientation(arrowOrientation: .down)
     }
     
     @IBAction func seeDetails(_ sender: Any) {
-        print("seeDetails")
-        delegate?.detailsRequestedForCafe(cafe:self.cafe)
+        print("seeDetails:\(self.cafe.name)")
+        delegate?.detailsRequestedForCafe(cafe: cafe)
     }
     
     func configureWithCafe(cafe: CafeInfo) {
@@ -55,11 +57,11 @@ class CafeDetailView: UIView {
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         // Check if it hit our annotation detail view components.
         
-        // details button
-        if let result = routeButton.hitTest(convert(point, to: routeButton), with: event) {
-            print("hitTest")
+        print("routeButton")
+        if let result = routeButton.hitTest(convert(point, to: routeButton), with: event){
             return result
         }
+        
         return backgroundContentButton.hitTest(convert(point, to: backgroundContentButton), with: event)
     }
 }

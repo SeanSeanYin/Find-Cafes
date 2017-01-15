@@ -18,7 +18,7 @@ extension Double {
 }
 
 class CafeAnnotationView: MKAnnotationView {
-    
+    weak var cafeDetailViewDelegate: CafeDetailViewDelegate?
     weak var customCalloutView: CafeDetailView?
     override var annotation: MKAnnotation? {
         willSet {customCalloutView?.removeFromSuperview() }
@@ -73,6 +73,7 @@ class CafeAnnotationView: MKAnnotationView {
     func loadCafeDetailView() -> CafeDetailView? {
         if let views = Bundle.main.loadNibNamed("CafeDetailView", owner: self, options: nil) as? [CafeDetailView], views.count > 0 {
             let cafeDetailView = views.first!
+            cafeDetailView.delegate  = self.cafeDetailViewDelegate
             if let cafeAnnotation = annotation as? CafeAnnotation {                
                 let cafe = cafeAnnotation.cafe
                 cafeDetailView.configureWithCafe(cafe: cafe)
