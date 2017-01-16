@@ -9,16 +9,8 @@
 import UIKit
 import MapKit
 
-extension Double {
-
-    func toString() -> String {
-        
-        return String(format: "%.1f", self)
-    }
-}
-
 class CafeAnnotationView: MKAnnotationView {
-    
+    weak var cafeDetailViewDelegate: CafeDetailViewDelegate?
     weak var customCalloutView: CafeDetailView?
     override var annotation: MKAnnotation? {
         willSet {customCalloutView?.removeFromSuperview() }
@@ -47,7 +39,7 @@ class CafeAnnotationView: MKAnnotationView {
 
                 newCustomCalloutView.frame.origin.x -= (newCustomCalloutView.frame.width / 2.0 - (self.frame.width / 2.0))
                 newCustomCalloutView.frame.origin.y -= newCustomCalloutView.frame.height
-                newCustomCalloutView.frame.size = CGSize(width: (UIScreen.main.bounds.width * 3 / 5.0), height: (UIScreen.main.bounds.height / 3.0))
+                //newCustomCalloutView.frame.size = CGSize(width: (UIScreen.main.bounds.width * 3 / 5.0), height: (UIScreen.main.bounds.height / 3.0))
                 
                 self.addSubview(newCustomCalloutView)
                 self.customCalloutView = newCustomCalloutView
@@ -73,6 +65,7 @@ class CafeAnnotationView: MKAnnotationView {
     func loadCafeDetailView() -> CafeDetailView? {
         if let views = Bundle.main.loadNibNamed("CafeDetailView", owner: self, options: nil) as? [CafeDetailView], views.count > 0 {
             let cafeDetailView = views.first!
+            cafeDetailView.delegate  = self.cafeDetailViewDelegate
             if let cafeAnnotation = annotation as? CafeAnnotation {                
                 let cafe = cafeAnnotation.cafe
                 cafeDetailView.configureWithCafe(cafe: cafe)

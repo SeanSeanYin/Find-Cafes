@@ -11,6 +11,7 @@
 		C64815481E18B0860091044F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C64815471E18B0860091044F /* MapKit.framework */; };
 		C648154A1E1BF9200091044F /* CafeDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C64815491E1BF9200091044F /* CafeDetailView.xib */; };
 		C648154E1E1BFF6E0091044F /* CafeAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C648154D1E1BFF6E0091044F /* CafeAnnotationView.swift */; };
+		C660CE451E27EFD400ED25A3 /* UIView+BezierPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = C660CE441E27EFD400ED25A3 /* UIView+BezierPaths.swift */; };
 		C678DB361E20A818000782BD /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C678DB351E20A818000782BD /* UserInfo.swift */; };
 		C678DB5A1E20FC2A000782BD /* SortPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C678DB591E20FC2A000782BD /* SortPickerView.xib */; };
 		C678DB601E213391000782BD /* SortPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C678DB5F1E213391000782BD /* SortPickerView.swift */; };
@@ -38,6 +39,7 @@
 		C64815471E18B0860091044F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C64815491E1BF9200091044F /* CafeDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CafeDetailView.xib; sourceTree = "<group>"; };
 		C648154D1E1BFF6E0091044F /* CafeAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CafeAnnotationView.swift; sourceTree = "<group>"; };
+		C660CE441E27EFD400ED25A3 /* UIView+BezierPaths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+BezierPaths.swift"; sourceTree = "<group>"; };
 		C678DB351E20A818000782BD /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		C678DB591E20FC2A000782BD /* SortPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SortPickerView.xib; sourceTree = "<group>"; };
 		C678DB5F1E213391000782BD /* SortPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortPickerView.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				C6A57D5A1E15D74E00EAFF81 /* NetworkManager.swift */,
+				C660CE441E27EFD400ED25A3 /* UIView+BezierPaths.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C660CE451E27EFD400ED25A3 /* UIView+BezierPaths.swift in Sources */,
 				C6F00A4D1E22971600D02545 /* LocationSearchTable.swift in Sources */,
 				C648154E1E1BFF6E0091044F /* CafeAnnotationView.swift in Sources */,
 				C6A57D5B1E15D74E00EAFF81 /* NetworkManager.swift in Sources */,

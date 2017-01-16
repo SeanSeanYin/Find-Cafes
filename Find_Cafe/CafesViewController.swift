@@ -46,14 +46,9 @@ extension CafesViewController: HandleMapSearch {
         self.map.setRegion(region, animated: true)
         self.selectedCafe = cafe
         
-//        if let ann = self.map.selectedAnnotations[0] as? CafeAnnotation {
-//            print("selected annotation: \(ann.cafe.name)")
-//            let c = ann.coordinate
-//            print("coordinate: \(c.latitude), \(c.longitude)")
-//            //do something else with ann...
-//            self.map.addAnnotation(ann)
-//            self.map.selectAnnotation(ann, animated: true)
-//        }
+        let anno = CafeAnnotation(cafe: cafe)
+        self.map.addAnnotation(anno)
+        map.selectAnnotation(anno, animated: true)
         
         searchController.searchBar.text = ""
     }
@@ -107,7 +102,7 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         searchController = UISearchController(searchResultsController: locationSearchTable)
         searchController.searchResultsUpdater = locationSearchTable
         let searchBar = searchController.searchBar
-        searchBar.placeholder = "Search cafe name..."
+        searchBar.placeholder = "Search cafe name or address..."
         self.searchBarContainer.addSubview(searchController.searchBar)
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.dimsBackgroundDuringPresentation = false
@@ -135,10 +130,6 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.sortButton.frame = CGRect(x: (UIScreen.main.bounds.width) * 0.85, y: self.cityButton.bounds.maxY, width: 40.0, height: 40.0)
         
         getCityData(targetCity: self.newCity)
-
-//        self.cafeDetailTable.estimatedRowHeight = 80.0
-//        self.cafeDetailTable.rowHeight = UITableViewAutomaticDimension
-//        self.cafeDetailTable.register(UINib(nibName: "CafeDetailHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "CafeDetailHeader")
         
         if (isHideMap) {
             
@@ -215,8 +206,8 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         switchTo(map: true)
         self.map.setRegion(region, animated: true)
         let anno = CafeAnnotation(cafe: cafe)
-        print("anno:\(anno.cafe.name)")
-        self.map.selectAnnotation(anno, animated: true)
+        self.map.addAnnotation(anno)
+        map.selectAnnotation(anno, animated: true)
         searchController.searchBar.text = ""
     }
     
@@ -379,7 +370,7 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         if (annotationView == nil) {
             annotationView = CafeAnnotationView(annotation: annotation, reuseIdentifier: "pinView")
-
+            (annotationView as! CafeAnnotationView).cafeDetailViewDelegate = self
         } else { annotationView!.annotation = annotation }
         
         return annotationView
@@ -592,11 +583,11 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.dismiss(animated: true, completion: nil)
     }
     
-    func detailsRequestedForCafe(cafe: CafeInfo) {
+    internal func detailsRequestedForCafe(cafe: CafeInfo) {
         
-        print("Cafe:\(cafe)")
         let selectedCafe = MKPlacemark(coordinate: cafe.location, addressDictionary: nil)
         let mapItem = MKMapItem(placemark: selectedCafe)
+        mapItem.name = cafe.name
         let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
         mapItem.openInMaps(launchOptions: launchOptions)
     }
