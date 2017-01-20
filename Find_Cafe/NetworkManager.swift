@@ -70,9 +70,10 @@ public func getData(city:String?, completion: @escaping (_ response:[Any]?, _ er
                 let quiet = obj["quiet"].doubleValue
                 let music = obj["music"].doubleValue
                 let tasty = obj["tasty"].doubleValue
+                let cheap = obj["cheap"].doubleValue
                 let location = CLLocationCoordinate2D(latitude: obj["latitude"].doubleValue, longitude: obj["longitude"].doubleValue)
                 
-                let cafe = CafeInfo(id: id, name: name, url: url, city: city, address: address, wifi: wifi, seat: seat, quiet: quiet, music: music, tasty: tasty, location: location)
+                let cafe = CafeInfo(id: id, name: name, url: url, city: city, address: address, wifi: wifi, seat: seat, quiet: quiet, music: music, tasty: tasty, cheap:cheap, location: location)
                 
                 if cafes == nil {
                     cafes = [CafeInfo]()

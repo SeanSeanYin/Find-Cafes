@@ -21,9 +21,10 @@ class CafeInfo: NSObject {
     var quiet: Double
     var music: Double
     var tasty: Double
+    var cheap: Double
     var location:CLLocationCoordinate2D = kCLLocationCoordinate2DInvalid
     
-    init (id: String, name: String, url: String, city: String, address: String, wifi: Double, seat: Double, quiet: Double, music: Double, tasty: Double, location: CLLocationCoordinate2D){
+    init (id: String, name: String, url: String, city: String, address: String, wifi: Double, seat: Double, quiet: Double, music: Double, tasty: Double, cheap:Double, location: CLLocationCoordinate2D){
     
         self.id = id
         self.name = name
@@ -35,6 +36,7 @@ class CafeInfo: NSObject {
         self.quiet = quiet
         self.music = music
         self.tasty = tasty
+        self.cheap = cheap
         self.location = location
     }
 }

@@ -21,8 +21,8 @@ class CafeDetailView: UIView {
     @IBOutlet weak var quietLabel:UILabel!
     @IBOutlet weak var tastyLabel:UILabel!
     @IBOutlet weak var musicLabel:UILabel!
+    @IBOutlet weak var cheapLabel:UILabel!
     @IBOutlet weak var routeButton:UIButton!
-    @IBOutlet weak var backgroundContentButton:UIButton!
     
     var cafe:CafeInfo!
     weak var delegate: CafeDetailViewDelegate?
@@ -30,7 +30,7 @@ class CafeDetailView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        self.applyArrowDialogAppearanceWithOrientation(arrowOrientation: .down)
+//        self.applyArrowDialogAppearanceWithOrientation(arrowOrientation: .down)
     }
     
     @IBAction func seeDetails(_ sender: Any) { delegate?.detailsRequestedForCafe(cafe: cafe) }
@@ -47,14 +47,11 @@ class CafeDetailView: UIView {
         quietLabel.text = String(cafe.quiet)
         tastyLabel.text = String(cafe.tasty)
         musicLabel.text = String(cafe.music)
+        cheapLabel.text = String(cafe.cheap)
     }
     
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
 
-        if let result = routeButton.hitTest(convert(point, to: routeButton), with: event){
-            return result
-        }
-        
-        return backgroundContentButton.hitTest(convert(point, to: backgroundContentButton), with: event)
+        return routeButton.hitTest(convert(point, to: routeButton), with: event)
     }
 }

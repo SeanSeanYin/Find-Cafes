@@ -23,6 +23,7 @@ class CafeDetailHeader: UITableViewHeaderFooterView {
     @IBOutlet weak var quietLabel:UILabel!
     @IBOutlet weak var tastyLabel:UILabel!
     @IBOutlet weak var seatLabel:UILabel!
+    @IBOutlet weak var cheapLabel:UILabel!
 }
 
 class CafeDetailTableViewCell: UITableViewCell {
@@ -33,6 +34,7 @@ class CafeDetailTableViewCell: UITableViewCell {
     @IBOutlet var quietLabel:UILabel!
     @IBOutlet var tastyLabel:UILabel!
     @IBOutlet var seatLabel:UILabel!
+    @IBOutlet var cheapLabel:UILabel!
 }
 
 extension CafesViewController: HandleMapSearch {
@@ -61,8 +63,11 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var spinner:UIActivityIndicatorView!
     @IBOutlet weak var map:MKMapView!
     @IBOutlet weak var cityButton:UIButton!
-    @IBOutlet weak var sortButton: UIButton!
-    @IBOutlet weak var line1Label: UILabel!
+    @IBOutlet weak var sortButton:UIButton!
+    @IBOutlet weak var mapButton:UIButton!
+    @IBOutlet weak var listButton:UIButton!
+    @IBOutlet weak var locateButton:UIButton!
+    @IBOutlet weak var line1Label:UILabel!
     
     var searchController:UISearchController!
     // 使用者選擇的城市
@@ -127,6 +132,7 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         oldCity = newCity
         self.cityButton.setTitle(self.cityCafe, for: .normal)
+        self.mapButton.frame = CGRect(x: (UIScreen.main.bounds.width) * 0.7, y: self.cityButton.bounds.maxY, width: 40.0, height: 40.0)
         self.sortButton.frame = CGRect(x: (UIScreen.main.bounds.width) * 0.85, y: self.cityButton.bounds.maxY, width: 40.0, height: 40.0)
         
         getCityData(targetCity: self.newCity)
@@ -142,6 +148,7 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
             self.cafeDetailTable.isHidden = true
         }
         
+        self.cafeDetailTable.separatorStyle = .none
         cafeDetailTable.delegate = self
         cafeDetailTable.dataSource = self
         
@@ -177,6 +184,8 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CafeDetailCell", for: indexPath) as! CafeDetailTableViewCell
         
+        cell.backgroundColor = (indexPath.row % 2 == 1) ? UIColor.white : UIColor(red: 245 / 255, green: 245 / 255, blue: 245 / 255, alpha: 1.0)
+        
         let currentCafes = self.sortedCafes[indexPath.row]
         
         let wifi = currentCafes.wifi
@@ -184,6 +193,7 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let quiet = currentCafes.quiet
         let tasty = currentCafes.tasty
         let seat = currentCafes.seat
+        let cheap = currentCafes.cheap
         let name = currentCafes.name
         
         cell.wifiLabel.text = String(wifi)
@@ -191,6 +201,7 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.quietLabel.text = String(quiet)
         cell.tastyLabel.text = String(tasty)
         cell.seatLabel.text = String(seat)
+        cell.cheapLabel.text = String(cheap)
         cell.nameLabel.text = name
         
         return cell
@@ -244,6 +255,8 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 self.sortItem = "tasty"
             case 4:
                 self.sortItem = "seat"
+            case 5:
+                self.sortItem = "cheap"
             default:
                 self.sortItem = "wifi"
         }
@@ -291,6 +304,8 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
             str = "Tasty"
         case 4:
             str = "Seat"
+        case 5:
+            str = "Cheap"
         default:
             str = "Wifi"
         }
@@ -520,8 +535,10 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 sortedArray = array.sorted(by: { $0.tasty > $1.tasty })
             case "quiet":
                 sortedArray = array.sorted(by: { $0.quiet > $1.quiet })
+            case "cheap":
+                sortedArray = array.sorted(by: { $0.cheap > $1.cheap })
             default :
-                sortedArray = array.sorted(by: { $0.wifi > $1.wifi })
+                    sortedArray = array.sorted(by: { $0.wifi > $1.wifi })
         }
         return sortedArray
     }
