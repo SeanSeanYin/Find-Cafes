@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0865F75CCB2ADBD83DE79F48 /* Pods_Find_Cafe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08DCE23F71734DD73C892CB1 /* Pods_Find_Cafe.framework */; };
 		C608D4831E32839E005DDD0D /* SF-UI-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C608D4821E32839E005DDD0D /* SF-UI-Text-Regular.otf */; };
+		C608D4851E32F83F005DDD0D /* SortTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C608D4841E32F83F005DDD0D /* SortTableViewController.swift */; };
 		C64815481E18B0860091044F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C64815471E18B0860091044F /* MapKit.framework */; };
 		C648154A1E1BF9200091044F /* CafeDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C64815491E1BF9200091044F /* CafeDetailView.xib */; };
 		C648154E1E1BFF6E0091044F /* CafeAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C648154D1E1BFF6E0091044F /* CafeAnnotationView.swift */; };
@@ -16,7 +17,6 @@
 		C678DB361E20A818000782BD /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C678DB351E20A818000782BD /* UserInfo.swift */; };
 		C678DB5A1E20FC2A000782BD /* SortPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C678DB591E20FC2A000782BD /* SortPickerView.xib */; };
 		C678DB601E213391000782BD /* SortPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C678DB5F1E213391000782BD /* SortPickerView.swift */; };
-		C678DB621E2146AC000782BD /* CityMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C678DB611E2146AC000782BD /* CityMenuTableViewController.swift */; };
 		C689A1D81E17468600506E54 /* CafeDetailHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = C689A1D71E17468600506E54 /* CafeDetailHeader.xib */; };
 		C6A57D3F1E14052A00EAFF81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A57D3E1E14052A00EAFF81 /* AppDelegate.swift */; };
 		C6A57D441E14052A00EAFF81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6A57D421E14052A00EAFF81 /* Main.storyboard */; };
@@ -38,6 +38,7 @@
 		128B618FF8FF46EF8A7B515F /* Pods-Find_Cafe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Find_Cafe.release.xcconfig"; path = "Pods/Target Support Files/Pods-Find_Cafe/Pods-Find_Cafe.release.xcconfig"; sourceTree = "<group>"; };
 		3883C4F5A312BAA135E8F566 /* Pods-Find_Cafe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Find_Cafe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Find_Cafe/Pods-Find_Cafe.debug.xcconfig"; sourceTree = "<group>"; };
 		C608D4821E32839E005DDD0D /* SF-UI-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Regular.otf"; sourceTree = "<group>"; };
+		C608D4841E32F83F005DDD0D /* SortTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortTableViewController.swift; sourceTree = "<group>"; };
 		C64815471E18B0860091044F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C64815491E1BF9200091044F /* CafeDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CafeDetailView.xib; sourceTree = "<group>"; };
 		C648154D1E1BFF6E0091044F /* CafeAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CafeAnnotationView.swift; sourceTree = "<group>"; };
@@ -45,7 +46,6 @@
 		C678DB351E20A818000782BD /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		C678DB591E20FC2A000782BD /* SortPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SortPickerView.xib; sourceTree = "<group>"; };
 		C678DB5F1E213391000782BD /* SortPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortPickerView.swift; sourceTree = "<group>"; };
-		C678DB611E2146AC000782BD /* CityMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityMenuTableViewController.swift; sourceTree = "<group>"; };
 		C689A1D71E17468600506E54 /* CafeDetailHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CafeDetailHeader.xib; sourceTree = "<group>"; };
 		C6A57D3B1E14052A00EAFF81 /* Find_Cafe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Find_Cafe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6A57D3E1E14052A00EAFF81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -138,7 +138,7 @@
 				C6A57D501E1423E500EAFF81 /* HomePageViewController.swift */,
 				C678DB591E20FC2A000782BD /* SortPickerView.xib */,
 				C678DB5F1E213391000782BD /* SortPickerView.swift */,
-				C678DB611E2146AC000782BD /* CityMenuTableViewController.swift */,
+				C608D4841E32F83F005DDD0D /* SortTableViewController.swift */,
 				C6F00A4C1E22971600D02545 /* LocationSearchTable.swift */,
 			);
 			name = "Views & Controllers";
@@ -327,7 +327,7 @@
 				C6A57D551E1424F200EAFF81 /* CafesViewController.swift in Sources */,
 				C6A57D511E1423E500EAFF81 /* HomePageViewController.swift in Sources */,
 				C678DB601E213391000782BD /* SortPickerView.swift in Sources */,
-				C678DB621E2146AC000782BD /* CityMenuTableViewController.swift in Sources */,
+				C608D4851E32F83F005DDD0D /* SortTableViewController.swift in Sources */,
 				ED3E88E81E1DE67A007E1296 /* CafeAnnotation.swift in Sources */,
 				C678DB361E20A818000782BD /* UserInfo.swift in Sources */,
 				C6A57D531E1424C000EAFF81 /* SelectCityViewController.swift in Sources */,

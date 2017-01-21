@@ -1,16 +1,16 @@
 //
-//  CityMenuTableViewController.swift
+//  SortTableViewController.swift
 //  Find_Cafe
 //
-//  Created by Sean on 2017/1/7.
+//  Created by Sean on 2017/1/21.
 //  Copyright © 2017年 Chien Hsiang Yin. All rights reserved.
 //
 
 import UIKit
 
-class CityMenuTableViewController: UITableViewController {
+class SortTableViewController: UITableViewController {
 
-    var city = ""
+    var sort = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,36 +18,38 @@ class CityMenuTableViewController: UITableViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-     
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int { return 1 }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return 5 }
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return 6 }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.view.superview?.layer.cornerRadius = 0.0
-        self.preferredContentSize = CGSize(width: 120, height: 220)
+        self.preferredContentSize = CGSize(width: 80, height: 264)
     }
     
-    @IBAction func selectCity(_ sender: UIButton) {
+    @IBAction func selectSortItem(_ sender: UIButton) {
         
         switch sender.tag {
             
         case 0:
-            self.city = "taipei"
+            self.sort = "wifi"
         case 1:
-            self.city = "hsinchu"
+            self.sort = "seat"
         case 2:
-            self.city = "taichung"
+            self.sort = "quiet"
         case 3:
-            self.city = "tainan"
+            self.sort = "tasty"
         case 4:
-            self.city = "kaohsiung"
+            self.sort = "cheap"
+        case 5:
+            self.sort = "music"
         default :
-            self.city = "taipei"
+            self.sort = "wifi"
         }
+        print("self.sort:\(self.sort)")
         self.performSegue(withIdentifier: "backToCafeDetail", sender: self)
     }
 }

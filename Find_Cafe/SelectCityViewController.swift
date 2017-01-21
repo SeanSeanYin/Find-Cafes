@@ -62,8 +62,6 @@ class SelectCityViewController: UIViewController {
                 city = "台北"
             }
             viewController.newCity = city
-            print("title:\((sender as! UIButton).currentTitle!)")
-            print("city:\(city)")
         }
     }
 }

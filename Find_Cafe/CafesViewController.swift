@@ -66,6 +66,12 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var sortButton:UIButton!
     @IBOutlet weak var mapButton:UIButton!
     @IBOutlet weak var line1Label:UILabel!
+    @IBOutlet weak var wifiHeaderLabel:UILabel!
+    @IBOutlet weak var seatHeaderLabel:UILabel!
+    @IBOutlet weak var quietHeaderLabel:UILabel!
+    @IBOutlet weak var tastyHeaderLabel:UILabel!
+    @IBOutlet weak var cheapHeaderLabel:UILabel!
+    @IBOutlet weak var musicHeaderLabel:UILabel!
     
     var searchController:UISearchController!
     // 使用者選擇的城市
@@ -82,6 +88,7 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var annotations:[CafeAnnotation]!
     var cityCafe = ""
     let locationManager = CLLocationManager()
+    var userLocation:CLLocationCoordinate2D!
     var maskView: UIView!
     var sortPickerView:SortPickerView!
     var locationSearchTable:LocationSearchTable!
@@ -141,6 +148,7 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             self.map.isHidden = false
             self.cafeDetailTable.isHidden = true
+            self.sortButton.imageView?.image = UIImage(named: "btn_current_location_n")
         }
         
         self.cafeDetailTable.separatorStyle = .none
@@ -190,6 +198,42 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let seat = currentCafes.seat
         let cheap = currentCafes.cheap
         let name = currentCafes.name
+        
+        self.wifiHeaderLabel.textColor = UIColor(red: 12/255, green: 44/255, blue: 81/255, alpha: 1.0)
+        self.seatHeaderLabel.textColor = UIColor(red: 12/255, green: 44/255, blue: 81/255, alpha: 1.0)
+        self.quietHeaderLabel.textColor = UIColor(red: 12/255, green: 44/255, blue: 81/255, alpha: 1.0)
+        self.tastyHeaderLabel.textColor = UIColor(red: 12/255, green: 44/255, blue: 81/255, alpha: 1.0)
+        self.cheapHeaderLabel.textColor = UIColor(red: 12/255, green: 44/255, blue: 81/255, alpha: 1.0)
+        self.musicHeaderLabel.textColor = UIColor(red: 12/255, green: 44/255, blue: 81/255, alpha: 1.0)
+        cell.wifiLabel.textColor = UIColor(red: 12/255, green: 44/255, blue: 81/255, alpha: 1.0)
+        cell.seatLabel.textColor = UIColor(red: 12/255, green: 44/255, blue: 81/255, alpha: 1.0)
+        cell.quietLabel.textColor = UIColor(red: 12/255, green: 44/255, blue: 81/255, alpha: 1.0)
+        cell.tastyLabel.textColor = UIColor(red: 12/255, green: 44/255, blue: 81/255, alpha: 1.0)
+        cell.cheapLabel.textColor = UIColor(red: 12/255, green: 44/255, blue: 81/255, alpha: 1.0)
+        cell.musicLabel.textColor = UIColor(red: 12/255, green: 44/255, blue: 81/255, alpha: 1.0)
+        
+        switch (self.sortItem){
+            case "wifi":
+                self.wifiHeaderLabel.textColor = UIColor(red: 255/255, green: 77/255, blue: 77/255, alpha: 1.0)
+                cell.wifiLabel.textColor = UIColor(red: 255/255, green: 77/255, blue: 77/255, alpha: 1.0)
+            case "seat":
+                self.seatHeaderLabel.textColor = UIColor(red: 255/255, green: 77/255, blue: 77/255, alpha: 1.0)
+                cell.seatLabel.textColor = UIColor(red: 255/255, green: 77/255, blue: 77/255, alpha: 1.0)
+            case "quiet":
+                self.quietHeaderLabel.textColor = UIColor(red: 255/255, green: 77/255, blue: 77/255, alpha: 1.0)
+                cell.quietLabel.textColor = UIColor(red: 255/255, green: 77/255, blue: 77/255, alpha: 1.0)
+            case "tasty":
+                self.tastyHeaderLabel.textColor = UIColor(red: 255/255, green: 77/255, blue: 77/255, alpha: 1.0)
+                cell.tastyLabel.textColor = UIColor(red: 255/255, green: 77/255, blue: 77/255, alpha: 1.0)
+            case "cheap":
+                self.cheapHeaderLabel.textColor = UIColor(red: 255/255, green: 77/255, blue: 77/255, alpha: 1.0)
+                cell.cheapLabel.textColor = UIColor(red: 255/255, green: 77/255, blue: 77/255, alpha: 1.0)
+            case "music":
+                self.musicHeaderLabel.textColor = UIColor(red: 255/255, green: 77/255, blue: 77/255, alpha: 1.0)
+                cell.musicLabel.textColor = UIColor(red: 255/255, green: 77/255, blue: 77/255, alpha: 1.0)
+            default:
+                break
+        }
         
         cell.wifiLabel.text = String(wifi)
         cell.musicLabel.text = String(music)
@@ -355,8 +399,8 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
             map.addAnnotations(self.annotations)
         }
         
-        let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
-        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
+        self.userLocation = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
+        let region = MKCoordinateRegion(center: self.userLocation, span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
         
         self.hasUserLocation = true
         map.setRegion(region, animated: true)
@@ -388,9 +432,7 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
 //================================= MARK: Search Controller =================================
     
     func initSearchController() {
-        
-        searchController = UISearchController(searchResultsController: nil)
-    }
+        searchController = UISearchController(searchResultsController: nil)}
     
 //================================= MARK: Popover & Segue =================================
     
@@ -398,9 +440,9 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         if let id = segue.identifier {
             
-            if id == "showSortMenu" {
+            if (id == "showSortMenu") {
                 
-                let tableViewController = segue.destination as! CityMenuTableViewController
+                let tableViewController = segue.destination as! SortTableViewController
                 
                 if let popoverController = tableViewController.popoverPresentationController {
                     
@@ -416,22 +458,17 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
 //================================= MARK: @IBAction =================================
     
-    @IBAction func showSortMenu(sender: AnyObject ) {
+    @IBAction func showSortMenuOrLocateUser(sender: AnyObject ) {
     
-        performSegue(withIdentifier: "showSortMenu", sender: sender )
+        if (self.isHideMap){ performSegue(withIdentifier: "showSortMenu", sender: sender) }
+        else { locateUser() }
     }
     
     @IBAction func backToCafeDetail (_ segue:UIStoryboardSegue) {
         
-        let sourceController = segue.source as! CityMenuTableViewController
-        self.newCity = sourceController.city
-        getCityData(targetCity: self.newCity)
-        
-        if (self.newCity != self.oldCity) {
-            self.oldCity = self.newCity
-            locateAtStation()
-        }
-        
+        let sourceController = segue.source as! SortTableViewController
+        self.sortItem = sourceController.sort
+        self.sortedCafes = self.sort(with: self.cafes, and: self.sortItem)
         self.cafeDetailTable.reloadData()
     }
     
@@ -510,10 +547,11 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    func sort ( with array:[CafeInfo], and sortBy:String) -> [CafeInfo] {
+    func sort( with array:[CafeInfo], and sortBy:String) -> [CafeInfo] {
         
         var sortedArray = [CafeInfo]()
         
+        print("sortBy:\(sortBy)")
         switch sortBy{
             
             case "wifi":
@@ -577,7 +615,7 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
             self.map.isHidden = false
             self.cafeDetailTable.isHidden = true
             self.mapButton.setTitle("List", for: .normal)
-            self.sortButton.imageView?.image = UIImage(named: "btn_current_location_n")
+            self.sortButton.setImage(UIImage(named: "btn_current_location_n"), for: .normal)
             if (!hasUserLocation) { locateAtStation() }
 
         } else if (!map && !self.isHideMap) {
@@ -586,13 +624,16 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
             self.cafeDetailTable.isHidden = false
             self.map.isHidden = true
             self.mapButton.setTitle("Map", for: .normal)
-            self.sortButton.imageView?.image = UIImage(named: "btn_sort_n")
+            self.sortButton.setImage(UIImage(named: "btn_sort_n"), for: .normal)
         }
     }
     
-    func dismiss() {
+    func dismiss() { self.dismiss(animated: true, completion: nil) }
+    
+    func locateUser(){
         
-        self.dismiss(animated: true, completion: nil)
+        let region = MKCoordinateRegion(center: self.userLocation, span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
+        map.setRegion(region, animated: true)
     }
     
     internal func detailsRequestedForCafe(cafe: CafeInfo) {

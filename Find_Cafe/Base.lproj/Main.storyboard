@@ -155,7 +155,7 @@
                                     <constraint firstAttribute="height" constant="44" id="YjB-r7-4Wz"/>
                                 </constraints>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fxS-QE-jUI" userLabel="Header Stack">
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="fxS-QE-jUI" userLabel="Header Stack">
                                 <rect key="frame" x="16" y="110" width="343" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cafe's Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Wh-F7-9ax" userLabel="Name">
@@ -165,37 +165,37 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wifi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qpb-gL-y2Q" userLabel="Wifi">
-                                        <rect key="frame" x="103" y="0.0" width="34" height="30"/>
-                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
-                                        <color key="textColor" red="0.047058823530000002" green="0.17254901959999999" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Music" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cSO-ji-jlq" userLabel="Music">
-                                        <rect key="frame" x="137" y="0.0" width="38" height="30"/>
-                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
-                                        <color key="textColor" red="0.047058823530000002" green="0.17254901959999999" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quiet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aph-nM-UL6" userLabel="Quiet">
-                                        <rect key="frame" x="175" y="0.0" width="34" height="30"/>
-                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
-                                        <color key="textColor" red="0.047058823530000002" green="0.17254901959999999" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tasty" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gew-Az-VtW" userLabel="Tasty">
-                                        <rect key="frame" x="209" y="0.0" width="35" height="30"/>
-                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
-                                        <color key="textColor" red="0.047058823530000002" green="0.17254901959999999" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cheap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ebR-b9-N39" userLabel="Cheap">
-                                        <rect key="frame" x="244" y="0.0" width="41" height="30"/>
+                                        <rect key="frame" x="107" y="0.0" width="34" height="30"/>
                                         <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
                                         <color key="textColor" red="0.047058823530000002" green="0.17254901959999999" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j7Y-bM-y8G" userLabel="Seat">
-                                        <rect key="frame" x="285" y="0.0" width="58" height="30"/>
+                                        <rect key="frame" x="145" y="0.0" width="34.5" height="30"/>
+                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                        <color key="textColor" red="0.047058823530000002" green="0.17254901959999999" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quiet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aph-nM-UL6" userLabel="Quiet">
+                                        <rect key="frame" x="183.5" y="0.0" width="34" height="30"/>
+                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                        <color key="textColor" red="0.047058823530000002" green="0.17254901959999999" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tasty" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gew-Az-VtW" userLabel="Tasty">
+                                        <rect key="frame" x="221.5" y="0.0" width="35" height="30"/>
+                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                        <color key="textColor" red="0.047058823530000002" green="0.17254901959999999" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cheap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ebR-b9-N39" userLabel="Cheap">
+                                        <rect key="frame" x="260.5" y="0.0" width="37.5" height="30"/>
+                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                        <color key="textColor" red="0.047058823530000002" green="0.17254901959999999" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Music" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cSO-ji-jlq" userLabel="Music">
+                                        <rect key="frame" x="302" y="0.0" width="41" height="30"/>
                                         <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
                                         <color key="textColor" red="0.047058823530000002" green="0.17254901959999999" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -204,26 +204,26 @@
                                 <constraints>
                                     <constraint firstItem="j7Y-bM-y8G" firstAttribute="width" secondItem="fxS-QE-jUI" secondAttribute="width" multiplier="0.1" id="4NO-y0-ORr"/>
                                     <constraint firstItem="Aph-nM-UL6" firstAttribute="centerY" secondItem="fxS-QE-jUI" secondAttribute="centerY" id="80V-qY-7WE"/>
+                                    <constraint firstItem="Gew-Az-VtW" firstAttribute="leading" secondItem="Aph-nM-UL6" secondAttribute="trailing" id="8QH-FZ-REI"/>
                                     <constraint firstItem="7Wh-F7-9ax" firstAttribute="centerY" secondItem="fxS-QE-jUI" secondAttribute="centerY" id="8QU-Hn-0pM"/>
-                                    <constraint firstItem="cSO-ji-jlq" firstAttribute="leading" secondItem="Qpb-gL-y2Q" secondAttribute="trailing" constant="4" id="Avk-nl-nDc"/>
                                     <constraint firstItem="cSO-ji-jlq" firstAttribute="centerY" secondItem="fxS-QE-jUI" secondAttribute="centerY" id="Esn-Tc-5tJ"/>
                                     <constraint firstItem="cSO-ji-jlq" firstAttribute="height" secondItem="fxS-QE-jUI" secondAttribute="height" id="GZs-Kj-9BV"/>
                                     <constraint firstItem="Qpb-gL-y2Q" firstAttribute="width" secondItem="fxS-QE-jUI" secondAttribute="width" multiplier="0.1" id="HtT-02-rew"/>
                                     <constraint firstItem="ebR-b9-N39" firstAttribute="centerY" secondItem="fxS-QE-jUI" secondAttribute="centerY" id="Hwt-Zp-sQU"/>
+                                    <constraint firstItem="Aph-nM-UL6" firstAttribute="leading" secondItem="j7Y-bM-y8G" secondAttribute="trailing" id="InD-oj-BaC"/>
                                     <constraint firstItem="7Wh-F7-9ax" firstAttribute="width" secondItem="fxS-QE-jUI" secondAttribute="width" multiplier="0.3" id="MYP-VH-2Pc"/>
                                     <constraint firstItem="cSO-ji-jlq" firstAttribute="width" secondItem="fxS-QE-jUI" secondAttribute="width" multiplier="0.11" id="Mmi-Dy-5QU"/>
                                     <constraint firstItem="Aph-nM-UL6" firstAttribute="height" secondItem="fxS-QE-jUI" secondAttribute="height" id="QNd-gp-cbL"/>
-                                    <constraint firstItem="ebR-b9-N39" firstAttribute="width" secondItem="fxS-QE-jUI" secondAttribute="width" multiplier="0.12" id="Smu-sb-Cb2"/>
-                                    <constraint firstItem="j7Y-bM-y8G" firstAttribute="leading" secondItem="ebR-b9-N39" secondAttribute="trailing" constant="4" id="TXg-xR-EnM"/>
+                                    <constraint firstItem="ebR-b9-N39" firstAttribute="width" secondItem="fxS-QE-jUI" secondAttribute="width" multiplier="0.11" id="Smu-sb-Cb2"/>
+                                    <constraint firstItem="j7Y-bM-y8G" firstAttribute="leading" secondItem="Qpb-gL-y2Q" secondAttribute="trailing" id="Uqt-to-rz5"/>
+                                    <constraint firstItem="ebR-b9-N39" firstAttribute="leading" secondItem="Gew-Az-VtW" secondAttribute="trailing" id="ZYf-Rk-j0l"/>
                                     <constraint firstItem="j7Y-bM-y8G" firstAttribute="centerY" secondItem="fxS-QE-jUI" secondAttribute="centerY" id="apE-mW-45D"/>
+                                    <constraint firstItem="cSO-ji-jlq" firstAttribute="leading" secondItem="ebR-b9-N39" secondAttribute="trailing" id="czf-1N-6J0"/>
                                     <constraint firstItem="Qpb-gL-y2Q" firstAttribute="height" secondItem="fxS-QE-jUI" secondAttribute="height" id="eK9-mY-EmH"/>
                                     <constraint firstItem="ebR-b9-N39" firstAttribute="height" secondItem="fxS-QE-jUI" secondAttribute="height" id="gsf-zZ-y65"/>
-                                    <constraint firstItem="ebR-b9-N39" firstAttribute="leading" secondItem="Gew-Az-VtW" secondAttribute="trailing" constant="4" id="jjK-hn-paa"/>
                                     <constraint firstItem="Qpb-gL-y2Q" firstAttribute="centerY" secondItem="fxS-QE-jUI" secondAttribute="centerY" id="pUK-Ld-KGn"/>
-                                    <constraint firstItem="Gew-Az-VtW" firstAttribute="leading" secondItem="Aph-nM-UL6" secondAttribute="trailing" constant="4" id="qLX-Qk-vBb"/>
                                     <constraint firstItem="j7Y-bM-y8G" firstAttribute="height" secondItem="fxS-QE-jUI" secondAttribute="height" id="qNZ-1w-JRL"/>
                                     <constraint firstItem="Gew-Az-VtW" firstAttribute="width" secondItem="fxS-QE-jUI" secondAttribute="width" multiplier="0.1" id="raW-hv-XE1"/>
-                                    <constraint firstItem="Aph-nM-UL6" firstAttribute="leading" secondItem="cSO-ji-jlq" secondAttribute="trailing" constant="4" id="tfa-tq-KpX"/>
                                     <constraint firstItem="Gew-Az-VtW" firstAttribute="height" secondItem="fxS-QE-jUI" secondAttribute="height" id="uVb-3h-zNx"/>
                                     <constraint firstItem="Aph-nM-UL6" firstAttribute="width" secondItem="fxS-QE-jUI" secondAttribute="width" multiplier="0.1" id="v9U-zT-uwd"/>
                                     <constraint firstAttribute="height" constant="30" id="vLy-Kd-O1Y"/>
@@ -244,46 +244,46 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eXf-j7-nXI">
-                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="43"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="eXf-j7-nXI">
+                                                    <rect key="frame" x="0.0" y="0.0" width="120" height="43"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLg-7I-t3Y" userLabel="CafeName">
-                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="43"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="36" height="43"/>
                                                             <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTI-1m-CfJ" userLabel="Wifi">
-                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="43"/>
+                                                            <rect key="frame" x="40" y="0.0" width="12" height="43"/>
                                                             <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
                                                             <color key="textColor" red="0.047058823529411764" green="0.17254901960784313" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oeY-Ig-tpv" userLabel="Music">
-                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="43"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="08x-Nt-87g" userLabel="Seat">
+                                                            <rect key="frame" x="56" y="0.0" width="12" height="43"/>
                                                             <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
                                                             <color key="textColor" red="0.047058823530000002" green="0.17254901959999999" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Cp-vR-578" userLabel="Quiet">
-                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="43"/>
+                                                            <rect key="frame" x="72" y="0.0" width="12" height="43"/>
                                                             <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
                                                             <color key="textColor" red="0.047058823530000002" green="0.17254901959999999" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LTz-u4-32i" userLabel="Tasty">
-                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="43"/>
-                                                            <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
-                                                            <color key="textColor" red="0.047058823530000002" green="0.17254901959999999" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="08x-Nt-87g" userLabel="Seat">
-                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="43"/>
+                                                            <rect key="frame" x="88" y="0.0" width="12" height="43"/>
                                                             <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
                                                             <color key="textColor" red="0.047058823530000002" green="0.17254901959999999" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9m-Lg-cHt" userLabel="Cheap">
-                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="43"/>
+                                                            <rect key="frame" x="104" y="0.0" width="12" height="43"/>
+                                                            <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                                            <color key="textColor" red="0.047058823530000002" green="0.17254901959999999" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oeY-Ig-tpv" userLabel="Music">
+                                                            <rect key="frame" x="120" y="0.0" width="0.0" height="43"/>
                                                             <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
                                                             <color key="textColor" red="0.047058823530000002" green="0.17254901959999999" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -292,21 +292,21 @@
                                                     <constraints>
                                                         <constraint firstItem="LTz-u4-32i" firstAttribute="width" secondItem="eXf-j7-nXI" secondAttribute="width" multiplier="0.1" id="1ty-ao-Xs0"/>
                                                         <constraint firstItem="b9m-Lg-cHt" firstAttribute="width" secondItem="eXf-j7-nXI" secondAttribute="width" multiplier="0.1" id="30L-6F-icS"/>
-                                                        <constraint firstItem="b9m-Lg-cHt" firstAttribute="trailing" secondItem="eXf-j7-nXI" secondAttribute="trailing" constant="12" id="4OL-0v-vah"/>
                                                         <constraint firstItem="0Cp-vR-578" firstAttribute="width" secondItem="eXf-j7-nXI" secondAttribute="width" multiplier="0.1" id="6dc-AQ-h72"/>
                                                         <constraint firstItem="0Cp-vR-578" firstAttribute="centerY" secondItem="eXf-j7-nXI" secondAttribute="centerY" id="8v7-2J-xQm"/>
                                                         <constraint firstItem="oeY-Ig-tpv" firstAttribute="centerY" secondItem="eXf-j7-nXI" secondAttribute="centerY" id="Aog-tX-FaN"/>
                                                         <constraint firstItem="oeY-Ig-tpv" firstAttribute="width" secondItem="eXf-j7-nXI" secondAttribute="width" multiplier="0.1" id="Axg-xP-EYV"/>
                                                         <constraint firstItem="cTI-1m-CfJ" firstAttribute="leading" secondItem="eLg-7I-t3Y" secondAttribute="trailing" id="DmC-4c-yLh"/>
+                                                        <constraint firstItem="b9m-Lg-cHt" firstAttribute="leading" secondItem="LTz-u4-32i" secondAttribute="trailing" id="LFN-Lq-hYo"/>
+                                                        <constraint firstItem="0Cp-vR-578" firstAttribute="leading" secondItem="08x-Nt-87g" secondAttribute="trailing" id="Mlr-ji-vzX"/>
                                                         <constraint firstItem="eLg-7I-t3Y" firstAttribute="centerY" secondItem="eXf-j7-nXI" secondAttribute="centerY" id="N4V-br-PrE"/>
-                                                        <constraint firstItem="LTz-u4-32i" firstAttribute="leading" secondItem="0Cp-vR-578" secondAttribute="trailing" id="Pmn-C8-ptg"/>
+                                                        <constraint firstItem="08x-Nt-87g" firstAttribute="leading" secondItem="cTI-1m-CfJ" secondAttribute="trailing" id="Wz3-JQ-aAt"/>
                                                         <constraint firstItem="eLg-7I-t3Y" firstAttribute="width" secondItem="eXf-j7-nXI" secondAttribute="width" multiplier="0.3" id="ZxB-3H-Khi"/>
-                                                        <constraint firstItem="08x-Nt-87g" firstAttribute="leading" secondItem="LTz-u4-32i" secondAttribute="trailing" id="d9K-Lv-0MJ"/>
                                                         <constraint firstItem="eLg-7I-t3Y" firstAttribute="leading" secondItem="eXf-j7-nXI" secondAttribute="leading" constant="12" id="hNJ-XU-1Ew"/>
-                                                        <constraint firstItem="0Cp-vR-578" firstAttribute="leading" secondItem="oeY-Ig-tpv" secondAttribute="trailing" id="hiy-Ge-bjw"/>
-                                                        <constraint firstItem="b9m-Lg-cHt" firstAttribute="leading" secondItem="08x-Nt-87g" secondAttribute="trailing" constant="1" id="iMe-Vh-uhc"/>
                                                         <constraint firstItem="08x-Nt-87g" firstAttribute="centerY" secondItem="eXf-j7-nXI" secondAttribute="centerY" id="jJ9-od-kaQ"/>
+                                                        <constraint firstItem="oeY-Ig-tpv" firstAttribute="leading" secondItem="b9m-Lg-cHt" secondAttribute="trailing" id="lwr-kN-1wr"/>
                                                         <constraint firstItem="cTI-1m-CfJ" firstAttribute="width" secondItem="eXf-j7-nXI" secondAttribute="width" multiplier="0.1" id="pnA-Ud-wpC"/>
+                                                        <constraint firstItem="LTz-u4-32i" firstAttribute="leading" secondItem="0Cp-vR-578" secondAttribute="trailing" id="uAe-13-suB"/>
                                                         <constraint firstItem="LTz-u4-32i" firstAttribute="centerY" secondItem="eXf-j7-nXI" secondAttribute="centerY" id="ut6-iN-xao"/>
                                                         <constraint firstItem="cTI-1m-CfJ" firstAttribute="centerY" secondItem="eXf-j7-nXI" secondAttribute="centerY" id="wMq-Dd-7iS"/>
                                                         <constraint firstItem="b9m-Lg-cHt" firstAttribute="centerY" secondItem="eXf-j7-nXI" secondAttribute="centerY" id="xAL-FU-g5d"/>
@@ -323,7 +323,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="cheapLabel" destination="b9m-Lg-cHt" id="Y5y-cu-10R"/>
-                                            <outlet property="musicLabel" destination="oeY-Ig-tpv" id="41w-9o-9JC"/>
+                                            <outlet property="musicLabel" destination="oeY-Ig-tpv" id="9fD-EO-TF6"/>
                                             <outlet property="nameLabel" destination="eLg-7I-t3Y" id="6Rj-yo-6W0"/>
                                             <outlet property="quietLabel" destination="0Cp-vR-578" id="H4e-pi-Msi"/>
                                             <outlet property="seatLabel" destination="08x-Nt-87g" id="wtj-XQ-Ry7"/>
@@ -378,7 +378,6 @@
                                     <color key="titleColor" red="0.047058823530000002" green="0.17254901959999999" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="showSortMenuWithSender:" destination="W6j-rY-1Lb" eventType="touchUpInside" id="twI-Ze-uml"/>
                                     <segue destination="Egz-Bf-vGf" kind="popoverPresentation" identifier="showSortMenu" popoverAnchorView="idk-CQ-Ph9" id="ech-JN-mgk">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                     </segue>
@@ -412,7 +411,7 @@
                                         <color key="titleColor" red="0.047058823529411764" green="0.17254901960784313" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
-                                        <action selector="showSortSheet:" destination="W6j-rY-1Lb" eventType="touchUpInside" id="sMH-R6-98W"/>
+                                        <action selector="showSortMenuOrLocateUserWithSender:" destination="W6j-rY-1Lb" eventType="touchUpInside" id="hwz-GW-PtI"/>
                                     </connections>
                                 </button>
                             </barButtonItem>
@@ -434,13 +433,19 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="cafeDetailTable" destination="Vda-zh-vKL" id="nrL-ak-agN"/>
+                        <outlet property="cheapHeaderLabel" destination="ebR-b9-N39" id="kjW-1f-O7O"/>
                         <outlet property="cityButton" destination="idk-CQ-Ph9" id="DlD-Dq-DwB"/>
                         <outlet property="line1Label" destination="BKn-no-saw" id="LYa-09-QQ2"/>
                         <outlet property="map" destination="Y6A-bc-Kca" id="ODf-YA-fnT"/>
                         <outlet property="mapButton" destination="z70-ph-SUl" id="Atz-nT-Rsm"/>
+                        <outlet property="musicHeaderLabel" destination="cSO-ji-jlq" id="z5e-vN-0Gv"/>
+                        <outlet property="quietHeaderLabel" destination="Aph-nM-UL6" id="kOU-ef-Lxs"/>
                         <outlet property="searchBarContainer" destination="fHd-4l-26V" id="hJv-dN-Lxz"/>
+                        <outlet property="seatHeaderLabel" destination="j7Y-bM-y8G" id="eTm-r9-urA"/>
                         <outlet property="sortButton" destination="DDQ-Fe-jkf" id="xnr-6O-ohj"/>
                         <outlet property="spinner" destination="2Il-at-zpU" id="iyb-1q-vce"/>
+                        <outlet property="tastyHeaderLabel" destination="Gew-Az-VtW" id="HcJ-46-Jbd"/>
+                        <outlet property="wifiHeaderLabel" destination="Qpb-gL-y2Q" id="m1v-W0-aJs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7uC-6k-qgf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -531,10 +536,10 @@
             </objects>
             <point key="canvasLocation" x="3392.8000000000002" y="-455.62218890554726"/>
         </scene>
-        <!--City Menu Table View Controller-->
+        <!--Sort Table View Controller-->
         <scene sceneID="Rt1-g4-0X8">
             <objects>
-                <tableViewController id="Egz-Bf-vGf" customClass="CityMenuTableViewController" customModule="Find_Cafe" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Egz-Bf-vGf" customClass="SortTableViewController" customModule="Find_Cafe" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="nUs-TM-bRN">
                         <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -549,12 +554,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9EB-k8-wDC" userLabel="Taipei">
-                                                    <rect key="frame" x="126.5" y="5.5" width="48" height="33"/>
-                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="17"/>
-                                                    <state key="normal" title="Taipei"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9EB-k8-wDC">
+                                                    <rect key="frame" x="135.5" y="7.5" width="30" height="29"/>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
+                                                    <state key="normal" title="Wifi">
+                                                        <color key="titleColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
                                                     <connections>
-                                                        <action selector="selectCity:" destination="Egz-Bf-vGf" eventType="touchUpInside" id="m2g-rc-4uH"/>
+                                                        <action selector="selectSortItem:" destination="Egz-Bf-vGf" eventType="touchUpInside" id="g0Z-Ow-7X8"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -571,12 +578,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Au-0B-Bvd" userLabel="Hsinchu">
-                                                    <rect key="frame" x="119.5" y="4.5" width="61" height="35"/>
-                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                                    <state key="normal" title="Hsinchu"/>
+                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Au-0B-Bvd">
+                                                    <rect key="frame" x="135" y="6.5" width="30" height="31"/>
+                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
+                                                    <state key="normal" title="Seat">
+                                                        <color key="titleColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
                                                     <connections>
-                                                        <action selector="selectCity:" destination="Egz-Bf-vGf" eventType="touchUpInside" id="3eK-Tx-wUV"/>
+                                                        <action selector="selectSortItem:" destination="Egz-Bf-vGf" eventType="touchUpInside" id="U6s-b5-S8v"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -593,12 +602,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uus-06-eZC" userLabel="Taichung">
-                                                    <rect key="frame" x="116" y="4.5" width="69" height="35"/>
-                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                                    <state key="normal" title="Taichung"/>
+                                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uus-06-eZC">
+                                                    <rect key="frame" x="132.5" y="6.5" width="36" height="31"/>
+                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
+                                                    <state key="normal" title="Quiet">
+                                                        <color key="titleColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
                                                     <connections>
-                                                        <action selector="selectCity:" destination="Egz-Bf-vGf" eventType="touchUpInside" id="j6p-d3-ddE"/>
+                                                        <action selector="selectSortItem:" destination="Egz-Bf-vGf" eventType="touchUpInside" id="BkL-G3-i37"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -615,12 +626,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5f2-zI-NEb" userLabel="Tainan">
-                                                    <rect key="frame" x="125" y="4.5" width="51" height="35"/>
-                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                                    <state key="normal" title="Tainan"/>
+                                                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5f2-zI-NEb">
+                                                    <rect key="frame" x="134.5" y="6.5" width="32" height="31"/>
+                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
+                                                    <state key="normal" title="Tasty">
+                                                        <color key="titleColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
                                                     <connections>
-                                                        <action selector="selectCity:" destination="Egz-Bf-vGf" eventType="touchUpInside" id="lkd-EW-gEr"/>
+                                                        <action selector="selectSortItem:" destination="Egz-Bf-vGf" eventType="touchUpInside" id="Gu7-LW-l38"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -637,18 +650,44 @@
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QfQ-of-izh" userLabel="kaohsiung">
-                                                    <rect key="frame" x="109.5" y="4.5" width="81" height="35"/>
-                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                                    <state key="normal" title="Kaohsiung"/>
+                                                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QfQ-of-izh">
+                                                    <rect key="frame" x="128.5" y="6.5" width="43" height="31"/>
+                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
+                                                    <state key="normal" title="Cheap">
+                                                        <color key="titleColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
                                                     <connections>
-                                                        <action selector="selectCity:" destination="Egz-Bf-vGf" eventType="touchUpInside" id="im3-lc-wTO"/>
+                                                        <action selector="selectSortItem:" destination="Egz-Bf-vGf" eventType="touchUpInside" id="l18-6e-jQd"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="QfQ-of-izh" firstAttribute="centerX" secondItem="8Eg-ni-rhH" secondAttribute="centerX" id="i4k-5Q-SNQ"/>
                                                 <constraint firstItem="QfQ-of-izh" firstAttribute="centerY" secondItem="8Eg-ni-rhH" secondAttribute="centerY" id="jl5-X2-pW9"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="kNm-RF-lwF">
+                                        <rect key="frame" x="0.0" y="220" width="300" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kNm-RF-lwF" id="YAP-cU-pyd">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a0s-Mc-lzL">
+                                                    <rect key="frame" x="131.5" y="6.5" width="37" height="31"/>
+                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
+                                                    <state key="normal" title="Music">
+                                                        <color key="titleColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="selectSortItem:" destination="Egz-Bf-vGf" eventType="touchUpInside" id="0lw-b9-Hdk"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="a0s-Mc-lzL" firstAttribute="centerX" secondItem="YAP-cU-pyd" secondAttribute="centerX" id="Ajs-eG-Pr8"/>
+                                                <constraint firstItem="a0s-Mc-lzL" firstAttribute="centerY" secondItem="YAP-cU-pyd" secondAttribute="centerY" id="kOh-Ym-Kci"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -672,7 +711,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mSl-Yf-Xxd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="6EU-1v-LPU" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3334" y="73"/>
+            <point key="canvasLocation" x="3512" y="45"/>
         </scene>
         <!--Select City View Controller-->
         <scene sceneID="StJ-Nf-oyo">
