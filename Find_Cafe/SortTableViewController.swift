@@ -34,22 +34,22 @@ class SortTableViewController: UITableViewController {
         
         switch sender.tag {
             
-        case 0:
-            self.sort = "wifi"
-        case 1:
-            self.sort = "seat"
-        case 2:
-            self.sort = "quiet"
-        case 3:
-            self.sort = "tasty"
-        case 4:
-            self.sort = "cheap"
-        case 5:
-            self.sort = "music"
-        default :
-            self.sort = "wifi"
+            case 0:
+                self.sort = "wifi"
+            case 1:
+                self.sort = "seat"
+            case 2:
+                self.sort = "quiet"
+            case 3:
+                self.sort = "tasty"
+            case 4:
+                self.sort = "cheap"
+            case 5:
+                self.sort = "music"
+            default :
+                self.sort = "wifi"
         }
-        print("self.sort:\(self.sort)")
+
         self.performSegue(withIdentifier: "backToCafeDetail", sender: self)
     }
 }

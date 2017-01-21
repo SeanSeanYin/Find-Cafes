@@ -35,7 +35,7 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate {
             let action = UIAlertAction(title: "Done", style: .default, handler: nil)
             alert.addAction(action)
             self.present(alert, animated: true, completion: {
-                self.cityLabel.text = "台北"
+                self.cityLabel.text = "Taipei"
             })
             
         } else if CLLocationManager.authorizationStatus() == .notDetermined {
@@ -105,7 +105,20 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate {
                 
                 self.currentCity = self.currentCity.replacingOccurrences(of: "市", with: "")
                 self.currentCity = self.currentCity.replacingOccurrences(of: "縣", with: "")
-                self.cityLabel.text = self.currentCity
+                switch (self.currentCity){
+                    case "台北":
+                        self.cityLabel.text = "Taipei"
+                    case "新竹":
+                        self.cityLabel.text = "Hsinchu"
+                    case "台中":
+                        self.cityLabel.text = "Taichung"
+                    case "台南":
+                        self.cityLabel.text = "Tainan"
+                    case "高雄":
+                        self.cityLabel.text = "Kaohsiung"
+                    default:
+                        self.cityLabel.text = "Taipei"
+                }
                 self.locationManager.stopUpdatingLocation()
             }
         }

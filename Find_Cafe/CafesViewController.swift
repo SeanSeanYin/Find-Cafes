@@ -319,9 +319,7 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         //設定pickerView與螢幕等寬
         UIView.animate(withDuration: 0.3, animations: {//view移動動畫
             self.maskView.alpha = 0.3
-            print(self.sortPickerView.frame)
             self.sortPickerView.frame.origin.y = self.view.frame.height-self.sortPickerView.frame.height
-            print(self.sortPickerView.frame)
         })
     }
     
@@ -551,7 +549,6 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         var sortedArray = [CafeInfo]()
         
-        print("sortBy:\(sortBy)")
         switch sortBy{
             
             case "wifi":
