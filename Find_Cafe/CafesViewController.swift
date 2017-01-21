@@ -65,8 +65,6 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var cityButton:UIButton!
     @IBOutlet weak var sortButton:UIButton!
     @IBOutlet weak var mapButton:UIButton!
-    @IBOutlet weak var listButton:UIButton!
-    @IBOutlet weak var locateButton:UIButton!
     @IBOutlet weak var line1Label:UILabel!
     
     var searchController:UISearchController!
@@ -132,8 +130,6 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         oldCity = newCity
         self.cityButton.setTitle(self.cityCafe, for: .normal)
-        self.mapButton.frame = CGRect(x: (UIScreen.main.bounds.width) * 0.7, y: self.cityButton.bounds.maxY, width: 40.0, height: 40.0)
-        self.sortButton.frame = CGRect(x: (UIScreen.main.bounds.width) * 0.85, y: self.cityButton.bounds.maxY, width: 40.0, height: 40.0)
         
         getCityData(targetCity: self.newCity)
         
@@ -141,7 +137,6 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             self.map.isHidden = true
             self.cafeDetailTable.isHidden = false
-            
         } else {
             
             self.map.isHidden = false
@@ -460,17 +455,17 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
         switch city {
             case "台北", "taipei":
-                str = "Taipei Cafe"
+                str = "Taipei"
             case "新竹", "hsinchu":
-                str = "Hsinchu Cafe"
+                str = "Hsinchu"
             case "台中", "taichung":
-                str = "Taichung Cafe"
+                str = "Taichung"
             case "台南", "tainan":
-                str = "Tainan Cafe"
+                str = "Tainan"
             case "高雄", "kaohsiung":
-                str = "Kaohsiung Cafe"
+                str = "Kaohsiung"
             default:
-                str = "Taipei Cafe"
+                str = "Taipei"
         }
         return str
     }

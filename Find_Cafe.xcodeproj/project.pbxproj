@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0865F75CCB2ADBD83DE79F48 /* Pods_Find_Cafe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08DCE23F71734DD73C892CB1 /* Pods_Find_Cafe.framework */; };
-		C608D47B1E323426005DDD0D /* SF-UI-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C608D47A1E323426005DDD0D /* SF-UI-Text-Regular.otf */; };
+		C608D4831E32839E005DDD0D /* SF-UI-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C608D4821E32839E005DDD0D /* SF-UI-Text-Regular.otf */; };
 		C64815481E18B0860091044F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C64815471E18B0860091044F /* MapKit.framework */; };
 		C648154A1E1BF9200091044F /* CafeDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C64815491E1BF9200091044F /* CafeDetailView.xib */; };
 		C648154E1E1BFF6E0091044F /* CafeAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C648154D1E1BFF6E0091044F /* CafeAnnotationView.swift */; };
@@ -37,7 +37,7 @@
 		08DCE23F71734DD73C892CB1 /* Pods_Find_Cafe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Find_Cafe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		128B618FF8FF46EF8A7B515F /* Pods-Find_Cafe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Find_Cafe.release.xcconfig"; path = "Pods/Target Support Files/Pods-Find_Cafe/Pods-Find_Cafe.release.xcconfig"; sourceTree = "<group>"; };
 		3883C4F5A312BAA135E8F566 /* Pods-Find_Cafe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Find_Cafe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Find_Cafe/Pods-Find_Cafe.debug.xcconfig"; sourceTree = "<group>"; };
-		C608D47A1E323426005DDD0D /* SF-UI-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-UI-Text-Regular.otf"; path = "../../../../Downloads/Archive/SF-UI-Text-Regular.otf"; sourceTree = "<group>"; };
+		C608D4821E32839E005DDD0D /* SF-UI-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Regular.otf"; sourceTree = "<group>"; };
 		C64815471E18B0860091044F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C64815491E1BF9200091044F /* CafeDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CafeDetailView.xib; sourceTree = "<group>"; };
 		C648154D1E1BFF6E0091044F /* CafeAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CafeAnnotationView.swift; sourceTree = "<group>"; };
@@ -167,7 +167,7 @@
 		ED3E88E51E1DE5CC007E1296 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				C608D47A1E323426005DDD0D /* SF-UI-Text-Regular.otf */,
+				C608D4821E32839E005DDD0D /* SF-UI-Text-Regular.otf */,
 				C6A57D4A1E14052A00EAFF81 /* Info.plist */,
 				C6A57D451E14052A00EAFF81 /* Assets.xcassets */,
 				C6A57D3E1E14052A00EAFF81 /* AppDelegate.swift */,
@@ -257,7 +257,7 @@
 				C689A1D81E17468600506E54 /* CafeDetailHeader.xib in Resources */,
 				C6A57D491E14052A00EAFF81 /* LaunchScreen.storyboard in Resources */,
 				C6A57D461E14052A00EAFF81 /* Assets.xcassets in Resources */,
-				C608D47B1E323426005DDD0D /* SF-UI-Text-Regular.otf in Resources */,
+				C608D4831E32839E005DDD0D /* SF-UI-Text-Regular.otf in Resources */,
 				C6A57D441E14052A00EAFF81 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

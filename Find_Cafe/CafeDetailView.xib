@@ -39,7 +39,7 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hru-UB-stY" userLabel="BottomBackground">
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hru-UB-stY" userLabel="BottomBackground">
                     <rect key="frame" x="-0.5" y="53" width="247" height="228"/>
                     <color key="backgroundColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -218,14 +218,13 @@
                         <constraint firstItem="Pjt-tC-BQj" firstAttribute="centerY" secondItem="6Xk-MU-FbA" secondAttribute="centerY" id="Y2h-sD-BfT"/>
                     </constraints>
                 </stackView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P2u-Yg-JrB">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P2u-Yg-JrB">
                     <rect key="frame" x="191" y="29" width="48" height="48"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="15R-Nv-h02"/>
                         <constraint firstAttribute="width" constant="48" id="nPd-qB-zTB"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
-                    <state key="normal" title="Go">
+                    <state key="normal" title="Go" image="btn_location_n">
                         <color key="titleColor" red="0.96078431369999995" green="0.48627450979999998" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
@@ -286,4 +285,7 @@
             <point key="canvasLocation" x="32" y="56"/>
         </view>
     </objects>
+    <resources>
+        <image name="btn_location_n" width="60" height="60"/>
+    </resources>
 </document>
