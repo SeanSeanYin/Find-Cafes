@@ -19,13 +19,13 @@ class CafeAnnotationView: MKAnnotationView {
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         self.canShowCallout = false
-        self.image = UIImage(named: "mapPin")
+        self.image = UIImage(named: "btn_flag_n")
     }
     
     required init?(coder aDecoder: NSCoder){
         super.init(coder: aDecoder)
         self.canShowCallout = false
-        self.image = UIImage(named: "mapPin")
+        self.image = UIImage(named: "btn_flag_n")
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

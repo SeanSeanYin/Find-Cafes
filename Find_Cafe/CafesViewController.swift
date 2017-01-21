@@ -437,12 +437,8 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBAction func showMap() {
         
-        switchTo(map: true)
-    }
-    
-    @IBAction func showList() {
-        
-        switchTo(map: false)
+        if (self.isHideMap) { switchTo(map: true) }
+        else { switchTo(map: false) }
     }
     
     @IBAction func showSortSheet(_ sender: AnyObject) { showPickerView() }
@@ -580,6 +576,8 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
             self.isHideMap = false
             self.map.isHidden = false
             self.cafeDetailTable.isHidden = true
+            self.mapButton.setTitle("List", for: .normal)
+            self.sortButton.imageView?.image = UIImage(named: "btn_current_location_n")
             if (!hasUserLocation) { locateAtStation() }
 
         } else if (!map && !self.isHideMap) {
@@ -587,6 +585,8 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
             self.isHideMap = true
             self.cafeDetailTable.isHidden = false
             self.map.isHidden = true
+            self.mapButton.setTitle("Map", for: .normal)
+            self.sortButton.imageView?.image = UIImage(named: "btn_sort_n")
         }
     }
     

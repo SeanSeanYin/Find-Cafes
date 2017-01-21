@@ -424,6 +424,9 @@
                                     <state key="normal" title="Map">
                                         <color key="titleColor" red="0.047058823530000002" green="0.17254901959999999" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
+                                    <connections>
+                                        <action selector="showMap" destination="W6j-rY-1Lb" eventType="touchUpInside" id="06e-vp-juT"/>
+                                    </connections>
                                 </button>
                             </barButtonItem>
                         </rightBarButtonItems>
