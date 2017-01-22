@@ -55,6 +55,7 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBAction func startToUse(sender: AnyObject) {
         
+        print("self.currentCity:\(self.currentCity)")
         switch self.currentCity {
             
             case "台北", "新竹", "台中", "台南", "高雄" :
@@ -62,15 +63,11 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate {
                 self.performSegue(withIdentifier: "startToUse", sender: sender)
             
             default:
-                
                 let alert = UIAlertController(title: "\(self.currentCity) 尚未有資料", message: "將會查詢台北的資料", preferredStyle: .alert)
-                
                 let doAction = UIAlertAction(title: "確定", style: .default) { action in
-                    
                     self.currentCity = "台北"
                     self.performSegue(withIdentifier: "startToUse", sender: sender)
                 }
-                
                 alert.addAction(doAction)
                 self.present(alert, animated: true, completion: nil)
         }
@@ -117,7 +114,7 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate {
                     case "高雄":
                         self.cityLabel.text = "Kaohsiung"
                     default:
-                        self.cityLabel.text = "Taipei"
+                        self.cityLabel.text = self.currentCity
                 }
                 self.locationManager.stopUpdatingLocation()
             }

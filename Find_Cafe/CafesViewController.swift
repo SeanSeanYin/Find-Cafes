@@ -391,17 +391,17 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let userLocation = locations[locations.count - 1] as CLLocation
         
-        manager.stopUpdatingLocation()
+        //manager.stopUpdatingLocation()
         
         if (self.annotations != nil){
             map.addAnnotations(self.annotations)
         }
         
         self.userLocation = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
-        let region = MKCoordinateRegion(center: self.userLocation, span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
+        //let region = MKCoordinateRegion(center: self.userLocation, span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
         
         self.hasUserLocation = true
-        map.setRegion(region, animated: true)
+        //map.setRegion(region, animated: true)
     }
     
     func locationManager(_ manager: CLLocationManager, didFinishDeferredUpdatesWithError error: Error?) {
@@ -614,6 +614,7 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
             self.mapButton.setTitle("List", for: .normal)
             self.sortButton.setImage(UIImage(named: "btn_current_location_n"), for: .normal)
             if (!hasUserLocation) { locateAtStation() }
+            else { locateUser() }
 
         } else if (!map && !self.isHideMap) {
             
@@ -629,6 +630,7 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func locateUser(){
         
+        print("Location:\(self.userLocation.latitude), \(self.userLocation.longitude)")
         let region = MKCoordinateRegion(center: self.userLocation, span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
         map.setRegion(region, animated: true)
     }
