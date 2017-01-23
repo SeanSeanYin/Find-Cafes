@@ -8,12 +8,27 @@
 
 import UIKit
 
-class CityMenuViewController: UIViewController, UITableViewDataSource {
+class CityMenuTableCell: UITableViewCell {
 
+    @IBOutlet weak var cityImage:UIImageView!
+    @IBOutlet weak var cityLabel:UILabel!
+}
+
+class CityMenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+
+    @IBOutlet weak var cityMenuTable:UITableView!
+    
     var interactor:Interactor? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.cityMenuTable.delegate = self
+        self.cityMenuTable.dataSource = self
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -21,13 +36,33 @@ class CityMenuViewController: UIViewController, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! CityMenuTableCell
+        switch(indexPath.row){
+            case 0:
+                cell.cityImage.image = UIImage(named: "btn_taipei_selected_copy")
+                cell.cityLabel?.text = "Taipei"
+            case 1:
+                cell.cityImage.image = UIImage(named: "btn_hsinchu_n")
+                cell.cityLabel?.text = "Hsinchu"
+            case 2:
+                cell.cityImage.image = UIImage(named: "btn_taichung_n")
+                cell.cityLabel?.text = "Taichung"
+            case 3:
+                cell.cityImage.image = UIImage(named: "btn_tainan_n")
+                cell.cityLabel?.text = "Tainan"
+            case 4:
+                cell.cityImage.image = UIImage(named: "btn_kaoshiung_n")
+                cell.cityLabel?.text = "Kaoshiung"
+            default:
+                cell.imageView?.image = UIImage(named: "btn_taipei_selected_copy")
+                cell.textLabel?.text = "Taipei"
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return (UIScreen.main.bounds.height *  0.195)
+        return (UIScreen.main.bounds.height *  0.175)
     }
     
     @IBAction func handleGesture(_ sender: UIPanGestureRecognizer) {
