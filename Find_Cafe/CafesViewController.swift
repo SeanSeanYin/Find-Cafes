@@ -37,6 +37,24 @@ class CafeDetailTableViewCell: UITableViewCell {
     @IBOutlet var cheapLabel:UILabel!
 }
 
+extension CafesViewController : UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return PresentMenuAnimator()
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissMenuAnimator()
+    }
+    
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactor.hasStarted ? interactor : nil
+    }
+    
+    func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactor.hasStarted ? interactor : nil
+    }
+}
+
 extension CafesViewController: HandleMapSearch {
     
     func dropPinZoomIn(_ cafe: CafeInfo) {
@@ -95,6 +113,7 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var oldCity = ""
     var hasUserLocation = false
     var selectedCafe:CafeInfo?
+    let interactor = Interactor()
     let taipeiStation = CLLocationCoordinate2D(latitude: 25.047641, longitude: 121.516865)
     let hsinchuStation = CLLocationCoordinate2D(latitude: 24.801550, longitude: 120.971678)
     let taichungStation = CLLocationCoordinate2D(latitude: 24.137476, longitude: 120.686889)
@@ -441,19 +460,23 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
             if (id == "showSortMenu") {
                 
                 let tableViewController = segue.destination as! SortTableViewController
-                
                 if let popoverController = tableViewController.popoverPresentationController {
                     
                     popoverController.delegate = self
                     popoverController.sourceView = (sender as! UIButton)
                     popoverController.sourceRect = (sender as! UIButton).bounds
                 }
+            } else if (id == "showSelectCity") {
+                if let destinationViewController = segue.destination as? CityMenuViewController {
+                    destinationViewController.transitioningDelegate = self
+                    destinationViewController.interactor = interactor
+                    //destinationViewController.menuActionDelegate = self
+                }
             }
         }
     }
     
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle { return .none }
-    
 //================================= MARK: @IBAction =================================
     
     @IBAction func showSortMenuOrLocateUser(sender: AnyObject ) {
@@ -476,8 +499,21 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         else { switchTo(map: false) }
     }
     
-    @IBAction func showSortSheet(_ sender: AnyObject) { showPickerView() }
+    @IBAction func showCityMenu(_ sender: AnyObject) { performSegue(withIdentifier: "showSelectCity", sender: nil ) }
     
+    @IBAction func edgePanGesture(_ sender: UIScreenEdgePanGestureRecognizer) {
+        let translation = sender.translation(in: view)
+        
+        let progress = MenuHelper.calculateProgress(translation, viewBounds: view.bounds, direction: .right)
+        
+        MenuHelper.mapGestureStateToInteractor(
+            sender.state,
+            progress: progress,
+            interactor: interactor){
+                print("----------------------------")
+                self.performSegue(withIdentifier: "showSelectCity", sender: nil)
+        }
+    }
 //================================= MARK: Function =================================
     
     func getCityString (_ city:String ) -> String {

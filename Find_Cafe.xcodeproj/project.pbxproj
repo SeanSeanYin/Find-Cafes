@@ -28,6 +28,11 @@
 		C6A57D551E1424F200EAFF81 /* CafesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A57D541E1424F200EAFF81 /* CafesViewController.swift */; };
 		C6A57D591E154C5900EAFF81 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6A57D581E154C5900EAFF81 /* CoreLocation.framework */; };
 		C6A57D5B1E15D74E00EAFF81 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A57D5A1E15D74E00EAFF81 /* NetworkManager.swift */; };
+		C6D1112C1E3514FB00B4C15B /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D1112A1E3514FB00B4C15B /* Interactor.swift */; };
+		C6D1112E1E3515B300B4C15B /* PresentMenuAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D1112D1E3515B300B4C15B /* PresentMenuAnimator.swift */; };
+		C6D111301E3519AB00B4C15B /* MenuHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D1112F1E3519AB00B4C15B /* MenuHelper.swift */; };
+		C6D111321E3523B200B4C15B /* DismissMenuAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D111311E3523B200B4C15B /* DismissMenuAnimator.swift */; };
+		C6D111361E3525EE00B4C15B /* CityMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D111351E3525EE00B4C15B /* CityMenuViewController.swift */; };
 		C6F00A4D1E22971600D02545 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F00A4C1E22971600D02545 /* LocationSearchTable.swift */; };
 		ED3E88E81E1DE67A007E1296 /* CafeAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3E88E71E1DE67A007E1296 /* CafeAnnotation.swift */; };
 		ED3E88EA1E1DEB20007E1296 /* CafeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3E88E91E1DEB20007E1296 /* CafeDetailView.swift */; };
@@ -60,6 +65,11 @@
 		C6A57D541E1424F200EAFF81 /* CafesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CafesViewController.swift; sourceTree = "<group>"; };
 		C6A57D581E154C5900EAFF81 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C6A57D5A1E15D74E00EAFF81 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		C6D1112A1E3514FB00B4C15B /* Interactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
+		C6D1112D1E3515B300B4C15B /* PresentMenuAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentMenuAnimator.swift; sourceTree = "<group>"; };
+		C6D1112F1E3519AB00B4C15B /* MenuHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuHelper.swift; sourceTree = "<group>"; };
+		C6D111311E3523B200B4C15B /* DismissMenuAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissMenuAnimator.swift; sourceTree = "<group>"; };
+		C6D111351E3525EE00B4C15B /* CityMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityMenuViewController.swift; sourceTree = "<group>"; };
 		C6F00A4C1E22971600D02545 /* LocationSearchTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		ED3E88E71E1DE67A007E1296 /* CafeAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CafeAnnotation.swift; sourceTree = "<group>"; };
 		ED3E88E91E1DEB20007E1296 /* CafeDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CafeDetailView.swift; sourceTree = "<group>"; };
@@ -143,6 +153,7 @@
 				C678DB5F1E213391000782BD /* SortPickerView.swift */,
 				C608D4841E32F83F005DDD0D /* SortTableViewController.swift */,
 				C6F00A4C1E22971600D02545 /* LocationSearchTable.swift */,
+				C6D111351E3525EE00B4C15B /* CityMenuViewController.swift */,
 			);
 			name = "Views & Controllers";
 			sourceTree = "<group>";
@@ -181,8 +192,12 @@
 		ED3E88E61E1DE5F3007E1296 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				C6D111311E3523B200B4C15B /* DismissMenuAnimator.swift */,
+				C6D1112F1E3519AB00B4C15B /* MenuHelper.swift */,
+				C6D1112A1E3514FB00B4C15B /* Interactor.swift */,
 				C6A57D5A1E15D74E00EAFF81 /* NetworkManager.swift */,
 				C660CE441E27EFD400ED25A3 /* UIView+BezierPaths.swift */,
+				C6D1112D1E3515B300B4C15B /* PresentMenuAnimator.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -331,8 +346,13 @@
 				C6A57D511E1423E500EAFF81 /* HomePageViewController.swift in Sources */,
 				C678DB601E213391000782BD /* SortPickerView.swift in Sources */,
 				C608D4871E3325E1005DDD0D /* SelectCityTableViewController.swift in Sources */,
+				C6D1112C1E3514FB00B4C15B /* Interactor.swift in Sources */,
 				C608D4851E32F83F005DDD0D /* SortTableViewController.swift in Sources */,
+				C6D111301E3519AB00B4C15B /* MenuHelper.swift in Sources */,
 				ED3E88E81E1DE67A007E1296 /* CafeAnnotation.swift in Sources */,
+				C6D1112E1E3515B300B4C15B /* PresentMenuAnimator.swift in Sources */,
+				C6D111321E3523B200B4C15B /* DismissMenuAnimator.swift in Sources */,
+				C6D111361E3525EE00B4C15B /* CityMenuViewController.swift in Sources */,
 				C678DB361E20A818000782BD /* UserInfo.swift in Sources */,
 				C6A57D531E1424C000EAFF81 /* SelectCityViewController.swift in Sources */,
 			);

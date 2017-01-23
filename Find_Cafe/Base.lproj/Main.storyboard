@@ -410,9 +410,7 @@
                                     <color key="titleColor" red="0.047058823530000002" green="0.17254901959999999" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Egz-Bf-vGf" kind="popoverPresentation" identifier="showSortMenu" popoverAnchorView="idk-CQ-Ph9" id="ech-JN-mgk">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
+                                    <action selector="showCityMenu:" destination="W6j-rY-1Lb" eventType="touchUpInside" id="r4Z-5D-CFM"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -478,15 +476,25 @@
                         <outlet property="spinner" destination="2Il-at-zpU" id="iyb-1q-vce"/>
                         <outlet property="tastyHeaderLabel" destination="Gew-Az-VtW" id="HcJ-46-Jbd"/>
                         <outlet property="wifiHeaderLabel" destination="Qpb-gL-y2Q" id="m1v-W0-aJs"/>
+                        <segue destination="Egz-Bf-vGf" kind="popoverPresentation" identifier="showSortMenu" popoverAnchorBarButtonItem="8mQ-TR-zu2" id="guC-s0-qFQ">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
+                        <segue destination="Li6-d6-xXy" kind="modal" identifier="showSelectCity" id="BtO-Ye-4qk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7uC-6k-qgf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="1Vo-WK-EN1">
+                    <rectEdge key="edges" left="YES"/>
+                    <connections>
+                        <action selector="edgePanGesture:" destination="W6j-rY-1Lb" id="DkP-zz-9QM"/>
+                    </connections>
+                </screenEdgePanGestureRecognizer>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="2Il-at-zpU">
                     <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </activityIndicatorView>
             </objects>
-            <point key="canvasLocation" x="2596" y="71.514242878560722"/>
+            <point key="canvasLocation" x="2617" y="72"/>
         </scene>
         <!--Location Search Table-->
         <scene sceneID="lFx-Ig-Qe4">
@@ -1003,12 +1011,152 @@
             </objects>
             <point key="canvasLocation" x="1797.5999999999999" y="883.80809595202402"/>
         </scene>
+        <!--City Menu View Controller-->
+        <scene sceneID="cS3-Ys-S7R">
+            <objects>
+                <viewController id="Li6-d6-xXy" customClass="CityMenuViewController" customModule="Find_Cafe" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WZr-Rg-WSM"/>
+                        <viewControllerLayoutGuide type="bottom" id="AFQ-uf-wAw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iSc-QG-HpL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_taipei_selected copy" translatesAutoresizingMaskIntoConstraints="NO" id="xDE-2M-b9M">
+                                <rect key="frame" x="43" y="85" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="BXG-Gx-Ode"/>
+                                    <constraint firstAttribute="width" constant="64" id="DTE-dT-YqB"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_hsinchu_n" translatesAutoresizingMaskIntoConstraints="NO" id="aWB-or-KOH">
+                                <rect key="frame" x="43" y="201.5" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="8VL-21-9oL"/>
+                                    <constraint firstAttribute="height" constant="64" id="GNK-mJ-HT6"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_taichung_n" translatesAutoresizingMaskIntoConstraints="NO" id="Hpl-d9-mf7">
+                                <rect key="frame" x="43" y="318" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="OPW-Tv-BVV"/>
+                                    <constraint firstAttribute="width" constant="64" id="fnG-7o-Z8N"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_tainan_n" translatesAutoresizingMaskIntoConstraints="NO" id="dHm-VE-343">
+                                <rect key="frame" x="43" y="435" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="9lc-jf-dC4"/>
+                                    <constraint firstAttribute="width" constant="64" id="BKf-vt-55r"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_kaoshiung_n" translatesAutoresizingMaskIntoConstraints="NO" id="P08-fz-7Cu">
+                                <rect key="frame" x="43" y="551.5" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="VbL-Rg-Qpv"/>
+                                    <constraint firstAttribute="width" constant="64" id="oqG-Lc-oJH"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose city" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IoQ-sn-Km0">
+                                <rect key="frame" x="37.5" y="39.5" width="188" height="21.5"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Taipei" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wh9-mg-orf">
+                                <rect key="frame" x="140" y="102" width="187.5" height="29"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hsinchu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k0R-Mz-h5i">
+                                <rect key="frame" x="140.5" y="219" width="187.5" height="29"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Taichung" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sC2-rv-img">
+                                <rect key="frame" x="140.5" y="335.5" width="187.5" height="29"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tainan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="stm-0u-p8D">
+                                <rect key="frame" x="140.5" y="452.5" width="187.5" height="29"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kaohsiung" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6q-LK-le5">
+                                <rect key="frame" x="140.5" y="569" width="187.5" height="29"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fDE-EF-hR7">
+                                <rect key="frame" x="300" y="20" width="75" height="647"/>
+                                <gestureRecognizers/>
+                                <state key="normal" title="close"/>
+                                <connections>
+                                    <action selector="closeMenu:" destination="Li6-d6-xXy" eventType="touchUpInside" id="5hX-YL-SPN"/>
+                                    <outletCollection property="gestureRecognizers" destination="2FN-FA-mpW" appends="YES" id="a8R-BG-Ci6"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.047058823530000002" green="0.17254901959999999" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="stm-0u-p8D" firstAttribute="centerY" secondItem="iSc-QG-HpL" secondAttribute="centerY" multiplier="1.4" id="1zd-TM-kUb"/>
+                            <constraint firstItem="xDE-2M-b9M" firstAttribute="centerY" secondItem="iSc-QG-HpL" secondAttribute="centerY" multiplier="0.35" id="87O-zb-HeI"/>
+                            <constraint firstItem="dHm-VE-343" firstAttribute="centerX" secondItem="iSc-QG-HpL" secondAttribute="centerX" multiplier="0.4" id="9Ml-BI-yv9"/>
+                            <constraint firstItem="IoQ-sn-Km0" firstAttribute="centerY" secondItem="iSc-QG-HpL" secondAttribute="centerY" multiplier="0.15" id="9Vk-7E-f5r"/>
+                            <constraint firstItem="IoQ-sn-Km0" firstAttribute="centerX" secondItem="iSc-QG-HpL" secondAttribute="centerX" multiplier="0.7" id="BkG-0t-YLb"/>
+                            <constraint firstItem="aWB-or-KOH" firstAttribute="centerY" secondItem="iSc-QG-HpL" secondAttribute="centerY" multiplier="0.7" id="CSA-yF-sj7"/>
+                            <constraint firstItem="dHm-VE-343" firstAttribute="centerY" secondItem="iSc-QG-HpL" secondAttribute="centerY" multiplier="1.4" id="FT2-7g-tso"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fDE-EF-hR7" secondAttribute="trailing" constant="-16" id="HXY-Ml-vYt"/>
+                            <constraint firstItem="Hpl-d9-mf7" firstAttribute="centerX" secondItem="iSc-QG-HpL" secondAttribute="centerX" multiplier="0.4" id="IyK-4p-h97"/>
+                            <constraint firstItem="sC2-rv-img" firstAttribute="width" secondItem="iSc-QG-HpL" secondAttribute="width" multiplier="0.5" id="KfV-9u-4dG"/>
+                            <constraint firstItem="aWB-or-KOH" firstAttribute="centerX" secondItem="iSc-QG-HpL" secondAttribute="centerX" multiplier="0.4" id="Kxv-iR-8xq"/>
+                            <constraint firstItem="xDE-2M-b9M" firstAttribute="centerX" secondItem="iSc-QG-HpL" secondAttribute="centerX" multiplier="0.4" id="L1o-PR-Ugc"/>
+                            <constraint firstItem="wh9-mg-orf" firstAttribute="centerX" secondItem="iSc-QG-HpL" secondAttribute="centerX" multiplier="1.25" id="LzC-FO-ICg"/>
+                            <constraint firstItem="IoQ-sn-Km0" firstAttribute="width" secondItem="iSc-QG-HpL" secondAttribute="width" multiplier="0.5" id="NMi-Qj-WPL"/>
+                            <constraint firstItem="k0R-Mz-h5i" firstAttribute="width" secondItem="iSc-QG-HpL" secondAttribute="width" multiplier="0.5" id="NpN-vN-eUq"/>
+                            <constraint firstItem="fDE-EF-hR7" firstAttribute="height" secondItem="iSc-QG-HpL" secondAttribute="height" id="QhD-cc-Lpa"/>
+                            <constraint firstItem="fDE-EF-hR7" firstAttribute="top" secondItem="WZr-Rg-WSM" secondAttribute="bottom" id="Sco-EF-eHW"/>
+                            <constraint firstItem="k0R-Mz-h5i" firstAttribute="centerX" secondItem="iSc-QG-HpL" secondAttribute="centerX" multiplier="1.25" id="ShH-IC-XNN"/>
+                            <constraint firstItem="fDE-EF-hR7" firstAttribute="width" secondItem="iSc-QG-HpL" secondAttribute="width" multiplier="0.2" id="XAs-yv-cek"/>
+                            <constraint firstItem="AFQ-uf-wAw" firstAttribute="top" secondItem="fDE-EF-hR7" secondAttribute="bottom" id="ddN-fH-1IY"/>
+                            <constraint firstItem="Hpl-d9-mf7" firstAttribute="centerY" secondItem="iSc-QG-HpL" secondAttribute="centerY" multiplier="1.05" id="eNK-3n-Snl"/>
+                            <constraint firstItem="sC2-rv-img" firstAttribute="centerX" secondItem="iSc-QG-HpL" secondAttribute="centerX" multiplier="1.25" id="eTJ-0F-VMQ"/>
+                            <constraint firstItem="stm-0u-p8D" firstAttribute="centerX" secondItem="iSc-QG-HpL" secondAttribute="centerX" multiplier="1.25" id="kyc-7K-4S6"/>
+                            <constraint firstItem="V6q-LK-le5" firstAttribute="centerX" secondItem="iSc-QG-HpL" secondAttribute="centerX" multiplier="1.25" id="lLg-NK-Z9K"/>
+                            <constraint firstItem="k0R-Mz-h5i" firstAttribute="centerY" secondItem="iSc-QG-HpL" secondAttribute="centerY" multiplier="0.7" id="oRA-Hd-7g2"/>
+                            <constraint firstItem="sC2-rv-img" firstAttribute="centerY" secondItem="iSc-QG-HpL" secondAttribute="centerY" multiplier="1.05" id="ona-H5-Y2b"/>
+                            <constraint firstItem="V6q-LK-le5" firstAttribute="centerY" secondItem="iSc-QG-HpL" secondAttribute="centerY" multiplier="1.75" id="pof-O5-QWd"/>
+                            <constraint firstItem="wh9-mg-orf" firstAttribute="centerY" secondItem="iSc-QG-HpL" secondAttribute="centerY" multiplier="0.35" id="rYm-PE-XEM"/>
+                            <constraint firstItem="stm-0u-p8D" firstAttribute="width" secondItem="iSc-QG-HpL" secondAttribute="width" multiplier="0.5" id="tOc-6k-mGB"/>
+                            <constraint firstItem="wh9-mg-orf" firstAttribute="width" secondItem="iSc-QG-HpL" secondAttribute="width" multiplier="0.5" id="woI-Jk-9il"/>
+                            <constraint firstItem="V6q-LK-le5" firstAttribute="width" secondItem="iSc-QG-HpL" secondAttribute="width" multiplier="0.5" id="xaO-o9-SF9"/>
+                            <constraint firstItem="P08-fz-7Cu" firstAttribute="centerY" secondItem="iSc-QG-HpL" secondAttribute="centerY" multiplier="1.75" id="xu2-vC-mR8"/>
+                            <constraint firstItem="P08-fz-7Cu" firstAttribute="centerX" secondItem="iSc-QG-HpL" secondAttribute="centerX" multiplier="0.4" id="z02-Lk-S80"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jjq-qJ-cFR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="2FN-FA-mpW">
+                    <connections>
+                        <action selector="handleGesture:" destination="Li6-d6-xXy" id="1CN-fZ-8Gf"/>
+                    </connections>
+                </panGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2616.5" y="871.5"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ag8-kk-dOI">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="ALh-Jr-Gfz" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pqf-Wm-4aB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="pqf-Wm-4aB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1025,13 +1173,18 @@
     <resources>
         <image name="btn_city_n" width="24" height="24"/>
         <image name="btn_forward_n" width="24" height="24"/>
+        <image name="btn_hsinchu_n" width="64" height="64"/>
         <image name="btn_hsinchu_selected" width="64" height="64"/>
+        <image name="btn_kaoshiung_n" width="64" height="64"/>
         <image name="btn_kaoshiung_selected" width="64" height="64"/>
         <image name="btn_next_n" width="80" height="80"/>
         <image name="btn_sort_n" width="24" height="24"/>
+        <image name="btn_taichung_n" width="64" height="64"/>
         <image name="btn_taichung_selected" width="64" height="64"/>
+        <image name="btn_tainan_n" width="64" height="64"/>
         <image name="btn_tainan_selected" width="64" height="64"/>
         <image name="btn_taipei_selected" width="64" height="64"/>
+        <image name="btn_taipei_selected copy" width="64" height="64"/>
         <image name="ic_applogo" width="159" height="34"/>
         <image name="ic_opening" width="158" height="182"/>
     </resources>
