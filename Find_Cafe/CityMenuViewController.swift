@@ -79,7 +79,7 @@ class CityMenuViewController: UIViewController, UITableViewDataSource, UITableVi
             case 3:
                 self.selectedCity = "tainan"
             case 4:
-                self.selectedCity = "kaoshiung"
+                self.selectedCity = "kaohsiung"
             default:
                 self.selectedCity = "taipei"
         }
