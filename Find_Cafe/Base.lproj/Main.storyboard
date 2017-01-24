@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fID-Qp-iTX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fID-Qp-iTX">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -1036,14 +1036,14 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose city" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IoQ-sn-Km0">
-                                <rect key="frame" x="0.0" y="-16" width="300" height="83.5"/>
+                                <rect key="frame" x="28" y="25" width="300" height="83.5"/>
                                 <color key="backgroundColor" red="0.047058823530000002" green="0.17254901959999999" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="G4p-GR-43i">
-                                <rect key="frame" x="-0.5" y="67.5" width="300" height="599.5"/>
+                                <rect key="frame" x="-0.5" y="83.5" width="300" height="583.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" red="0.047058823530000002" green="0.17254901959999999" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -1085,18 +1085,19 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
+                        <color key="backgroundColor" red="0.047058823530000002" green="0.17254901959999999" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="G4p-GR-43i" firstAttribute="leading" secondItem="iSc-QG-HpL" secondAttribute="leadingMargin" constant="-16.5" id="35c-l5-GD3"/>
+                            <constraint firstItem="IoQ-sn-Km0" firstAttribute="centerY" secondItem="iSc-QG-HpL" secondAttribute="centerY" multiplier="0.2" id="4np-xf-hcW"/>
+                            <constraint firstItem="IoQ-sn-Km0" firstAttribute="centerX" secondItem="iSc-QG-HpL" secondAttribute="centerX" multiplier="0.95" id="BcH-Vk-2Hu"/>
+                            <constraint firstItem="AFQ-uf-wAw" firstAttribute="top" secondItem="G4p-GR-43i" secondAttribute="bottom" id="GWa-MO-1A5"/>
                             <constraint firstAttribute="trailingMargin" secondItem="fDE-EF-hR7" secondAttribute="trailing" constant="-16" id="HXY-Ml-vYt"/>
                             <constraint firstItem="IoQ-sn-Km0" firstAttribute="width" secondItem="iSc-QG-HpL" secondAttribute="width" multiplier="0.8" id="NMi-Qj-WPL"/>
                             <constraint firstItem="fDE-EF-hR7" firstAttribute="height" secondItem="iSc-QG-HpL" secondAttribute="height" id="QhD-cc-Lpa"/>
-                            <constraint firstItem="IoQ-sn-Km0" firstAttribute="top" secondItem="WZr-Rg-WSM" secondAttribute="bottom" constant="-16" id="Sbc-dG-zX3"/>
                             <constraint firstItem="fDE-EF-hR7" firstAttribute="top" secondItem="WZr-Rg-WSM" secondAttribute="bottom" id="Sco-EF-eHW"/>
+                            <constraint firstItem="G4p-GR-43i" firstAttribute="height" secondItem="iSc-QG-HpL" secondAttribute="height" multiplier="0.875" id="VAZ-UC-Qc5"/>
                             <constraint firstItem="fDE-EF-hR7" firstAttribute="width" secondItem="iSc-QG-HpL" secondAttribute="width" multiplier="0.2" id="XAs-yv-cek"/>
-                            <constraint firstItem="G4p-GR-43i" firstAttribute="top" secondItem="IoQ-sn-Km0" secondAttribute="bottom" id="Xlk-Sm-Cxv"/>
-                            <constraint firstItem="IoQ-sn-Km0" firstAttribute="leading" secondItem="iSc-QG-HpL" secondAttribute="leadingMargin" constant="-16" id="abE-ti-osL"/>
                             <constraint firstItem="AFQ-uf-wAw" firstAttribute="top" secondItem="fDE-EF-hR7" secondAttribute="bottom" id="ddN-fH-1IY"/>
-                            <constraint firstItem="AFQ-uf-wAw" firstAttribute="top" secondItem="G4p-GR-43i" secondAttribute="bottom" id="ebG-oM-yd7"/>
                             <constraint firstItem="IoQ-sn-Km0" firstAttribute="height" secondItem="iSc-QG-HpL" secondAttribute="height" multiplier="0.125" id="lvL-Jo-yGh"/>
                             <constraint firstItem="G4p-GR-43i" firstAttribute="width" secondItem="iSc-QG-HpL" secondAttribute="width" multiplier="0.8" id="mHV-JB-KXL"/>
                         </constraints>

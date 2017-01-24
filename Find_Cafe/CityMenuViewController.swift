@@ -18,7 +18,9 @@ class CityMenuViewController: UIViewController, UITableViewDataSource, UITableVi
 
     @IBOutlet weak var cityMenuTable:UITableView!
     
+    var selectedCity = ""
     var interactor:Interactor? = nil
+    var cityMenuDelegate: CityMenuDelegate? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +65,26 @@ class CityMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         return (UIScreen.main.bounds.height *  0.175)
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        switch (indexPath.row) {
+            case 0:
+                self.selectedCity = "taipei"
+            case 1:
+                self.selectedCity = "hsinchu"
+            case 2:
+                self.selectedCity = "taichung"
+            case 3:
+                self.selectedCity = "tainan"
+            case 4:
+                self.selectedCity = "kaoshiung"
+            default:
+                self.selectedCity = "taipei"
+        }
+        cityMenuDelegate?.showSelectedCity(city: self.selectedCity)
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func handleGesture(_ sender: UIPanGestureRecognizer) {

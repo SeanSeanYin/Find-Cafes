@@ -15,6 +15,10 @@ protocol HandleMapSearch: class {
     func dropPinZoomIn(_ cafe:CafeInfo)
 }
 
+protocol CityMenuDelegate {
+    func showSelectedCity(city:String)
+}
+
 class CafeDetailHeader: UITableViewHeaderFooterView {
     
     @IBOutlet weak var nameLabel: UILabel!
@@ -35,6 +39,22 @@ class CafeDetailTableViewCell: UITableViewCell {
     @IBOutlet var tastyLabel:UILabel!
     @IBOutlet var seatLabel:UILabel!
     @IBOutlet var cheapLabel:UILabel!
+}
+
+extension CafesViewController: CityMenuDelegate {
+    
+    internal func showSelectedCity(city: String) {
+        self.newCity = city
+        getCityData(targetCity: self.newCity)
+        
+        if (self.newCity != self.oldCity) {
+            self.oldCity = self.newCity
+            locateAtStation()
+            self.cityButton.setTitle(getCityString(city), for: .normal)
+        }
+        
+        self.cafeDetailTable.reloadData()
+    }
 }
 
 extension CafesViewController : UIViewControllerTransitioningDelegate {
@@ -470,7 +490,7 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 if let destinationViewController = segue.destination as? CityMenuViewController {
                     destinationViewController.transitioningDelegate = self
                     destinationViewController.interactor = interactor
-                    //destinationViewController.menuActionDelegate = self
+                    destinationViewController.cityMenuDelegate = self
                 }
             }
         }
