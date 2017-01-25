@@ -55,7 +55,6 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBAction func startToUse(sender: AnyObject) {
         
-        print("self.currentCity:\(self.currentCity)")
         switch self.currentCity {
             
             case "台北", "新竹", "台中", "台南", "高雄" :
@@ -97,11 +96,15 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate {
                 self.currentLocation = locations[locations.count - 1]
                 let array = placemark! as NSArray
                 let mark = array.firstObject as! CLPlacemark
-
-                self.currentCity = (mark.addressDictionary! as NSDictionary).value(forKey: "State") as! String
                 
-                self.currentCity = self.currentCity.replacingOccurrences(of: "市", with: "")
+                self.currentCity = (mark.addressDictionary! as NSDictionary).value(forKey: "SubAdministrativeArea") as! String
+                
+                self.currentCity = self.currentCity.replacingOccurrences(of: "Country", with: "")
+                self.currentCity = self.currentCity.replacingOccurrences(of: " County", with: "")
                 self.currentCity = self.currentCity.replacingOccurrences(of: "縣", with: "")
+                self.currentCity = self.currentCity.replacingOccurrences(of: "市", with: "")
+                self.currentCity = self.currentCity.replacingOccurrences(of: "县", with: "")
+                
                 switch (self.currentCity){
                     case "台北":
                         self.cityLabel.text = "Taipei"

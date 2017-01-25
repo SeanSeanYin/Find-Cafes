@@ -261,8 +261,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLg-7I-t3Y" userLabel="CafeName">
-                                                    <rect key="frame" x="16" y="0.0" width="112.5" height="43"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLg-7I-t3Y" userLabel="CafeName">
+                                                    <rect key="frame" x="8" y="0.0" width="112.5" height="43"/>
                                                     <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -304,7 +304,7 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="eLg-7I-t3Y" firstAttribute="leading" secondItem="RQk-jL-5oz" secondAttribute="leadingMargin" constant="8" id="0os-U3-aga"/>
+                                                <constraint firstItem="eLg-7I-t3Y" firstAttribute="leading" secondItem="RQk-jL-5oz" secondAttribute="leadingMargin" id="0os-U3-aga"/>
                                                 <constraint firstItem="oeY-Ig-tpv" firstAttribute="centerX" secondItem="RQk-jL-5oz" secondAttribute="centerX" multiplier="1.84" id="1Xs-uO-W5N"/>
                                                 <constraint firstItem="0Cp-vR-578" firstAttribute="width" secondItem="RQk-jL-5oz" secondAttribute="width" multiplier="0.1" id="2Wn-J5-903"/>
                                                 <constraint firstItem="eLg-7I-t3Y" firstAttribute="width" secondItem="RQk-jL-5oz" secondAttribute="width" multiplier="0.3" id="81j-9v-ujK"/>
@@ -517,13 +517,13 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S8e-Xd-Cib" userLabel="Name">
                                                     <rect key="frame" x="0.0" y="0.0" width="359" height="16.5"/>
-                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GKa-n9-QPc" userLabel="Address">
                                                     <rect key="frame" x="0.0" y="16.5" width="359" height="16.5"/>
-                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="12"/>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -532,10 +532,10 @@
                                                 <constraint firstAttribute="trailing" secondItem="S8e-Xd-Cib" secondAttribute="trailing" id="8iS-t5-cvo"/>
                                                 <constraint firstItem="GKa-n9-QPc" firstAttribute="width" secondItem="1jI-ig-4dJ" secondAttribute="width" id="DZA-3w-2GA"/>
                                                 <constraint firstItem="S8e-Xd-Cib" firstAttribute="leading" secondItem="1jI-ig-4dJ" secondAttribute="leading" id="HMb-tI-5Rw"/>
-                                                <constraint firstItem="S8e-Xd-Cib" firstAttribute="height" secondItem="1jI-ig-4dJ" secondAttribute="height" multiplier="0.5" id="LYD-gQ-Ssb"/>
                                                 <constraint firstAttribute="bottom" secondItem="GKa-n9-QPc" secondAttribute="bottom" id="PRt-Nf-l80"/>
                                                 <constraint firstItem="S8e-Xd-Cib" firstAttribute="width" secondItem="1jI-ig-4dJ" secondAttribute="width" id="VU4-DS-hBp"/>
                                                 <constraint firstItem="S8e-Xd-Cib" firstAttribute="top" secondItem="1jI-ig-4dJ" secondAttribute="top" id="WNT-xi-MvM"/>
+                                                <constraint firstItem="S8e-Xd-Cib" firstAttribute="height" secondItem="GKa-n9-QPc" secondAttribute="height" id="a2B-hi-Zjf"/>
                                                 <constraint firstItem="GKa-n9-QPc" firstAttribute="height" secondItem="1jI-ig-4dJ" secondAttribute="height" multiplier="0.5" id="hvN-aI-gjT"/>
                                                 <constraint firstItem="GKa-n9-QPc" firstAttribute="leading" secondItem="1jI-ig-4dJ" secondAttribute="leading" id="iNc-Om-dRc"/>
                                                 <constraint firstAttribute="trailing" secondItem="GKa-n9-QPc" secondAttribute="trailing" id="uB5-ie-fpR"/>

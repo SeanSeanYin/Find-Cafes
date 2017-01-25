@@ -126,7 +126,7 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var annotations:[CafeAnnotation]!
     var cityCafe = ""
     let locationManager = CLLocationManager()
-    var userLocation:CLLocationCoordinate2D!
+    var userLocation:CLLocationCoordinate2D?
     var maskView: UIView!
     var sortPickerView:SortPickerView!
     var locationSearchTable:LocationSearchTable!
@@ -437,7 +437,6 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         
         self.userLocation = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
-        //let region = MKCoordinateRegion(center: self.userLocation, span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
         
         self.hasUserLocation = true
         //map.setRegion(region, animated: true)
@@ -530,7 +529,6 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
             sender.state,
             progress: progress,
             interactor: interactor){
-                print("----------------------------")
                 self.performSegue(withIdentifier: "showSelectCity", sender: nil)
         }
     }
@@ -686,8 +684,15 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func locateUser(){
         
-        print("Location:\(self.userLocation.latitude), \(self.userLocation.longitude)")
-        let region = MKCoordinateRegion(center: self.userLocation, span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
+        guard (self.userLocation != nil) else {
+            let alert = UIAlertController(title: "定位失敗", message: "請確認「定位服務」有開啟", preferredStyle: .alert)
+            let doAction = UIAlertAction(title: "確定", style: .default, handler: nil)
+            alert.addAction(doAction)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        let region = MKCoordinateRegion(center: (self.userLocation)!, span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
         map.setRegion(region, animated: true)
     }
     
