@@ -15,10 +15,14 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate {
     var currentCity = ""
     var currentLocation:CLLocation?
     @IBOutlet var cityLabel:UILabel!
+    @IBOutlet var startToUse:UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        startToUse.setImage(UIImage(named: "btn_next_n"), for: .normal)
+        startToUse.setImage(UIImage(named: "btn_next_p"), for: .focused)
+        
         // 設置locationManager的參數
         locationManager.delegate = self
         locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters

@@ -128,6 +128,7 @@
                     <navigationItem key="navigationItem" id="Ajo-ni-iCm"/>
                     <connections>
                         <outlet property="cityLabel" destination="pqj-7C-d8x" id="MiY-DG-Gdm"/>
+                        <outlet property="startToUse" destination="e78-AU-wt1" id="xZo-5x-xye"/>
                         <segue destination="cQN-Mc-5lt" kind="show" identifier="startToUse" id="IVm-ZD-ZR2"/>
                     </connections>
                 </viewController>
