@@ -132,6 +132,7 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var locationSearchTable:LocationSearchTable!
     var oldCity = ""
     var hasUserLocation = false
+    var isFirstSwitch = true
     var selectedCafe:CafeInfo?
     let interactor = Interactor()
     let taipeiStation = CLLocationCoordinate2D(latitude: 25.047641, longitude: 121.516865)
@@ -425,12 +426,31 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
             self.locationManager.requestWhenInUseAuthorization()
         }
     }
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        
+        switch status {
+        case .notDetermined:
+            locationManager.requestAlwaysAuthorization()
+            break
+        case .authorizedWhenInUse:
+            locationManager.startUpdatingLocation()
+            break
+        case .authorizedAlways:
+            locationManager.startUpdatingLocation()
+            break
+        case .restricted:
+            // restricted by e.g. parental controls. User can't enable Location Services
+            break
+        case .denied:
+            self.hasUserLocation = false
+            // user denied your app access to Location Services, but can grant access from Settings.app
+            break
+        }
+    }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         let userLocation = locations[locations.count - 1] as CLLocation
-        
-        //manager.stopUpdatingLocation()
         
         if (self.annotations != nil){
             map.addAnnotations(self.annotations)
@@ -439,7 +459,6 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.userLocation = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
         
         self.hasUserLocation = true
-        //map.setRegion(region, animated: true)
     }
     
     func locationManager(_ manager: CLLocationManager, didFinishDeferredUpdatesWithError error: Error?) {
@@ -667,8 +686,14 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
             self.cafeDetailTable.isHidden = true
             self.mapButton.setTitle("List", for: .normal)
             self.sortButton.setImage(UIImage(named: "btn_current_location_n"), for: .normal)
-            if (!hasUserLocation) { locateAtStation() }
-            else { locateUser() }
+            if (!hasUserLocation && self.isFirstSwitch) {
+                let alert = UIAlertController(title: "無法獲取使用者位置", message: "預設定位到各城市的火車站", preferredStyle: .alert)
+                let doAction = UIAlertAction(title: "確定", style: .default) { action in
+                    self.locateAtStation() }
+                alert.addAction(doAction)
+                self.present(alert, animated: true, completion: nil)
+            }
+            else if (!hasUserLocation && self.isFirstSwitch) { locateUser() }
 
         } else if (!map && !self.isHideMap) {
             
@@ -678,13 +703,15 @@ class CafesViewController: UIViewController, UITableViewDelegate, UITableViewDat
             self.mapButton.setTitle("Map", for: .normal)
             self.sortButton.setImage(UIImage(named: "btn_sort_n"), for: .normal)
         }
+        
+        self.isFirstSwitch = false
     }
     
     func dismiss() { self.dismiss(animated: true, completion: nil) }
     
     func locateUser(){
         
-        guard (self.userLocation != nil) else {
+        guard (self.hasUserLocation) else {
             let alert = UIAlertController(title: "定位失敗", message: "請確認「定位服務」有開啟", preferredStyle: .alert)
             let doAction = UIAlertAction(title: "確定", style: .default, handler: nil)
             alert.addAction(doAction)

@@ -31,11 +31,12 @@ class HomePageViewController: UIViewController, CLLocationManagerDelegate {
             
         } else if CLLocationManager.authorizationStatus() == .denied {
             
-            let alert = UIAlertController(title: "無法獲取使用者位置", message: "定位失敗，預設城市為台北市。", preferredStyle: .alert)
+            let alert = UIAlertController(title: "無法獲取使用者位置", message: "定位失敗，預設查詢城市為「台北市」", preferredStyle: .alert)
             let action = UIAlertAction(title: "Done", style: .default, handler: nil)
             alert.addAction(action)
             self.present(alert, animated: true, completion: {
                 self.cityLabel.text = "Taipei"
+                self.currentCity = "台北"
             })
             
         } else if CLLocationManager.authorizationStatus() == .notDetermined {

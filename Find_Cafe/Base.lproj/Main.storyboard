@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fID-Qp-iTX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fID-Qp-iTX">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -55,7 +55,6 @@
                                 </state>
                                 <connections>
                                     <action selector="startToUseWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="My9-NF-dOV"/>
-                                    <segue destination="cQN-Mc-5lt" kind="show" identifier="startToUse" id="26c-c0-9gr"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wZg-45-gCs" userLabel="Change city">
@@ -129,6 +128,7 @@
                     <navigationItem key="navigationItem" id="Ajo-ni-iCm"/>
                     <connections>
                         <outlet property="cityLabel" destination="pqj-7C-d8x" id="MiY-DG-Gdm"/>
+                        <segue destination="cQN-Mc-5lt" kind="show" identifier="startToUse" id="IVm-ZD-ZR2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -197,7 +197,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wifi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qpb-gL-y2Q" userLabel="Wifi">
-                                <rect key="frame" x="131.5" y="110" width="37.5" height="30"/>
+                                <rect key="frame" x="132" y="110" width="37" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="PvE-Z4-VAN"/>
                                 </constraints>
@@ -206,7 +206,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j7Y-bM-y8G" userLabel="Seat">
-                                <rect key="frame" x="169" y="110" width="37.5" height="30"/>
+                                <rect key="frame" x="169" y="110" width="38" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="ARL-eK-dQT"/>
                                 </constraints>
@@ -215,7 +215,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quiet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aph-nM-UL6" userLabel="Quiet">
-                                <rect key="frame" x="206.5" y="110" width="37.5" height="30"/>
+                                <rect key="frame" x="207" y="110" width="37" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="6nm-g0-CWv"/>
                                 </constraints>
@@ -224,7 +224,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tasty" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gew-Az-VtW" userLabel="Tasty">
-                                <rect key="frame" x="244" y="110" width="37.5" height="30"/>
+                                <rect key="frame" x="244" y="110" width="38" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="AKL-OI-oc4"/>
                                 </constraints>
@@ -233,7 +233,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cheap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ebR-b9-N39" userLabel="Cheap">
-                                <rect key="frame" x="283.5" y="110" width="41" height="30"/>
+                                <rect key="frame" x="284" y="110" width="41" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="rb9-rk-KzC"/>
                                 </constraints>
@@ -242,7 +242,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Music" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cSO-ji-jlq" userLabel="Music">
-                                <rect key="frame" x="326.5" y="110" width="37.5" height="30"/>
+                                <rect key="frame" x="327" y="110" width="37" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="fvs-Nh-xZ1"/>
                                 </constraints>
@@ -1026,24 +1026,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fDE-EF-hR7">
-                                <rect key="frame" x="300" y="0.0" width="75" height="667"/>
-                                <gestureRecognizers/>
-                                <state key="normal" title="close"/>
-                                <connections>
-                                    <action selector="closeMenu:" destination="Li6-d6-xXy" eventType="touchUpInside" id="5hX-YL-SPN"/>
-                                    <outletCollection property="gestureRecognizers" destination="2FN-FA-mpW" appends="YES" id="a8R-BG-Ci6"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose city" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IoQ-sn-Km0">
-                                <rect key="frame" x="28" y="25" width="300" height="83.5"/>
-                                <color key="backgroundColor" red="0.047058823530000002" green="0.17254901959999999" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="20"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="G4p-GR-43i">
-                                <rect key="frame" x="-0.5" y="83.5" width="300" height="583.5"/>
+                                <rect key="frame" x="-1" y="83" width="300" height="583.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" red="0.047058823530000002" green="0.17254901959999999" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -1084,6 +1068,22 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fDE-EF-hR7">
+                                <rect key="frame" x="300" y="0.0" width="75" height="667"/>
+                                <gestureRecognizers/>
+                                <state key="normal" title="close"/>
+                                <connections>
+                                    <action selector="closeMenu:" destination="Li6-d6-xXy" eventType="touchUpInside" id="5hX-YL-SPN"/>
+                                    <outletCollection property="gestureRecognizers" destination="2FN-FA-mpW" appends="YES" id="a8R-BG-Ci6"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose city" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IoQ-sn-Km0">
+                                <rect key="frame" x="28" y="25" width="300" height="83.5"/>
+                                <color key="backgroundColor" red="0.047058823530000002" green="0.17254901959999999" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.047058823530000002" green="0.17254901959999999" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -1151,6 +1151,6 @@
         <image name="ic_opening" width="158" height="182"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hXQ-Tp-t7k"/>
+        <segue reference="IVm-ZD-ZR2"/>
     </inferredMetricsTieBreakers>
 </document>
