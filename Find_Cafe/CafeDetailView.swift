@@ -61,14 +61,14 @@ class CafeDetailView: UIView {
     
     func countWifiStars(score: Double, starImage:[UIImageView?]) {
         
-        let hasRemainder = (score.truncatingRemainder(dividingBy: 1.0) == 0) ? false : true
+        var hasRemainder = (score.truncatingRemainder(dividingBy: 1.0) == 0) ? false : true
         for index in 1...5 {
             print(index)
             if ((index-1) < Int(score)) {
                 starImage[index-1]?.image = UIImage(named: "ic_star") }
             else {
                 starImage[index-1]?.image = (hasRemainder == true) ? UIImage(named: "ic_star_half") : UIImage(named: "ic_star_line")
-                
+                hasRemainder = false
             }
         }
     }

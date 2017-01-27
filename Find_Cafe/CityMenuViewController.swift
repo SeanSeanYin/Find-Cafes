@@ -25,6 +25,7 @@ class CityMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.selectedCity = (cityMenuDelegate?.getSelectedCity())!
         self.cityMenuTable.delegate = self
         self.cityMenuTable.dataSource = self
     }
@@ -41,22 +42,22 @@ class CityMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! CityMenuTableCell
         switch(indexPath.row){
             case 0:
-                cell.cityImage.image = UIImage(named: "btn_taipei_selected_copy")
+                cell.cityImage.image = (self.selectedCity == "taipei") ? UIImage(named: "btn_taipei_selected") : UIImage(named: "btn_taipei_n")
                 cell.cityLabel?.text = "Taipei"
             case 1:
-                cell.cityImage.image = UIImage(named: "btn_hsinchu_n")
+                cell.cityImage.image = (self.selectedCity == "hsinchu") ? UIImage(named: "btn_hsinchu_selected") : UIImage(named: "btn_hsinchu_n")
                 cell.cityLabel?.text = "Hsinchu"
             case 2:
-                cell.cityImage.image = UIImage(named: "btn_taichung_n")
+                cell.cityImage.image = (self.selectedCity == "taichung") ? UIImage(named: "btn_taichung_selected") : UIImage(named: "btn_taichung_n")
                 cell.cityLabel?.text = "Taichung"
             case 3:
-                cell.cityImage.image = UIImage(named: "btn_tainan_n")
+                cell.cityImage.image = (self.selectedCity == "tainan") ? UIImage(named: "btn_tainan_selected") : UIImage(named: "btn_tainan_n")
                 cell.cityLabel?.text = "Tainan"
             case 4:
-                cell.cityImage.image = UIImage(named: "btn_kaoshiung_n")
+                cell.cityImage.image = (self.selectedCity == "kaohsiung") ? UIImage(named: "btn_kaohsiung_selected") : UIImage(named: "btn_kaohsiung_n")
                 cell.cityLabel?.text = "Kaoshiung"
             default:
-                cell.imageView?.image = UIImage(named: "btn_taipei_selected_copy")
+                cell.cityImage.image = (self.selectedCity == "taipei") ? UIImage(named: "btn_taipei_selected") : UIImage(named: "btn_taipei_n")
                 cell.textLabel?.text = "Taipei"
         }
         return cell

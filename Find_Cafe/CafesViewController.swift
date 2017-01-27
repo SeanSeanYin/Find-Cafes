@@ -17,6 +17,7 @@ protocol HandleMapSearch: class {
 
 protocol CityMenuDelegate {
     func showSelectedCity(city:String)
+    func getSelectedCity() -> String
 }
 
 class CafeDetailHeader: UITableViewHeaderFooterView {
@@ -54,6 +55,12 @@ extension CafesViewController: CityMenuDelegate {
         }
         
         self.cafeDetailTable.reloadData()
+    }
+    
+    internal func getSelectedCity() -> String {
+        
+        guard (self.oldCity != "") else { return "taipei"}
+        return self.oldCity
     }
 }
 
