@@ -47,6 +47,7 @@ class CafeAnnotationView: MKAnnotationView {
                     self.customCalloutView!.alpha = 0.0
                     UIView.animate(withDuration: 0.3, animations: {
                         self.customCalloutView!.alpha = 1.0
+                        self.image = UIImage(named: "btn_flag_selected")
                     })
                 }
             }
@@ -58,6 +59,7 @@ class CafeAnnotationView: MKAnnotationView {
                                    completion: { success in self.customCalloutView!.removeFromSuperview() })
                 } else { self.customCalloutView!.removeFromSuperview() }
             }
+            self.image = UIImage(named: "btn_flag_n")
         }
     }
     
