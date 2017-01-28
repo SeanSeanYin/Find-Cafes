@@ -38,7 +38,7 @@ class CafeAnnotationView: MKAnnotationView {
             if let newCustomCalloutView = loadCafeDetailView() {
 
                 newCustomCalloutView.frame.origin.x -= (newCustomCalloutView.frame.width / 2.0 - (self.frame.width / 2.0))
-                newCustomCalloutView.frame.origin.y -= newCustomCalloutView.frame.height
+                newCustomCalloutView.frame.origin.y -= (newCustomCalloutView.frame.height + (UIImage(named: "btn_flag_selected")?.size.height)!/4)
                 
                 self.addSubview(newCustomCalloutView)
                 self.customCalloutView = newCustomCalloutView

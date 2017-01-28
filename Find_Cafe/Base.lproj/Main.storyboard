@@ -32,7 +32,7 @@
                                 <rect key="frame" x="113" y="49.5" width="150" height="34"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pqj-7C-d8x">
-                                <rect key="frame" x="152" y="144" width="71" height="45.5"/>
+                                <rect key="frame" x="154" y="144.5" width="67" height="44.5"/>
                                 <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="38"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -58,7 +58,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wZg-45-gCs" userLabel="Change city">
-                                <rect key="frame" x="113" y="416.5" width="150" height="34"/>
+                                <rect key="frame" x="113" y="417" width="150" height="33"/>
                                 <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="18"/>
                                 <state key="normal" title="Change city?">
                                     <color key="titleColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29411764705882354" alpha="1" colorSpace="calibratedRGB"/>
@@ -1054,7 +1054,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5u3-AQ-JXd">
-                                                    <rect key="frame" x="105" y="7.5" width="150" height="29"/>
+                                                    <rect key="frame" x="105" y="8" width="150" height="28"/>
                                                     <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="24"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
